@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "SuperMario"
+displayname = "DontTouchMe"
+versiondate = 08,08,2006
+mugenversion = 
+author = ""
+pal.defaults = 1,6,2,4,3,5
+
+[Files]
+sprite = Coding\SuperMario.sff
+anim = Coding\SuperMario.air
+sound = Sounds\SuperMario.snd
+cmd = Coding\SuperMario.cmd
+cns = Coding\SuperMario.cns
+stcommon = common1.cns
+st = Coding\SuperMario.cns
+st1 = Coding\SuperMario1.cns
+st2 = Coding\SuperMario1.cns
+pal1 = Palettes\Hyper.act
+pal2 = Palettes\Ice.act
+pal3 = Palettes\Anime.act
+pal4 = Palettes\SSBBPink.act
+pal5 = Palettes\RedStar.act
+pal6 = Palettes\SSBBBlue.act
+
+[Arcade]
+intro.storyboard = Coding\intro.def
+ending.storyboard = Coding\ending.def
