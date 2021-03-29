@@ -1,0 +1,728 @@
+
+[Statedef 5150]
+type     = U
+movetype = U
+physics  = U
+sprpriority = 7
+movehitpersist = 1
+hitdefpersist = 1
+hitcountpersist = 1
+;---------------------------------------helper:155
+[State C]
+type = changeanim
+trigger1 = ishelper(155)
+trigger1 = root,anim != 1400
+trigger1 = anim != 155
+value = 155
+ignorehitpause = 1
+
+[State C]
+type = changeanim
+trigger1 = ishelper(155)
+trigger1 = root,anim = 1400
+trigger1 = anim != 9999
+value = 9999
+ignorehitpause = 1
+
+[State C]
+type = statetypeset
+trigger1 = ishelper(155)
+statetype = S
+movetype = I
+physics = N
+ignorehitpause = 1
+
+[State C]
+type = bindtoroot
+trigger1 = ishelper(155)
+pos = 0,0
+ignorehitpause = 1
+
+[State C]
+type = nothitby
+triggerall = ishelper(155)
+trigger1 = root,anim = 500||root,anim = 502||root,anim = 700||root,anim = 1001||root,anim = 1100||root,anim = 1101||root,anim = 1200||root,anim = 1201||root,anim = 1300||root,anim = 1301
+trigger2 = root,anim = 950||root,anim = 800||root,anim = 850||root,anim = 400||root,anim = 195
+trigger3 = root,sysfvar(2) = 3
+value = SCA
+IgnoreHitPause = 1 
+
+[State C]
+type = hitby
+triggerall = ishelper(155)
+trigger1 = root,anim = 1400
+trigger2 = random <= 7
+trigger2 = root,fvar(34)
+trigger2 = root,sysfvar(2) = 3&&root,var(59)
+trigger2 = enemynear(floor(fvar(36))),anim = 9999
+trigger2 = enemynear(floor(fvar(36))),alive = -666
+trigger2 = (enemynear(floor(fvar(36))),pos x = 0)&&(enemynear(floor(fvar(36))),vel x = 0)
+trigger2 = (enemynear(floor(fvar(36))),pos y = 0)&&(enemynear(floor(fvar(36))),vel y = 0)
+trigger2 = enemynear(floor(fvar(36))),sysvar(0) = 0
+trigger2 = enemynear(floor(fvar(36))),sysvar(1) = 0
+trigger2 = enemynear(floor(fvar(36))),sysvar(2) = 0
+trigger2 = enemynear(floor(fvar(36))),sysvar(3) = 0
+trigger2 = enemynear(floor(fvar(36))),sysvar(4) = 128
+trigger2 = numhelper(155)&&numhelper(140)&&numhelper(160)
+trigger3 = random <= 7
+trigger3 = !root,fvar(34)
+value = SCA,AA,AT,AP
+IgnoreHitPause = 1 
+
+[State C]
+type = ScreenBound
+trigger1 = ishelper(155)
+value = 0
+IgnoreHitPause = 1 
+
+[State C]
+type = varset
+trigger1 = 0;ishelper(155)
+trigger1 = roundstate = 2
+trigger1 = gethitvar(damage) > 0
+sysvar(0) = ifelse(gethitvar(damage)>200,200,gethitvar(damage))
+ignorehitpause = 1
+
+[State C]
+type = varset
+trigger1 = ishelper(155)
+trigger1 = roundstate = 2
+trigger1 = root,anim != 1400
+trigger1 = gethitvar(damage) > 0
+sysvar(0) = gethitvar(damage)
+ignorehitpause = 1
+
+[State C]
+type = varset
+trigger1 = ishelper(155)
+trigger1 = roundstate = 2
+trigger1 = root,sysfvar(1)>0
+sysvar(0) = sysvar(0)-sysvar(0)
+ignorehitpause = 1
+
+[State C]
+type = varset
+trigger1 = ishelper(155)
+trigger1 = roundstate = 2
+trigger1 = sysvar(0)<0
+sysvar(0) = 0
+ignorehitpause = 1
+
+[State C]
+type = Helper
+triggerall = ishelper(155)
+trigger1 = !numhelper(160)
+ID = 160
+postype = p1
+pos = 0, 0
+stateno = 5150
+helpertype = player
+keyctrl = 0
+supermovetime = 2147483647
+pausemovetime = 2147483647
+ignorehitpause = 1
+;---------------------------------------helper:160
+[State C]
+type = changeanim
+trigger1 = ishelper(160)
+trigger1 = anim != 9998
+value = 9998
+ignorehitpause = 1
+
+[State C]
+type = statetypeset
+trigger1 = ishelper(160)
+statetype = S
+movetype = I
+physics = N
+ignorehitpause = 1
+
+[State C]
+type = bindtoroot
+trigger1 = ishelper(160)
+pos = 0,0
+ignorehitpause = 1
+
+[State C]
+type = Pause
+trigger1 = ishelper(160)
+time = 0
+movetime = 0
+ignorehitpause = 1
+
+[State C]
+type = Superpause
+trigger1 = ishelper(160)
+anim = -1
+time = 0
+movetime = 0
+darken = 0
+p2defmul = 1
+unhittable = 0
+ignorehitpause = 1
+
+[State C]
+type = ScreenBound
+trigger1 = ishelper(160)
+value = 0
+IgnoreHitPause = 1 
+
+[State C]
+type = Pause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+triggerall = gametime % 8 != [2, 7]
+triggerall = !root,numtarget
+triggerall = !(!enemy(0),alive && !enemy(numenemy >= 2),alive)
+trigger1 = enemynear,movetype = A
+trigger1 = enemynear(numenemy > 1),movetype = A
+time = 2
+movetime = 2
+ignorehitpause = 1
+
+[State C]
+type = Superpause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+triggerall = gametime % 8 != [2, 7]
+triggerall = !root,numtarget
+triggerall = !(!enemy(0),alive && !enemy(numenemy >= 2),alive)
+trigger1 = enemynear,movetype = A
+trigger1 = enemynear(numenemy > 1),movetype = A
+anim = -1
+time = 2
+movetime = 2
+darken = 0
+p2defmul = 1
+ignorehitpause = 1
+
+[State C]
+type = Pause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+triggerall = gametime%2 = 0
+trigger1 = root,anim = 1201&&(root,animelemtime(15) = [0,100])&&root,sysfvar(2)<3
+trigger2 = root,anim = 1301&&(animelemtime(3)=[0,30])&&root,sysfvar(2)<3
+time = 1
+movetime = 1
+ignorehitpause = 1
+
+[State C]
+type = Superpause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+triggerall = gametime%2 = 0
+trigger1 = root,anim = 1201&&(root,animelemtime(15) = [0,100])&&root,sysfvar(2)<3
+trigger2 = root,anim = 1301&&root,animelemtime(415) >= 0&&root,sysfvar(2)<3
+trigger3 = root,anim = 700&&(animelemtime(3)=[0,30])&&root,sysfvar(2)<3
+anim = -1
+time = 1
+movetime = 1
+darken = 0
+p2defmul = 1
+ignorehitpause = 1
+
+[State C]
+type = Superpause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+trigger1 = root,anim = 700&&root,animelemtime(4)<0
+trigger2 = root,anim = 1000&&root,animelemtime(2)<0
+trigger3 = root,anim = 1300&&root,animelemtime(3)<0
+trigger4 = root,anim = 800&&root,animelemtime(10)<0
+anim = -1
+time = 2
+movetime = 2
+darken = 0
+p2defmul = 1
+ignorehitpause = 1
+
+[State C]
+type = Pause
+triggerall = ishelper(160)
+triggerall = roundstate = 2
+trigger1 = root,anim = 700&&root,animelemtime(4)<0
+trigger2 = root,anim = 1000&&root,animelemtime(2)<0
+trigger3 = root,anim = 1300&&root,animelemtime(3)<0
+trigger4 = root,anim = 800&&root,animelemtime(10)<0
+time = 2
+movetime = 2
+ignorehitpause = 1
+
+[State C]
+type = Superpause
+triggerall = ishelper(160)
+triggerall = !enemy(0),alive && !enemy(numenemy >= 2),alive
+trigger1 = (root,sysvar(4))&1
+trigger2 = root,sysfvar(2) >=3
+anim = -1
+time = 2147483647
+movetime = 2147483647
+darken = 0
+p2defmul = 1
+ignorehitpause = 1
+
+[State C]
+type = Pause
+triggerall = ishelper(160)
+triggerall = !enemy(0),alive && !enemy(numenemy >= 2),alive
+trigger1 = (root,sysvar(4))&1
+trigger2 = root,sysfvar(2) >=3
+time = 2147483647
+movetime = 2147483647
+ignorehitpause = 1
+
+[State C]
+type = Destroyself
+trigger1 = ishelper(160)
+trigger1 = animelemtime(1) > 0
+ignorehitpause = 1
+;---------------------------------------------------------------helper:140
+[State C]
+type = Assertspecial
+trigger1 = ishelper(140)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State C]
+type = statetypeset
+trigger1 = ishelper
+statetype = C
+movetype = A
+physics = N
+ignorehitpause = 1
+
+[State C];
+Type = ChangeAnim
+trigger1 = ishelper(140)
+trigger1 = !root,var(6)
+Value = 10000
+IgnoreHitPause = 1 
+
+[State C];
+Type = posset
+trigger1 = ishelper(140)
+pos = 0,0
+IgnoreHitPause = 1 
+
+[State C];
+Type = ScreenBound
+trigger1 = ishelper(140)
+Value = 0
+movecamera = 0
+IgnoreHitPause = 1
+
+[State C];
+Type = PlayerPush
+trigger1 = ishelper(140)
+Value = 0
+IgnoreHitPause = 1 
+
+[State C];
+Type = ChangeAnim
+trigger1 = ishelper(140)
+trigger1 = root,var(6)
+Value = 9999
+IgnoreHitPause = 1 
+
+[State C]
+type = Reversaldef
+trigger1 = ishelper(140)
+numhits = 0
+reversal.attr = SCA,AA,AP,AT
+PauseTime = 6,6
+sparkno = -1
+p2stateno = 4444
+guard.sparkno = -1
+fall = 1
+fall.recover = 0
+fall.damage = (!root,var(6))*2147483647
+ignorehitpause = 1
+
+[State C]
+type = Targetdrop
+triggerall = ishelper(140)
+trigger1 = numtarget>1
+excludeID = enemynear(floor(fvar(36))),id
+keepone = 1
+ignorehitpause = 1
+
+[State C];本体获取flag
+type = parentvarset
+triggerall = ishelper(140)
+triggerall = !target,ishelper
+trigger1 = numTarget=1
+var(6) = 4
+IgnoreHitPause = 1 
+
+[State C]
+type = parentvarset
+triggerall = ishelper(140)
+trigger1 = !(!target,ishelper&&numTarget=1)
+var(6) = 0
+IgnoreHitPause = 1 
+
+[State C];对方本体id记录
+type = parentvarset
+triggerall = ishelper(140)
+trigger1 = !root,var(10)
+var(10) = enemy(0),id
+IgnoreHitPause = 1 
+
+[State C];对方本体id记录2
+type = parentvarset
+triggerall = ishelper(140)
+trigger1 = !root,var(11)
+trigger1 = numenemy>1
+var(11) = enemy(1),id
+IgnoreHitPause = 1 
+
+[State C];攻击anim记录
+type = parentvarset
+triggerall = ishelper(140)
+triggerall = Target,ishelper
+trigger1 = NumTarget=1
+trigger1 = target,movereversed
+trigger1 = !root,var(12)
+var(12) = target,sysvar(2)
+IgnoreHitPause = 1 
+
+[State C]
+type = parentvarset
+triggerall = ishelper(140)
+triggerall = Target,ishelper
+trigger1 = NumTarget=1
+trigger1 = target,movereversed
+trigger1 = target,stateno != 4444
+trigger1 = target,stateno != 666
+trigger1 = !root,var(13)
+var(13) = target,sysvar(2)
+IgnoreHitPause = 1 
+
+[State C]
+type = parentvarset
+triggerall = ishelper(140)
+triggerall = Target,ishelper
+trigger1 = NumTarget=1
+trigger1 = !target,ishelper(88888888)
+trigger1 = !target,ishelper(88888889)
+trigger1 = !target,ishelper(88888890)
+trigger1 = target,movereversed
+trigger1 = target,stateno != 4444
+trigger1 = target,stateno != 666
+trigger1 = target,stateno != root,var(13)
+trigger1 = !root,var(14)
+var(14) = target,stateno
+IgnoreHitPause = 1 
+
+[State C]
+type = Targetstate
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper
+triggerall = target,hitpausetime 
+triggerall = target,stateno != 666
+trigger1 = roundstate >= 2
+value = 666
+ignorehitpause = 1
+
+[State C]
+type = Targetstate
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper
+triggerall = root,anim = 1400&&root,animelemtime(7)>0&&root,animelemtime(57)<0
+triggerall = target,stateno != 666
+triggerall = target,hitpausetime
+trigger1 = roundstate >= 2
+value = 666
+ignorehitpause = 1
+
+[State C]
+type = Varset
+triggerall = ishelper(140)
+triggerall = numtarget = 1
+triggerall = !target,ishelper
+triggerall =(target,stateno != [141,142])&& (target,stateno != 120)&&(target,stateno != 5150)&&(target,stateno != 666)&&(target,stateno != 4444)
+trigger1 = (target,stateno = [1, 1004]) || target,stateno = 1007 || target,stateno = 1010 || target,stateno = 1020 || target,stateno = 1030 || target,stateno = 1043 || target,stateno = 1050 || target,stateno = 1065 || target,stateno = 1070
+trigger2 = (target,stateno = [1100, 1102]) || (target,stateno = [1110, 1120]) || (target,stateno = [1200, 1202]) || (target,stateno = [1209, 1210])|| target,stateno = 1220 || (target,stateno = [1253, 1254])
+trigger3 = (target,stateno = [1300, 1303]) || target,stateno = 1350 || target,stateno = 1400 || (target,stateno = [1410, 1412]) || (target,stateno = [1450,1500)) || target,stateno = 1500 || target,stateno = 1510 || (target,stateno = [1600, 1602])
+trigger4 = target,stateno = 1720 || target,stateno = 1801 || target,stateno = 1999 || (target,stateno = [2000, 2005]) || (target,stateno = [2010, 2011]) || (target,stateno = [2020, 2025]) || target,stateno = 2029
+trigger5 = (target,stateno = [2100, 2105]) || target,stateno = 2110 || (target,stateno = [2120, 2121]) || target,stateno = 2125 || target,stateno = 2133 || (target,stateno = [2200, 2206]) || target,stateno = 2210
+trigger6 = (target,stateno = [2220, 2222]) || target,stateno = 2269 || target,stateno = 2300 || (target,stateno = [2350, 2356]) || target,stateno = 2400 || target,stateno = 2500 || (target,stateno = [2506, 2507])
+trigger7 = target,stateno = 2600 || target,stateno = 2611 || target,stateno = 2901 || (target,stateno = [3000, 3002]) || target,stateno = 3041 || (target,stateno = [3052, 3054]) || target,stateno = 3059 || (target,stateno = [3100, 3101])
+trigger8 = target,stateno = 3185 || target,stateno = 3200 || target,stateno = 3210 || target,stateno = 3230 || target,stateno = 3300 || target,stateno = 3333 || target,stateno = 3400 || target,stateno = 3403
+trigger9 = (target,stateno = [3510, 3519]) || (target,stateno = [3920, 3921]) || target,stateno = 3929 || (target,stateno = [3999, 4001]) || target,stateno = 4050 || target,stateno = 4060 || target,stateno = 4080
+trigger10 = target,stateno = 4090 || target,stateno = 4091 || target,stateno = 4211 || (target,stateno = [4310, 4311]) || (target,stateno = [4330, 4331]) || target,stateno = 4391 || (target,stateno = [4395, 4396])
+trigger11 = target,stateno = 4444 || target,stateno = 4500 || (target,stateno = [4510, 4512]) || target,stateno = 4600 || target,stateno = 4920 || target,stateno = 4921 || target,stateno = 4922 || target,stateno = 4930
+trigger12 = (target,stateno = [5000, 5001]) || (target,stateno = [5010, 5011]) || target,stateno = 5020 || target,stateno = 5030 || target,stateno = 5035 || target,stateno = 5040 || target,stateno = 5050
+trigger13 = (target,stateno = [5070, 5071]) || (target,stateno = [5080, 5081]) || (target,stateno = [5100, 5101]) || target,stateno = 5110 || target,stateno = 5120 || (target,stateno = [5200, 5201]) || target,stateno = 5210
+trigger14 = target,stateno = 5500 || target,stateno = 5555 || target,stateno = 5600 || (target,stateno = [5788, 5790]) || target,stateno = 5858 || target,stateno = 5900 || target,stateno = 5910 || (target,stateno = [6000, 6007])
+trigger15 = (target,stateno = [6010, 6016]) || (target,stateno = [6019, 6020]) || (target,stateno = [6024, 6027]) || (target,stateno = [6032, 6035]) || (target,stateno = [6100, 6107]) || target,stateno = 6110
+trigger16 = target,stateno = 6301 || target,stateno = 6306 || target,stateno = 6540 || target,stateno = 6666 || target,stateno = 6789 || target,stateno = 6800 || target,stateno = 6900 || target,stateno = 6920 || target,stateno = 6990
+trigger17 = (target,stateno = [6999, 7000]) || target,stateno = 7006 || target,stateno = 7011 || (target,stateno = [7040, 7047]) || target,stateno = 7055 || target,stateno = 7309 || (target,stateno = [7320, 7321])
+trigger18 = (target,stateno = [7326, 7327]) || target,stateno = 7777 || target,stateno = 7878 || (target,stateno = [8000, 8006]) || target,stateno = 8012 || target,stateno = 8015 || target,stateno = 8040 || target,stateno = 9200
+trigger19 = (target,stateno = [8100, 8106]) || target,stateno = 8492 || target,stateno = 8888 || target,stateno = 8900 || target,stateno = 9000 || target,stateno = 9007 || target,stateno = 9010 || target,stateno = 9100
+trigger20 = target,stateno = 9110 || target,stateno = 9115 || target,stateno = 9126 || target,stateno = 9263 || target,stateno = 9809 || (target,stateno = [9900, 9902]) || target,stateno = 9936 || target,stateno = 9952
+trigger21 = target,stateno = 9988 || (target,stateno = [9990, 10000]) || target,stateno = 10012 || target,stateno = 10015 || target,stateno = 10040 || target,stateno = 10101 || (target,stateno = [10190, 10199])
+trigger22 = target,stateno = 10504 || target,stateno = 10651 || (target,stateno = [11000, 11004]) || target,stateno = 11100 || target,stateno = 11111 || target,stateno = 11301 || target,stateno = 11502 || target,stateno = 11680
+trigger23 = target,stateno = 11710 || target,stateno = 11720 || target,stateno = 11730 || (target,stateno = [11999, 12004]) || (target,stateno = [12030, 12031]) || target,stateno = 12310 || target,stateno = 12345
+trigger24 = target,stateno = 13020 || target,stateno = 13050 || target,stateno = 13100 || target,stateno = 13200 || target,stateno = 13500 || (target,stateno = [14001, 14002]) || target,stateno = 15000 || target,stateno = 15010
+trigger25 = target,stateno = 12450 || target,stateno = 12500 || target,stateno = 13000 || target,stateno = 15100 || target,stateno = 15110 || target,stateno = 15120 || target,stateno = 15200 || target,stateno = 15210
+trigger26 = target,stateno = 15220 || target,stateno = 16003 || target,stateno = 16803 || target,stateno = 18102 || target,stateno = 19015 || (target,stateno = [19023, 19024]) || target,stateno = 19101 || (target,stateno = [19193, 19197])
+trigger27 = target,stateno = 19401 || target,stateno = 20000 || target,stateno = 20955 || target,stateno = 21012 || (target,stateno = [22101, 22102]) || target,stateno = 22122 || (target,stateno = [22222, 22224])
+trigger28 = (target,stateno = [21000, 21003]) || target,stateno = 22428 || target,stateno = 24601 || target,stateno = 24610 || target,stateno = 25544 || target,stateno = 26320 || target,stateno = 26485 || target,stateno = 29105
+trigger29 = target,stateno = 29995 || (target,stateno = [30000, 30005]) || target,stateno = 30010 || (target,stateno = [30013, 30014]) || (target,stateno = [30020, 30021]) || target,stateno = 31993 || target,stateno = 32555
+trigger30 = target,stateno = 33333 || target,stateno = 37000 || (target,stateno = [40000, 40007]) || target,stateno = 40010 || target,stateno = 40020 || target,stateno = 40952 || (target,stateno = [43014, 43015]) || target,stateno = 43302
+trigger31 = (target,stateno = [43425, 43426]) || target,stateno = 43503 || target,stateno = 43655 || target,stateno = 43705 || target,stateno = 43708 || target,stateno = 44444 || target,stateno = 44488 || target,stateno = 44900
+trigger32 = target,stateno = 46965 || target,stateno = 49933 || target,stateno = 49943 || (target,stateno = [49998, 50000]) || (target,stateno = [50505, 50506]) || (target,stateno = [51515, 51518]) || target,stateno = 55555
+trigger33 = target,stateno = 45755 || target,stateno = 45999 || target,stateno = 46060 || target,stateno = 49468 || target,stateno = 56414 || target,stateno = 58900 || target,stateno = 58901 || target,stateno = 60000
+trigger34 = target,stateno = 60010 || target,stateno = 60050 || target,stateno = 60315 || target,stateno = 61000 || target,stateno = 64000 || target,stateno = 65000 || target,stateno = 65500 || target,stateno = 65530
+trigger35 = target,stateno = 66666 || target,stateno = 70000 || target,stateno = 70100 || target,stateno = 70200 || target,stateno = 77777 || target,stateno = 80000 || target,stateno = 84555 || target,stateno = 85151
+trigger36 = (target,stateno = [88885, 88888]) || target,stateno = 90000 || (target,stateno = [90017, 90019]) || target,stateno = 94401 || (target,stateno = [99919, 99920]) || (target,stateno = [99999, 100002]) || target,stateno = 100215
+trigger37 = target,stateno = 102500 || target,stateno = 108000 || target,stateno = 110010 || target,stateno = 111111 || target,stateno = 111222 || target,stateno = 112235 || target,stateno = 112240 || target,stateno = 112250
+trigger38 = target,stateno = 126100 || target,stateno = 169990 || target,stateno = 170000 || target,stateno = 180002 || target,stateno = 188888 || target,stateno = 200000 || target,stateno = 200100 || target,stateno = 200200
+trigger39 = target,stateno = 222222 || target,stateno = 300000 || target,stateno = 301050 || target,stateno = 310120 ||  target,stateno = 313900 ||  target,stateno = 388888 || target,stateno = 400000 || target,stateno = 444444
+trigger40 = (target,stateno = [288888, 288891]) || target,stateno = 220000 || target,stateno = 220005 || target,stateno = 445051 || target,stateno = 450000 || target,stateno = 500000 || target,stateno = 500033 || target,stateno = 555555
+trigger41 = target,stateno = 600000 || target,stateno = 649999 || target,stateno = 700000 || target,stateno = 741002 || (target,stateno = [741003, 741004]) || target,stateno = 777777 || target,stateno = 800000
+trigger42 = target,stateno = 888881 || target,stateno = 888888 || target,stateno = 900000 || target,stateno = 910010 || (target,stateno = [999999, 1000001]) || target,stateno = 1000005 || (target,stateno = [1000010, 1000014])
+trigger43 = target,stateno = 1000034 || (target,stateno = [1000040, 1000044]) || target,stateno = 1111111 || target,stateno = 1168000 || target,stateno = 1699922 || target,stateno = 2000000 || target,stateno = 2222222
+trigger44 = target,stateno = 3000000 || target,stateno = 3333333 || target,stateno = 4000000 || target,stateno = 4444444 || target,stateno = 4498234 || target,stateno = 5000000 || (target,stateno = [5000005, 5000006])
+trigger45 = target,stateno = 5000058 || (target,stateno = [5000070, 5000072]) || target,stateno = 5000080 || target,stateno = 5000085 || target,stateno = 5000090 || target,stateno = 5000095 || target,stateno = 5000333
+trigger46 = target,stateno = 5000010 || target,stateno = 5000025 || target,stateno = 5000052 || target,stateno = 5555555 || target,stateno = 6000000 || target,stateno = 6400000 || target,stateno = 6666666 || target,stateno = 7000000
+trigger47 = target,stateno = 7777777 || target,stateno = 8000000 || target,stateno = 8888888 || target,stateno = 9000000 || target,stateno = 9999999 || target,stateno = 10000000 || target,stateno = 11111111 || target,stateno = 20000000
+trigger48 = (target,stateno = [21360897, 21360898]) || target,stateno = 22222222 || target,stateno = 30000000 || target,stateno = 33333333 || target,stateno = 40000000 || target,stateno = 44444444 || target,stateno = 50000000
+trigger49 = target,stateno = 55555555 || target,stateno = 60000000 || target,stateno = 66666666 || target,stateno = 70000000 || target,stateno = 77777777 || target,stateno = 80000000 || target,stateno = 88010000
+trigger50 = target,stateno = 88040000 || target,stateno = 88080000 || (target,stateno = [88888880, 88888889]) || target,stateno = 90000000 || (target,stateno = [99999999, 100000000]) || target,stateno = 111111111
+trigger51 = target,stateno = 123456789 || target,stateno = 200000000 || target,stateno = 222222222 || target,stateno = 300000000 || target,stateno = 333333333 || target,stateno = 400000000 || target,stateno = 444444444
+trigger52 = target,stateno = 500000000 || (target,stateno = [555555555, 555555557]) || target,stateno = 600000000 || target,stateno = 666666666 || target,stateno = 700000000 || target,stateno = 777777777 || target,stateno = 800000000
+trigger53 = target,stateno = 880100000 || target,stateno = 880400000 || target,stateno = 880800000 || target,stateno = 888802222 || target,stateno = 888888880 || (target,stateno = [888888888, 888888889])
+trigger54 = target,stateno = 900000000 || target,stateno = 987654321 || target,stateno = 990990990 || target,stateno = 999999999 || target,stateno = 1000000000 || target,stateno = 1100000000 || target,stateno = 1111111111
+trigger55 = target,stateno = 1200000000 || target,stateno = 1300000000 || target,stateno = 1400000000 || target,stateno = 1500000000 || target,stateno = 1600000000 || target,stateno = 1700000000 || target,stateno = 1800000000
+trigger56 = target,stateno = 1900000000 || target,stateno = 2000000000 || target,stateno = 2100000000 || target,stateno = 2147483647
+sysvar(4) = target,stateno
+ignorehitpause = 1
+
+[State C]
+type = Targetbind
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper
+triggerall = target,pos y < -300||target,pos y > 100
+trigger1 = roundstate = 2
+postype = p1
+pos = 70,0
+ignorehitpause = 1
+
+[State C]
+type = Targetstate
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper&&sysvar(4)>0
+triggerall = gametime%10 = 1
+triggerall = target,stateno != sysvar(4)
+trigger1 = roundstate >= 2
+value = sysvar(4)
+ignorehitpause = 1
+
+[State C]
+type = Targetstate
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper
+triggerall = target,gethitvar(fall.damage)
+triggerall = gametime%10 = 3
+trigger1 = roundstate >= 2
+value = 5100+10*random%3
+ignorehitpause = 1
+
+[State C]
+type = Targetstate
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper&&sysvar(4)>0
+triggerall = gametime%10 = 6
+triggerall = target,stateno != 4444
+trigger1 = roundstate >= 2
+value = 4444
+ignorehitpause = 1
+
+[State C]
+type = TargetLifeAdd
+trigger1 = numtarget=1
+trigger1 = target,movetype != H
+trigger1 = !target,ishelper
+trigger1 = roundstate = 2
+value = -random%7-(root,anim = 1400)*2147483648
+absolute = 1
+kill = 1
+ignorehitpause = 1
+
+[State C]
+type = Targetlifeadd
+triggerall = ishelper(140)
+triggerall = numtarget=1
+triggerall = !target,ishelper
+trigger1 = roundstate != 2
+value = -2147483647
+absolute = 1
+kill = 1
+ignorehitpause = 1
+
+[State C]
+type = Targetpoweradd
+triggerall = ishelper(140)
+triggerall = numtarget
+trigger1 = roundstate != 2
+value = -2147483647
+ignorehitpause = 1
+;---------------------------------------------------------------helper:1500
+[State C]
+type = Assertspecial
+trigger1 = ishelper(1500)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State C]
+type = Statetypeset
+trigger1 = ishelper(1500)
+movetype = I
+ignorehitpause = 1
+
+[State C];
+Type = ChangeAnim
+trigger1 = ishelper(1500)
+Value = 10000
+IgnoreHitPause = 1 
+;-------------------------------------------
+[State C]
+type = null
+triggerall = ishelper(1500)&&root,sysfvar(2)>=4
+triggerall = root,sysvar(2)&&!(root,sysvar(4)&512)
+trigger1 = root,anim = 190&&root,animelemtime(6)>=0
+trigger2 = roundstate >= 2
+text = "%.*d%n%d"
+params = 0,0,(root,sysvar(2)+352)
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = ishelper(1500)&&root,sysfvar(2)>=4
+triggerall = numenemy>1&&root,sysvar(3)&&!(root,sysvar(4)&512)
+trigger1 = root,anim = 190&&root,animelemtime(6)>=0
+trigger2 = roundstate >= 2
+text = "%.*d%n%d"
+params = 0,0,(root,sysvar(3)+352)
+ignorehitpause = 1
+
+[State C]
+type = null
+trigger1 = ishelper(1500)&&root,sysfvar(2)>=4
+trigger1 = root,sysvar(2)&&!(root,sysvar(4)&512)
+trigger1 = root,anim = 1500&&root,animelemtime(6)>=20
+text = "%.*d%n%d"
+params = 0,0,(root,sysvar(2)+3620)
+ignorehitpause = 1
+
+[State C]
+type = null
+trigger1 = ishelper(1500)&&root,sysfvar(2)>=4
+trigger1 = numenemy>1&&root,sysvar(3)&&!(root,sysvar(4)&512)
+trigger1 = root,anim = 1500&&root,animelemtime(6)>=20
+text = "%.*d%n%d"
+params = 0,0,(root,sysvar(3)+3620)
+ignorehitpause = 1
+
+[State C]
+type = null
+trigger1 = ishelper(1500)&&root,sysfvar(2)>=4
+trigger1 = root,sysvar(2)&&!(root,sysvar(4)&512)
+trigger1 = anim = 1500&&root,animelemtime(6)>=20
+text = "%.*d%n%d"
+params = 1,0,(root,sysvar(2)+348)
+ignorehitpause = 1
+
+[State C]
+type = null
+trigger1 = ishelper(1500)&&root,sysfvar(2)>=4
+trigger1 = numenemy>1&&root,sysvar(3)&&!(root,sysvar(4)&512)
+trigger1 = root,anim = 1500&&root,animelemtime(6)>=20
+text = "%.*d%n%d"
+params = 1,0,(root,sysvar(3)+348)
+ignorehitpause = 1
+;----------------------------------------------------
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)
+trigger1 = 0;root,sysvar(1)>4444
+text = "%*d%n%d"
+params = 0,0,(root,sysvar(1)+348)
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)
+trigger1 = root,sysvar(1)>4444
+text = "%*d%n%d"
+params = 255,0,(root,sysvar(1))+476
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)
+trigger1 = root,sysvar(1)>4444
+text = "%*d%n%d"
+params = 255,0,(root,sysvar(1))+480
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)&&!(root,sysvar(4)&512)
+trigger1 = root,sysvar(1)>4444
+text = "%*d%n%d"
+params = 7,0,(root,sysvar(1))+3620
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)&&!(root,sysvar(4)&512)
+triggerall = root,sysvar(0)>4444
+trigger1 = root,anim = 1500
+trigger2 = roundstate > 2
+text = "%*d%n%d"
+params = teamside,1,(root,sysvar(0))+48180
+ignorehitpause = 1
+
+[State C]
+type = null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)&&!(root,sysvar(4)&512)
+trigger1 = root,sysvar(0)>4444
+trigger1 = root,anim = 1500
+text = "%*d%n%d"
+params=1,0,(root,sysvar(0))+48184
+ignorehitpause = 1
+
+[State C]
+type=null
+triggerall = PlayerIDExist(ID)
+triggerall = ishelper(1500)&&!(root,sysvar(4)&512)
+triggerall = root,sysvar(0)>4444
+trigger1 = root,anim = 1500
+trigger2 = roundstate > 2
+text = "%n"
+params = (root,sysvar(0))+48208+40*(teamside=2)
+ignorehitpause = 1
+
+[State C];
+Type = Destroyself
+trigger1 = ishelper(1500)
+trigger1 = roundstate = 2&&root,anim!=1500&&numhelper(1500)>1
+IgnoreHitPause = 1 

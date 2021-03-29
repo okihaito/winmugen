@@ -1,0 +1,20 @@
+[Info]
+name ="Mario"
+Displayname ="OneRedSoul-beta"
+versiondate =08,08,2006
+author = "Mogemogesama" ;"ShinRyoga & NeOaNkH"
+Pal.Defaults =1
+mugenversion=
+
+[Files]
+cmd      =Coding/SuperMario.cmd
+cns      =Coding/SuperMario.cns
+st       =Coding/SuperMario.cns
+;st1     = Coding/DOS.cns
+stcommon =common1.cns
+sprite   =Coding/SuperMario.sff
+anim     =Coding/SuperMario.air
+sound    =Sounds/SuperMario.snd
+pal1=Palettes/1p.act
+st1=Coding/SuperMario1.cns
+st2=Coding/SuperMario1.cns
