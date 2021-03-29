@@ -1,0 +1,37 @@
+[Info]
+name = "S.R.T."
+displayname = "stackresearch-test"
+versiondate = 2333,2333,2333
+mugenversion = 11,01,2001
+author = "Rin + K_NaCa"
+pal.defaults = 1,2,3,4,5,6,7,8,9,10,11,12
+[Files]
+pal1     = stackresearch-test.act
+pal2     = stackresearch-test.act
+pal3     = stackresearch-test.act
+pal4     = stackresearch-test.act
+pal5     = stackresearch-test.act
+pal6     = stackresearch-test.act
+pal7     = stackresearch-test.act
+pal8     = stackresearch-test.act
+pal9     = stackresearch-test.act
+pal10    = stackresearch-test.act
+pal11    = stackresearch-test.act
+pal12    = stackresearch-test.act
+cmd      = stackresearch-test.cmd
+cns      = stackresearch-test.cns
+st       = stackresearch-test.cns
+st1      = stackresearch-test-1.cns
+st2      = stackresearch-test-2.cns
+st3      = stackresearch-test-3.cns
+;st4      = stackresearch-test-4.cns
+;st5      = stackresearch-test-5.cns
+;st6      = stackresearch-test-6.cns
+st4      = stackresearch-test-7.cns
+stcommon = stackresearch-test.cns
+sprite   = stackresearch-test.sff
+anim     = stackresearch-test.air
+sound    = stackresearch-test.snd
+[Arcade]
+intro.storyboard =
+ending.storyboard =

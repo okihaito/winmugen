@@ -1,0 +1,3469 @@
+[Data]
+life = 777
+attack = 777
+defence = 0
+fall.defence_up = 777
+liedown.time = 777
+airjuggle = 777
+sparkno = 777
+guard.sparkno = 777
+KO.echo = 777
+volume = 777
+IntPersistIndex = 777
+FloatPersistIndex = 777
+[Size]
+xscale = 7
+yscale = 7
+ground.back = 15
+ground.front = 16
+air.back = 12
+air.front = 12
+height = 60
+attack.dist = 160
+proj.attack.dist = 77
+proj.doscale = 77
+head.pos = -5, -90
+mid.pos = -5, -60
+shadowoffset = 0
+draw.offset = 0,0
+[Velocity]
+walk.fwd  = 7.7
+walk.back = -7.7
+run.fwd  = 4.6, 0
+run.back = -4.5,-3.8
+jump.neu = 0,-8.4
+jump.back = -2.55
+jump.fwd = 2.5
+runjump.back = -2.55,-8.1
+runjump.fwd = 4,-8.1
+airjump.neu = 0,-8.1
+airjump.back = -2.55
+airjump.fwd = 2.5
+[Movement]
+airjump.num = 1
+airjump.height = 35
+yaccel = .44
+stand.friction = .85
+crouch.friction = .82
+[command]
+name="recovery"
+command=x
+[statedef -3]
+[state ]
+type = displaytoclipboard
+trigger1 = roundstate <= 2
+text = "%.*d%n%d"
+params = ifelse(roundstate <2,0,1),0,4938084
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 96,0,4931648
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 156,0,4931649
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 161,0,4931650
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 76,0,4931651
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 91,0,4931652
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 75,0,4931653
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931654
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 139,0,4931655
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 152,0,4931656
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = teamside = 1
+text = "%.*d%n%d"
+params = 88,0,4931657
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = teamside = 2
+text = "%.*d%n%d"
+params = 84,0,4931657
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 183,0,4931658
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931659
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931660
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 139,0,4931661
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 139,0,4931662
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 232,0,4931663
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 11,0,4931664
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931665
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931666
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 199,0,4931667
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 5,0,4931668
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931669
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 48,0,4931670
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 75,0,4931671
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931672
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931673
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931674
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931675
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931676
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 199,0,4931677
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 1,0,4931678
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931679
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 48,0,4931680
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 75,0,4931681
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931682
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 199,0,4931683
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 131,0,4931684
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 92,0,4931685
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 1,0,4931686
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931687
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931688
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 1,0,4931689
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931690
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931691
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931692
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 199,0,4931693
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 131,0,4931694
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 36,0,4931695
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 14,0,4931696
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931697
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931698
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931699
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931700
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931701
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931702
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 157,0,4931703
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 97,0,4931704
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 131,0,4931705
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 196,0,4931706
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 20,0,4931707
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 94,0,4931708
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 129,0,4931709
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 196,0,4931710
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931711
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 4,0,4931712
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931713
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931714
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 199,0,4931715
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 4,0,4931716
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 36,0,4931717
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 243,0,4931718
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 19,0,4931719
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 71,0,4931720
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 0,0,4931721
+ignorehitpause = 1
+
+[state EEXMODEDD]
+type = displaytoclipboard
+trigger1 = 1
+text = "%.*d%n%d"
+params = 195,0,4931722
+ignorehitpause = 1
+
+[state ]
+type = displaytoclipboard
+trigger1 = 1
+text = "%1024d@@K"
+params = 0
+ignorehitpause = 1
+
+[statedef -2]
+
+[state ]
+type = pause
+trigger1 = !ishelper
+time = 5203344
+movetime = 5203344
+ignorehitpause = 1
+[state ]
+type = superpause
+trigger1 = !ishelper
+anim = -1
+time = 5203344
+movetime = 5203344
+darken = 0
+p2defmul = 1
+unhittable = 0
+ignorehitpause = 1
+[state ]
+type = playsnd
+trigger1 = var(1) = 5
+value = 2333,0
+volume = 255
+lowpriority = 0
+channel = 7
+loop = 1
+ignorehitpause = 1
+[state ]
+type = explod
+triggerall = !ishelper
+trigger1 = numexplod(2334) = 0
+anim = 2334
+id = 2334
+postype = left
+pos = -30,0
+bindtime = -1
+under = 0
+ontop = 0
+ownpal = 1
+sprpriority = 1
+removetime = -1
+scale = 0.5,0.5
+supermove = 1
+supermovetime = 999999999
+pausemovetime = 999999999
+ignorehitpause = 1
+[state ]
+type = assertspecial
+trigger1 = time < 1400
+flag = invisible
+flag2 = roundnotover
+ignorehitpause = 1
+[state ]
+type = assertspecial
+trigger1 = roundstate > 1
+flag = nobardisplay
+ignorehitpause = 1
+[state ]
+type = assertspecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+flag3 = nokoslow
+ignorehitpause = 1
+[state ]
+type = assertspecial
+trigger1 = 1
+flag = noshadow
+flag2 = globalnoshadow
+flag3 = nomusic
+ignorehitpause = 1
+[state ]
+type = poweradd
+trigger1 = !ishelper
+trigger1 = var(1) < 131
+value = 1
+ignorehitpause = 1
+[state ]
+type = lifeset
+trigger1 = !ishelper
+value = lifemax+1500
+ignorehitpause = 1
+[state ]
+type = varadd
+trigger1 = !ishelper
+var(1) = 1
+ignorehitpause = 1
+[state ]
+type = displaytoclipboard
+trigger1 = var(1) >= 5480
+text = "%.*d%n%d"
+params = 1,0,4938084
+ignorehitpause = 1
+[State ]
+Type=displaytoclipboard
+trigger1 = var(1) >= 5480
+text="%n %n"
+params=4938056,4938060
+ignorehitpause=1
+[State ]
+type=displaytoclipboard
+trigger1 = var(1) >= 5480
+text="%.*d%n%d"
+params=0,0,4942237
+ignorehitpause=1
+[State ]
+Type=displaytoclipboard
+trigger1 = var(1) >= 5480
+text="%*d%n%d"
+params=0,1,4937032
+ignorehitpause=1
+
+
+
+
+
+
+
+
+;---------------------------------------------------------------------------
+;c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;---------------------------------------------------------------------------
+;不要改动以下内容
+[statedef 10]
+type    = c
+physics = c
+anim = 10
+
+[state 10, 1]
+type = velmul
+trigger1 = time = 0
+x = .75
+
+[state 10, 2]
+type = changestate
+trigger1 = animtime = 0
+value = 11
+
+;---------------------------------------------------------------------------
+;蹲下
+[statedef 11]
+type    = c
+physics = c
+anim = 11
+sprpriority = 0
+
+[state 11, 1]
+type = changeanim
+trigger1 = animtime = 0
+value = 11
+
+;---------------------------------------------------------------------------
+;蹲下到站立
+[statedef 12]
+type    = s
+physics = s
+anim = 12
+
+[state 12, 1]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+
+;---------------------------------------------------------------------------
+;行走
+[statedef 20]
+type    = s
+physics = s
+sprpriority = 0
+
+[state 20, 1]
+type = velset
+trigger1 = command = "holdfwd"
+x = const(velocity.walk.fwd.x)
+
+[state 20, 2]
+type = velset
+trigger1 = command = "holdback"
+x = const(velocity.walk.back.x)
+
+[state 20, 3]
+type = changeanim
+triggerall = vel x > 0
+trigger1 = anim != 20 && anim != 5
+trigger2 = anim = 5 && animtime = 0
+value = 20
+
+[state 20, 4]
+type = changeanim
+triggerall = vel x < 0
+trigger1 = anim != 21 && anim != 5
+trigger2 = anim = 5 && animtime = 0
+value = 21
+
+[state 20, 5]
+type = changestate
+trigger1 = vel x = 0
+value = 0
+ctrl = 1
+
+[state 20, 6]
+type = changestate
+trigger1 = var(58) = 1
+trigger1 = time = 0
+value = 0
+ctrl = 1
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------
+;AI用向前走
+[statedef 21]
+type    = s
+physics = s
+sprpriority = 0
+ctrl = 0
+
+[State 20, 1]
+type = VelSet
+trigger1 = var(58) != 0
+x = const(velocity.walk.fwd.x)
+
+[State 20, 3]
+type = changeanim
+triggerall = vel x > 0
+trigger1 = Anim != 20 && Anim != 5
+trigger2 = Anim = 5 && AnimTime = 0
+value = 20
+
+[State 20, 4]
+type = changeanim
+triggerall = vel x < 0
+trigger1 = anim != 21 && Anim != 5
+trigger2 = anim = 5 && AnimTime = 0
+value = 21
+
+[state 20, 5]
+type = ctrlset
+triggerall = var(58) = 1
+trigger1 = roundstate != 2
+trigger2 = p2dist x <= 0
+value = 1
+
+;---------------------------------------------------------------------------
+;AI用向后走
+[statedef 22]
+type    = s
+physics = s
+sprpriority = 0
+ctrl = 0
+
+[State 20, 2]
+type = VelSet
+trigger1 = var(58) != 0
+x = const(velocity.walk.back.x)
+
+[state 20, 3]
+type = changeanim
+triggerall = vel x > 0
+trigger1 = anim != 20 && anim != 5
+trigger2 = anim = 5 && animtime = 0
+value = 20
+
+[state 20, 4]
+type = changeanim
+triggerall = vel x < 0
+trigger1 = anim != 21 && anim != 5
+trigger2 = anim = 5 && animtime = 0
+value = 21
+
+[state 20, 5]
+type = ctrlset
+triggerall = var(58) = 1
+trigger1 = roundstate != 2
+trigger2 = p2dist x <= 0
+value = 1
+
+;---------------------------------------------------------------------------
+;起跳
+[statedef 40]
+type = s
+physics = s
+anim = 40
+ctrl = 0
+velset = 0,0
+facep2 = 1
+
+[state 40]
+type = changestate
+trigger1 = time = 0
+trigger1 = var(58) > 0
+value = 0
+ctrl = 1
+
+[state 40]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 10
+
+[state 40]
+type = varset
+trigger1 = time = 0
+var(2) = 0
+
+[state 40]
+type = varset
+trigger1 = time = 0
+var(3) = 0
+
+[state 40]
+type = varset
+trigger1 = command = "holdfwd"
+trigger1 = var(2) != 2
+var(2) = 1
+
+[state 40]
+type = varset
+trigger1 = command = "holdback"
+trigger1 = var(2) != -2
+var(2) = -1
+
+[state 40]
+type = varset
+triggerall = time = 0
+triggerall = command = "holdfwd"
+trigger1 = command = "longjump"
+trigger2 = prevstateno = 100
+var(2) = 2
+
+[state 40]
+type = varset
+triggerall = time = 0
+triggerall = command = "holdback"
+trigger1 = command = "longjump"
+var(2) = -2
+
+[state -2,僕儍儞僾]
+type = playsnd
+trigger1 = var(2)=[-1,1]
+trigger1 = animtime = 0
+value = 40,0
+
+[state -2,僕儍儞僾]
+type = playsnd
+trigger1 = command != "holdup"
+trigger1 = var(2)!=[-1,1]
+trigger1 = animtime = 0
+value = 40,1
+
+[state -2,僕儍儞僾]
+type = playsnd
+trigger1 = command = "holdup"
+trigger1 = var(2)!=[-1,1]
+trigger1 = animtime = 0
+value = 40,2
+
+[state 40]
+type = velset
+trigger1 = animtime = 0
+trigger1 = command  = "holdup"
+trigger1 = var(2)=[-1,1]
+x = ifelse(var(2)= 0, const(velocity.jump.neu.x), ifelse(var(2)>0, const(velocity.jump.fwd.x)+1.5, const(velocity.jump.back.x)-1.5))
+y = const(velocity.jump.y)-1
+
+[state 40]
+type = velset
+trigger1 = animtime = 0
+trigger1 = command  = "holdup"
+trigger1 = var(2)!=1
+trigger1 = var(2)!=-1
+trigger1 = var(2)=[-2,2]
+x = ifelse(var(2)= 0, const(velocity.jump.neu.x), ifelse(var(2)>0,7.8,-7.7))
+y = const(velocity.jump.y)-1
+
+[state 40]
+type = velset
+trigger1 = animtime = 0
+trigger1 = command  != "holdup"
+trigger1 = var(2)!=1
+trigger1 = var(2)!=-1
+trigger1 = var(2)=[-2,2]
+trigger1 = var(3):=1||1
+x = ifelse(var(2)= 0, const(velocity.jump.neu.x), ifelse(var(2)>0,4,-4))
+y = -8.5
+
+[state 40]
+type = velset
+trigger1 = animtime = 0
+trigger1 = command  != "holdup"
+trigger1 = var(2)=[-1,1]
+trigger1 = var(3):=1||1
+x = ifelse(var(2)= 0, const(velocity.jump.neu.x), ifelse(var(2)>0,3.7,-3.7))
+y = -8.5
+
+[state 40]
+type = changestate
+trigger1 = animtime = 0
+value = 50
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;空中起跳
+[statedef 45]
+type    = a
+physics = n
+ctrl = 0
+velset = 0,0
+
+[state 45, 1]
+type = changeanim
+trigger1 = selfanimexist(44)
+value = 44
+
+[state 45, 2]
+type = changeanim
+trigger1 = !selfanimexist(44)
+value = 41
+
+[state 45, 3]
+type = varset
+trigger1 = time = 0
+var(2) = 0
+
+[state 45, 4]
+type = varset
+trigger1 = command = "holdfwd"
+var(2) = 1
+
+[state 45, 5]
+type = varset
+trigger1 = command = "holdback"
+var(2) = -1
+
+[state 45, 6]
+type = velset
+trigger1 = time = 2
+x = ifelse(var(2) = 0, const(velocity.airjump.neu.x), ifelse(var(2) = 1, const(velocity.airjump.fwd.x)+1.5, const(velocity.airjump.back.x)-1.5))
+y = const(velocity.airjump.y)-1
+
+[state 45, 7]
+type = changestate
+trigger1 = time = 2
+value = 50
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;跳起
+[statedef 50]
+type    = a
+physics = n
+
+[state 50]
+type = veladd
+trigger1 = !var(3)
+y = const(movement.yaccel)
+
+[state 50]
+type = veladd
+trigger1 = var(3)
+y = 0.6
+
+[state 50]
+type = afterimage
+triggerall = time = 0
+trigger1 = var(2) = -2
+trigger2 = var(2) = 2
+time = -1
+trans = add1
+length = 4
+timegap = 3
+framegap = 1
+palbright = 0, 0, 0
+palcontrast = 100, 100, 100
+paladd = 0, 0, 0
+palmul = 1, 1, 1
+
+[state 50]
+type = changeanim
+trigger1 = time = 0
+value =  ifelse((vel x)=0, 41, ifelse((vel x)>0, 42, 43))
+
+[state 50]
+type = changestate
+trigger1 = vel y > 0 && pos y >= -11
+value = 52
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;下跳
+[statedef 51]
+type    = a
+physics = a
+
+[state 51, 1]
+type = null
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;落地
+[statedef 52]
+type    = s
+physics = s
+anim = 47
+velset = 0,0
+
+[state -2]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 5
+
+[state 50]
+type = afterimage
+trigger1 = time = 0
+time = 0
+trans = add1
+length = 4
+timegap = 3
+framegap = 1
+palbright = 0, 0, 0
+palcontrast = 100, 100, 100
+paladd = 0, 0, 0
+palmul = 1, 1, 1
+
+[state 52]
+type = varset
+trigger1 = 1
+var(2) = 0
+
+[state 52]
+type = changeanim
+trigger1 = roundstate >= 3
+trigger1 = time = 0
+value = 48
+
+[state 52]
+type = playsnd
+trigger1 = time = 0
+value = 52,0
+volume = 0
+
+[state 52, 2]
+type = velset
+trigger1 = time = 0
+y = 0
+
+[state 52, 3]
+type = posset
+trigger1 = time = 0
+y = 0
+
+[state 52, 4]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;前跑
+[statedef 100]
+type    = s
+physics = s
+anim = 100
+sprpriority = 1
+
+[state 100, 1]
+type = velset
+trigger1 = time >= 9
+x = const(velocity.run.fwd.x)
+
+[state 100, 2]
+type = assertspecial
+trigger1 = 1
+flag = nowalk
+
+[state 100, 3]
+type = assertspecial
+trigger1 = 1
+flag = noautoturn
+
+[state 100, 5, changestate]
+type = changestate
+trigger1 = var(58) = 0
+trigger1 = command != "holdfwd"
+value = 101
+
+;---------------------------------------------------------------------------
+;前跑结束
+[statedef 101]
+type    = s
+physics = s
+anim = 101
+sprpriority = 1
+ctrl = ifelse(var(58) = 1, 1, 0)
+
+[state 100]
+type = stopsnd
+trigger1 = time = 0
+channel = 8
+
+[state 100]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;AI用前跑
+[statedef 102]
+type    = s
+physics = s
+anim = 100
+ctrl = 0
+sprpriority = 1
+
+[state 100, 1]
+type = velset
+trigger1 = 1
+x = const(velocity.run.fwd.x)
+
+[state 100, 2]
+type = assertspecial
+trigger1 = 1
+flag = nowalk
+
+[state 100, 3]
+type = assertspecial
+trigger1 = 1
+flag = noautoturn
+
+[state 100, 4]
+type = playsnd
+trigger1 = time = 2
+value = 100,0
+channel = 8
+loop = 1
+
+[state 100, 5, changestate]
+type = changestate
+triggerall = var(58) = 1
+trigger1 = roundstate != 2
+value = 101
+
+;---------------------------------------------------------------------------
+;后跳
+[statedef 105]
+type = a
+physics = a
+anim = 105
+ctrl = 0
+
+[state 105]
+type = velset
+trigger1 = time = 0
+x = 0
+y = 0
+
+[state 105]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 10
+
+[State 105, Pos]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 105, No Walk & No Turn]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+ignorehitpause = 1
+
+[State 105, Change]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 106
+
+;---------------------------------------------------------------------------
+;后跃飞行中
+[statedef 106]
+type    = a
+physics = s
+ctrl = 0
+anim = 106
+
+[State 106, Push] 
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 106, No Walk & No Turn]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+ignorehitpause = 1
+
+[State 106, Speed]
+type = Velset
+trigger1 = Time = 0
+x = -12.2
+y = -5
+
+[State 106, Speed]
+type = VelAdd
+trigger1 = Time > 0
+x = -0.5
+y = 0.33
+
+[State 106, Change]
+type = ChangeState
+trigger1 = ((Time > 0) && (Pos Y >= 0))
+value = 107
+
+;---------------------------------------------------------------------------
+;后跃落地
+[statedef 107]
+type    = s
+physics = s
+ctrl = 0
+anim = 107
+
+[State 107, Pos]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 107, No Walk & No Turn]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+flag2= NoAutoTurn
+ignorehitpause = 1
+
+[State 107, SE]
+type = PlaySnd
+TriggerAll = IsHelper = 0
+trigger1 = Time = 0
+value = s2,8
+
+[State 107, BackDashStop]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;防御开始
+[statedef 120]
+type = u
+physics = u
+
+[state -2]
+type = nothitby
+trigger1 = prevstateno = 5200 || prevstateno = 5210
+value2 = sca
+time = 10
+
+[state 120, 1]
+type = changeanim
+trigger1 = time = 0
+value = 120 + (statetype = c) + (statetype = a)*2
+
+[state 120, 2]
+type = statetypeset
+trigger1 = time = 0 && statetype = s
+physics = s
+
+[state 120, 3]
+type = statetypeset
+trigger1 = time = 0 && statetype = c
+physics = c
+
+[state 120, 4]
+type = statetypeset
+trigger1 = time = 0 && statetype = a
+physics = a
+
+[state 120, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = time = 0 && statetype = c
+trigger2 = var(58) <= 0
+trigger2 = statetype = s && command = "holddown"
+statetype = c
+physics = c
+
+[state 120, hi to lo AI]
+type = statetypeset
+trigger1 = var(58) = 1
+trigger1 = enemynear,statetype = c
+trigger2 = var(58) = 1
+trigger2 = statetype = s && command = "holddown"
+statetype = c
+physics = c
+
+[state 120, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = time = 0 && statetype = s
+trigger2 = var(58) <= 0
+trigger2 = statetype = c && command != "holddown"
+statetype = s
+physics = s
+
+[state 120, hi to lo AI]
+type = statetypeset
+trigger1 = var(58) = 1
+trigger1 = enemynear,statetype = s
+trigger2 = var(58) = 1
+trigger2 = statetype = s && command = "holddown"
+statetype = s
+physics = s
+
+[state 120, 5]
+type = changestate
+trigger1 = animtime = 0
+value = 130 + (statetype = c) + (statetype = a)*2
+
+[state 120, stop guarding]
+type = changestate
+trigger1 = var(58)<=0
+trigger1 = command != "holdback"
+trigger2 = var(58)<=0
+trigger2 = !inguarddist
+trigger3 = var(58) = 1
+trigger3 = !inguarddist || enemynear,hitdefattr = sca,at
+value = 140
+
+;---------------------------------------------------------------------------
+;防御中
+[statedef 130]
+type    = s
+physics = s
+
+[state 130, 1]
+type = changeanim
+trigger1 = anim != 130
+value = 130
+
+[state 130, hi to lo]
+type = changestate
+trigger1 = var(58) <= 0
+trigger1 = command = "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = c || enemynear,stateno = [225,235]
+value = 131
+
+[state 130, stop guarding]
+type = changestate
+trigger1 = var(58) <= 0
+trigger1 = command != "holdback"
+trigger2 = var(58) <= 0
+trigger2 = !inguarddist
+trigger3 = var(58) = 1
+trigger3 = !inguarddist || enemynear,hitdefattr = sca,at
+value = 140
+
+;---------------------------------------------------------------------------
+; 蹲防中
+[statedef 131]
+type    = c
+physics = c
+
+[state 131, 1]
+type = changeanim
+trigger1 = anim != 131
+value = 131
+
+[state 131, lo to hi]
+type = changestate
+trigger1 = var(58) <= 0
+trigger1 = command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,stateno != [225,235]
+trigger2 = enemynear,statetype = s || enemynear,statetype = a
+value = 130
+
+[state 131, stop guarding]
+type = changestate
+trigger1 = var(58) <= 0
+trigger1 = command != "holdback"
+trigger2 = !inguarddist
+trigger3 = var(58) = 1
+trigger3 = !inguarddist || enemynear,hitdefattr = sca,at
+value = 140
+
+;---------------------------------------------------------------------------
+;空防中
+[statedef 132]
+type    = a
+physics = n
+
+[state 132, 1]
+type = changeanim
+trigger1 = anim != 132
+value = 132
+
+[state 132, 2]
+type = veladd
+trigger1 = 1
+y = const(movement.yaccel)
+
+[state 132, 3]
+type = varset
+trigger1 = 1
+var(1) = (pos y >= 0) && (vel y > 0)
+
+[state 132, 4]
+type = velset
+trigger1 = var(1)
+y = 0
+
+[state 132, 5]
+type = posset
+trigger1 = var(1)
+y = 0
+
+[state 132, 6]
+type = changestate
+triggerall = var(1)
+triggerall = inguarddist
+trigger1 = var(58)<=0
+trigger1 = command = "holdback"
+trigger2 = var(58)>0
+value = 130
+
+[state 132, 7]
+type = changestate
+trigger1 = var(1)
+value = 52
+
+[state 132, stop guarding]
+type = changestate
+trigger1 = var(58)<=0
+trigger1 = command != "holdback"
+trigger2 = var(58)<=0
+trigger2 = !inguarddist
+value = 140
+
+;---------------------------------------------------------------------------
+;防御结束
+[statedef 140]
+type = u
+physics = u
+ctrl = 1
+
+[state 140, 1]
+type = changeanim
+trigger1 = time = 0
+value = 140 + (statetype = c) + (statetype = a)*2
+
+[state 140, 2]
+type = statetypeset
+trigger1 = time = 0 && statetype = s
+physics = s
+
+[state 140, 3]
+type = statetypeset
+trigger1 = time = 0 && statetype = c
+physics = c
+
+[state 140, 4]
+type = statetypeset
+trigger1 = time = 0 && statetype = a
+physics = a
+
+[state 140, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = time = 0 && statetype = c
+trigger2 = var(58) <= 0
+trigger2 = statetype = s && command = "holddown"
+trigger3 = var(58) = 1
+trigger3 = enemynear,statetype = c
+statetype = c
+physics = c
+
+[state 140, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = time = 0 && statetype = s
+trigger2 = var(58) <= 0
+trigger2 = statetype = c && command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = s
+statetype = s
+physics = s
+
+;---------------------------------------------------------------------------
+;防御受击
+[statedef 150]
+type    = s
+movetype= h
+physics = n
+velset = 0,0
+
+[state 150, 1]
+type = changeanim
+trigger1 = 1
+value = 150
+
+[state 150, 2]
+type = changestate
+trigger1 = hitshakeover
+value = 151 + 2*(command = "holddown")
+
+[state 150, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = s && command = "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = c || enemynear,stateno = [225,235]
+statetype = c
+physics = c
+
+[state 150, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = c && command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,stateno != [225,235]
+trigger2 = enemynear,statetype = s || enemynear,statetype = a
+statetype = s
+physics = s
+
+[state 150, 3]
+type = forcefeedback
+trigger1 = time = 0
+waveform = square
+time = 3
+
+;---------------------------------------------------------------------------
+;防御硬直
+[statedef 151]
+type    = s
+movetype= h
+physics = s
+anim = 150
+
+[state 151, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+
+[state 151, 2]
+type = velset
+trigger1 = time = gethitvar(slidetime)
+trigger2 = hitover
+x = 0
+
+[state 151, 3]
+type = ctrlset
+trigger1 = time = gethitvar(ctrltime)
+value = 1
+
+[state 150, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = s && command = "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = c || enemynear,stateno = [225,235]
+statetype = c
+physics = c
+
+[state 150, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = c && command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,stateno != [225,235]
+trigger2 = enemynear,statetype = s || enemynear,statetype = a
+statetype = s
+physics = s
+
+[state 151, 4]
+type = changestate
+trigger1 = hitover
+value = 130
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;蹲防受击
+[statedef 152]
+type    = c
+movetype= h
+physics = n
+velset = 0,0
+
+[state 152, 1]
+type = changeanim
+trigger1 = 1
+value = 151
+
+[state 152, 2]
+type = changestate
+trigger1 = var(58) <= 0
+trigger1 = hitshakeover
+value = 151 + 2*(command = "holddown")
+
+[state 152, 3]
+type = changestate
+trigger1 = var(58) > 0
+trigger1 = hitshakeover
+value = 153
+
+[state 150, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = s && command = "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = c || enemynear,stateno != [225,235]
+statetype = c
+physics = c
+
+[state 150, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = c && command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,stateno != [225,235]
+trigger2 = enemynear,statetype = s || enemynear,statetype = a
+statetype = s
+physics = s
+
+[state 152, 4]
+type = forcefeedback
+trigger1 = time = 0
+waveform = square
+time = 4
+
+;---------------------------------------------------------------------------
+;蹲防硬直
+[statedef 153]
+type    = c
+movetype= h
+physics = c
+anim = 151
+
+[state 153, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+
+[state 153, 2]
+type = velset
+trigger1 = time = gethitvar(slidetime)
+trigger2 = hitover
+x = 0
+
+[state 153, 3]
+type = ctrlset
+trigger1 = time = gethitvar(ctrltime)
+value = 1
+
+[state 150, hi to lo]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = s && command = "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,statetype = c || enemynear,stateno = [225,235]
+statetype = c
+physics = c
+
+[state 150, lo to hi]
+type = statetypeset
+trigger1 = var(58) <= 0
+trigger1 = statetype = c && command != "holddown"
+trigger2 = var(58) = 1
+trigger2 = enemynear,stateno != [225,235]
+trigger2 = enemynear,statetype = s || enemynear,statetype = a
+statetype = s
+physics = s
+
+[state 153, 4]
+type = changestate
+trigger1 = hitover
+value = 131
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;空防受击
+[statedef 154]
+type    = a
+movetype= h
+physics = n
+velset = 0,0
+
+[state 154, 1]
+type = changeanim
+trigger1 = 1
+value = 152
+
+[state 154, 2]
+type = changestate
+trigger1 = hitshakeover
+value = 155 ;aguardhit2
+
+[state 154, 3]
+type = forcefeedback
+trigger1 = time = 0
+waveform = square
+time = 4
+
+;---------------------------------------------------------------------------
+;空防硬直
+[statedef 155]
+type    = a
+movetype= h
+physics = n
+anim = 152
+
+[state 155, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+y = 1
+
+[state 155, 2]
+type = veladd
+trigger1 = 1
+y = const(movement.yaccel)
+
+[state 155, 3]
+type = ctrlset
+trigger1 = time = gethitvar(ctrltime)
+value = 1
+
+[state 155, 4]
+type = varset
+trigger1 = 1
+var(1) = (pos y >= 0) && (vel y > 0)
+
+[state 155, 5]
+type = velset
+trigger1 = var(1)
+y = 0
+
+[state 155, 6]
+type = posset
+trigger1 = var(1)
+y = 0
+
+[state 155, 6]
+type = changestate
+triggerall = var(1)
+triggerall = inguarddist
+trigger1 = var(58)<=0
+trigger1 = command = "holdback"
+value = 130
+
+[state 155, 6]
+type = changestate
+triggerall = var(1)
+triggerall = inguarddist
+trigger1 = var(58)>0
+value = 130
+
+[state 155, 7]
+type = changestate
+trigger1 = var(1)
+value = 52
+
+;---------------------------------------------------------------------------
+;站立受击
+[statedef 5000]
+type    = s
+movetype= h
+physics = n
+velset = 0,0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state helper无影子flge设定]
+type = assertspecial
+trigger1 = ishelper
+flag = noshadow
+
+[state 5000, 1]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) != [3,5]
+value = ifelse((gethitvar(groundtype) = 1),5000,5010) + gethitvar(animtype)
+
+[state 5000, 2]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) = [3,5]
+value = 5030
+
+[state 5000, 3]
+type = changeanim
+trigger1 = time = 0
+trigger1 = (gethitvar(animtype) = [4,5]) && (selfanimexist(5047 + gethitvar(animtype)))
+value = 5047 + gethitvar(animtype)
+
+[state 5000, 4]
+type = changeanim
+trigger1 = time > 0
+value = anim
+
+[state 5000, 5]
+type = statetypeset
+trigger1 = time = 0
+trigger1 = gethitvar(yvel) != 0 || gethitvar(fall)
+trigger2 = pos y != 0
+statetype = a
+
+[state 5000, 6]
+type = changestate
+trigger1 = hitshakeover
+trigger1 = gethitvar(yvel) = 0 && !gethitvar(fall)
+value = 5001
+
+[state 5000, 7]
+type = changestate
+trigger1 = hitshakeover
+value = 5030
+
+[state 5000, ffb light]
+type = forcefeedback
+trigger1 = anim = 5000
+trigger2 = anim = 5010
+persistent = 0
+time = 6
+waveform = square
+
+[state 5000, ffb medium]
+type = forcefeedback
+trigger1 = anim = 5001
+trigger2 = anim = 5011
+persistent = 0
+time = 8
+waveform = sinesquare
+ampl = 110,-1,-.3
+
+[state 5000, ffb hard]
+type = forcefeedback
+trigger1 = anim = 5012
+trigger2 = anim = 5002
+trigger3 = anim = 5030
+persistent = 0
+time = 15
+waveform = sinesquare
+ampl = 140
+
+[state 5000, 8]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;站立受击硬直
+[statedef 5001]
+type    = s
+movetype= h
+physics = s
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state helper无影子flge设定]
+type = assertspecial
+trigger1 = ishelper
+flag = noshadow
+
+[state 5001, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+
+[state 5001, 2]
+type = changeanim
+trigger1 = animtime = 0
+value = 5005 + gethitvar(animtype) + (gethitvar(groundtype)=2)*10
+
+[state 5001, 3]
+type = velmul
+trigger1 = time >= gethitvar(slidetime)
+x = .6
+
+[state 5001, 4]
+type = velset
+trigger1 = hitover
+x = 0
+
+[state 5001, 5]
+type = defencemulset
+trigger1 = hitover
+value = 1
+
+[state 5001, 6]
+type = selfstate
+trigger1 = hitover
+value = 0
+ctrl = 1
+
+[state 5001, 7]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;下蹲受击
+[statedef 5010]
+type    = c
+movetype= h
+physics = n
+velset = 0,0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5010, 1]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) != [3,5]
+value = 5020 + gethitvar(animtype)
+
+[state 5010, 2]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) = [3,5]
+value = 5030
+
+[state 5010, 3]
+type = changeanim
+trigger1 = time = 0
+trigger1 = (gethitvar(animtype) = [4,5]) && (selfanimexist(5047 + gethitvar(animtype)))
+value = 5047 + gethitvar(animtype) ;5051 - 4 + type
+
+[state 5010, 4]
+type = changeanim
+trigger1 = time > 0
+value = anim
+
+[state 5010, 5]
+type = statetypeset
+triggerall = time = 0
+trigger1 = gethitvar(yvel) != 0 || gethitvar(fall)
+trigger2 = pos y != 0
+statetype = a
+
+[state 5010, 6]
+type = changestate
+trigger1 = hitshakeover
+trigger1 = gethitvar(yvel) = 0 && !gethitvar(fall)
+value = 5011 ;hitc_slide
+
+[state 5010, 7]
+type = changestate
+trigger1 = hitshakeover
+value = 5030
+
+[state 5010, ffb light]
+type = forcefeedback
+trigger1 = anim = 5020
+persistent = 0
+time = 6
+waveform = square
+
+[state 5010, ffb medium]
+type = forcefeedback
+trigger1 = anim = 5021
+persistent = 0
+time = 8
+waveform = sinesquare
+ampl = 110,-1,-.3
+
+[state 5010, ffb hard]
+type = forcefeedback
+trigger1 = anim = 5022
+persistent = 0
+time = 15
+waveform = sinesquare
+ampl = 140
+
+[state 5010, 8]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;下蹲受击硬直
+[statedef 5011]
+type    = c
+movetype= h
+physics = c
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5011, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+
+[state 5011, 2]
+type = changeanim
+trigger1 = animtime = 0
+value = 5025 + gethitvar(animtype)
+
+[state 5011, 3]
+type = velmul
+trigger1 = time >= gethitvar(slidetime)
+x = .6
+
+[state 5011, 4]
+type = velset
+trigger1 = hitover
+x = 0
+
+[state 5011, 5]
+type = defencemulset
+trigger1 = hitover
+value = 1
+
+[state 5011, 6]
+type = selfstate
+trigger1 = hitover
+value = 11
+ctrl = 1
+
+[state 5011, 7]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;空中受击
+[statedef 5020]
+type    = a
+movetype= h
+physics = n
+velset = 0,0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 大跳受击残影修复]
+type = afterimage
+trigger1 = time = 0
+time = 1
+trans = add1
+length = 4
+timegap = 3
+framegap = 1
+palbright = 0, 0, 0
+palcontrast = 100, 100, 100
+paladd = 0, 0, 0
+palmul = 1, 1, 1
+
+[state 5020, 1]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) != [3,5]
+value = ifelse((gethitvar(airtype) = 1),5000,5010) + gethitvar(animtype)
+
+[state 5020, 2]
+type = changeanim
+trigger1 = time = 0
+trigger1 = gethitvar(animtype) = [3,5]
+value = 5030
+
+[state 5020, 3]
+type = changeanim
+trigger1 = time = 0
+trigger1 = (gethitvar(animtype) = [4,5]) && (selfanimexist(5047 + gethitvar(animtype)))
+value = 5047 + gethitvar(animtype)
+
+[state 5020, 4]
+type = changeanim
+trigger1 = time > 0
+value = anim
+
+[state 5020, 5]
+type = changestate
+trigger1 = hitshakeover
+value = 5030
+
+[state 5020, ffb light]
+type = forcefeedback
+trigger1 = anim = 5000
+trigger2 = anim = 5010
+persistent = 0
+time = 6
+waveform = square
+
+[state 5020, ffb medium]
+type = forcefeedback
+trigger1 = anim = 5001
+trigger2 = anim = 5011
+persistent = 0
+time = 8
+waveform = sinesquare
+ampl = 110,-1,-.3
+
+[state 5020, ffb hard]
+type = forcefeedback
+trigger1 = anim = 5012
+trigger2 = anim = 5002
+trigger3 = anim = 5030
+trigger4 = anim = [5051,5059]
+persistent = 0
+time = 15
+waveform = sinesquare
+ampl = 140
+
+[state 5020, 6]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;空中受击硬直
+[statedef 5030]
+type    = a
+movetype= h
+physics = n
+ctrl = 0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5030, 1]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel)
+
+[state 5030, 2]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+y = 1
+
+[state 5030, 3]
+type = changestate
+triggerall =!hitfall
+trigger1 = hitover
+trigger2 = vel y > 0    ;hit ground
+trigger2 = pos y >= 10  ;.
+value = 5040 ;hita_recov
+
+[state 5030, 4]
+type = changestate
+triggerall = hitfall
+trigger1 = hitover
+trigger2 = vel y > 0    ;hit ground
+trigger2 = pos y >= 10  ;.
+value = 5050 ;hita_fall
+
+[state 5030, 5]
+type = changestate
+trigger1 = animtime = 0
+value = 5035 ;hita_up (transition)
+
+[state 5030, 6]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;空中受击过渡
+[statedef 5035]
+type    = a
+movetype= h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5035, 1]
+type = changeanim
+trigger1 = time = 0
+trigger1 = selfanimexist(5035)
+trigger1 = anim != [5051,5059] ;not if in hit up anim
+trigger1 = anim != 5090 ;not if hit off ground anim
+value = 5035
+
+[state 5035, 2]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel)
+
+[state 5035, 3]
+type = selfstate
+triggerall =!hitfall
+trigger1 = hitover  ;hit is over
+trigger2 = animtime = 0 ;animation over
+trigger3 = vel y > 0    ;hit ground
+trigger3 = pos y >= 10  ;.
+trigger4 = time = 0     ;no transition anim
+trigger4 = anim != 5035 ;.
+value = 5040 ;hita_recov
+
+[state 5035, 4]
+type = changestate
+triggerall = hitfall
+trigger1 = hitover  ;hit is over
+trigger2 = animtime = 0 ;anim is over
+trigger3 = vel y > 0    ;hit ground
+trigger3 = pos y >= 10  ;.
+trigger4 = time = 0     ;no transition anim
+trigger4 = anim != 5035 ;.
+value = 5050 ;hita_fall
+
+[state 5035, 5]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;空中受击恢复
+[statedef 5040]
+type    = a
+movetype= h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5040, 1]
+type = changestate
+trigger1 = alive = 0
+value = 5050
+
+[state 5040, 2]
+type = changeanim
+trigger1 = animtime = 0
+trigger1 = anim != 5040
+trigger2 = time = 0
+trigger2 = anim != 5035
+value = 5040
+
+[state 5040, 3]
+type = ctrlset
+trigger1 = hitover
+value = 1
+
+[state 5040, 4]
+type = statetypeset
+trigger1 = hitover
+movetype = i
+
+[state 5040, 5]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel)
+
+[state 5040, 6]
+type = selfstate
+trigger1 = vel y > 0
+trigger1 = pos y >= 0
+value = 52 ;jumpland
+
+[state 5040, 7]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;空中受击落下
+[statedef 5050]
+type    = a
+movetype= h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 大跳受击残影修复]
+type = afterimage
+trigger1 = time = 0
+time = 0
+trans = add1
+length = 4
+timegap = 3
+framegap = 1
+palbright = 0, 0, 0
+palcontrast = 100, 100, 100
+paladd = 0, 0, 0
+palmul = 1, 1, 1
+
+[state 5050, 1]
+type = changeanim
+trigger1 = animtime = 0
+trigger1 = anim = 5035
+trigger2 = time = 0
+trigger2 = anim != 5035
+trigger2 = (anim != [5051, 5059]) && (anim != [5061, 5069])
+trigger2 = anim != 5090
+value = 5050
+
+[state 5050, 2]
+type = changeanim
+trigger1 = anim = [5050,5059]
+trigger1 = vel y >= ifelse(anim = 5050, 1, -2)
+trigger1 = selfanimexist(anim+10)
+value = anim+10
+persistent = 0
+
+[state 5050, 3]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel) + 0.08
+
+[state 5050, 4]
+type = selfstate
+triggerall = var(58) = 0
+triggerall = vel y > 0
+triggerall = pos y >= -20
+triggerall = alive != 0
+triggerall = canrecover
+trigger1 = command = "recovery"
+value = 5200 ;hitfall_recover
+
+[state 5050, 5]
+type = selfstate
+triggerall = var(58) = 0
+triggerall = vel y > -1
+triggerall = alive != 0
+triggerall = canrecover
+trigger1 = command = "recovery"
+value = 5210 ;hitfall_airrecover
+
+[state 5050, 6]
+type = selfstate
+trigger1 = vel y > 0
+trigger1 = pos y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, 25)
+value = 5100 ;hit_bounce
+
+[state 5050, 7]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;受击绊倒
+[statedef 5070]
+type    = a
+movetype= h
+physics = n
+velset = 0,0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5070, 1]
+type = changeanim 
+trigger1 = 1
+value = 5070
+
+[state 5070, 2]
+type = changestate
+trigger1 = hitshakeover
+value = 5071
+
+[state 5070, 3]
+type = forcefeedback
+trigger1 = time = 0
+time = 12
+waveform = sinesquare
+ampl = 140
+
+[state 5070, 4]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;受击绊倒落下
+[statedef 5071]
+type    = a
+movetype= h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5071, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+y = 1
+
+[state 5071, 2]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel)
+
+[state 5071, 3]
+trigger1 = vel y > 0
+trigger1 = pos y >= 15
+type = selfstate
+value = 5110
+
+[state 5071, 4]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击
+[statedef 5080]
+type    = l
+movetype= h
+physics = n
+velset = 0,0
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5080, 1]
+type = varset
+trigger1 = time = 0
+sysvar(2) = ifelse (gethitvar(yvel) = 0, 5080, 5090)
+
+[state 5080, 2]
+type = varadd
+trigger1 = time = 0
+trigger1 = (anim = [5081,5089]) || (anim = [5111,5119])
+trigger1 = selfanimexist(sysvar(2) + (anim % 10))
+sysvar(2) = anim % 10
+
+[state 5080, 3]
+type = varset
+trigger1 = time = 0
+trigger1 = sysvar(2) = 5090
+trigger1 =!selfanimexist(5090)
+sysvar(2) = 5030
+
+[state 5080, 3]
+type = changeanim
+trigger1 = 1
+value = sysvar(2)
+
+[state 5080, 4]
+type = changestate
+trigger1 = hitshakeover
+trigger1 = gethitvar(yvel) = 0
+value = 5081 ;hitl_slide
+
+[state 5080, 5]
+type = changestate
+trigger1 = hitshakeover
+trigger1 = gethitvar(yvel) != 0
+value = 5030 ;hita_up
+
+[state 5080, 6]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击硬直
+[statedef 5081]
+type    = l
+movetype= h
+physics = c
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5081, 1]
+type = hitvelset
+trigger1 = time = 0
+x = 1
+
+[state 5081, 2]
+type = velset
+trigger1 = hitover
+x = 0
+
+[state 5081, 3]
+type = varset
+trigger1 = time = 0
+var(1) = 1
+
+[state 5081, 4]
+type = selfstate
+trigger1 = hitover
+value = 5110
+
+[state 5081, 5]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击落下着地
+[statedef 5100]
+type = l
+movetype = h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5100, 1]
+type = velset
+trigger1 = time = 0
+trigger1 = gethitvar(fall.yvel) = 0
+trigger1 = vel x > 1
+x = 1
+
+[state 5100, ]
+type = fallenvshake
+trigger1 = time = 0
+
+[state 5100, ]
+type = varset
+trigger1 = time = 0
+var(2) = floor(vel y)
+
+[state 5100, 2]
+type = changeanim
+triggerall = time = 0
+trigger1 = (anim != [5051,5059]) && (anim != [5061,5069])
+trigger2 =!selfanimexist(5100 + (anim % 10))
+value = 5100
+
+[state 5100, 3]
+type = changeanim
+trigger1 = time = 0
+trigger1 = (anim = [5051,5059]) || (anim = [5061,5069])
+trigger1 = selfanimexist(5100 + (anim % 10))
+value = 5100 + (anim % 10)
+
+[state 5100, 4]
+type = posset
+trigger1 = time = 0
+y = 0
+
+[state 5100, 5]
+type = velset
+trigger1 = time = 0
+y = 0
+
+[state 5100, 6] ;reduce speed
+type = velmul
+trigger1 = time = 0
+x = 0.75
+
+[state 5100, 7]
+type = changestate
+trigger1 = time = 0
+trigger1 = gethitvar(fall.yvel) = 0
+value = 5110 ;hit_liedown
+
+[state 5100, 8]
+type = gamemakeanim
+trigger1 = time = 1
+value = 60 + (var(2) > 5) + (var(2) > 14)
+pos = 0, 0
+under = var(2) <= 14
+
+[state 5100, 11]
+type = posfreeze
+trigger1 = 1
+
+[state 5100, 12]
+type = changestate
+trigger1 = animtime = 0
+value = 5101
+
+[state 5100, 13]
+type = forcefeedback
+trigger1 = time = 0
+waveform = sinesquare
+ampl = 128,-3,-.2,.005
+time = 20
+
+[state 5000, 14]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击弹起
+[statedef 5101]
+type = l
+movetype = h
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5101, 1]
+type = changeanim
+triggerall = time = 0
+trigger1 = anim != [5101,5109]
+trigger2 =!selfanimexist(5160 + (anim % 10))
+value = 5160
+
+[state 5101, 2]
+type = changeanim
+triggerall = time = 0
+trigger1 = anim = [5101,5109]
+trigger1 = selfanimexist(5160 + (anim % 10))
+value = 5160 + (anim % 10)
+
+[state 5101, 3]
+type = hitfallvel
+trigger1 = time = 0
+
+[state 5101, 4]
+type = posset
+trigger1 = time = 0
+y = 20
+
+[state 5101, 5]
+type = veladd
+trigger1 = 1
+y = .4
+
+[state 5101, 6]
+trigger1 = vel y > 0
+trigger1 = pos y >= 12
+type = selfstate
+value = 5110
+
+[state 5101, 7]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;躺地被击
+[statedef 5110]
+type    = l
+movetype= h
+physics = n
+sprpriority = -1
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5110, ]
+type = fallenvshake
+trigger1 = time = 0
+
+[state 大跳受击残影修复]
+type = afterimage
+trigger1 = time = 0
+time = 1
+trans = add1
+length = 4
+timegap = 3
+framegap = 1
+palbright = 0, 0, 0
+palcontrast = 100, 100, 100
+paladd = 0, 0, 0
+palmul = 1, 1, 1
+
+[state 5110, 1]
+type = changeanim
+persistent = 0
+trigger1 = selfanimexist(5110 + (anim % 10))
+trigger1 = anim = [5081,5089]
+value = 5110 + (anim % 10)
+
+[state 5110, 2]
+type = changeanim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;not already changed anim
+trigger1 = anim != [5161,5169]
+trigger2 =!selfanimexist(5170 + (anim % 10))
+value = 5170
+
+[state 5110, 3]
+type = changeanim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;not already changed anim
+trigger1 = anim = [5161,5169]
+trigger1 = selfanimexist(5170 + (anim % 10))
+value = 5170 + (anim % 10)
+
+[state 5110, 4]
+type = hitfalldamage
+trigger1 = time = 0
+
+[state 5110, 5]
+type = posset
+trigger1 = time = 0
+y = 0
+
+[state 5110, 6]
+type = varset
+trigger1 = time = 0
+trigger1 = gethitvar(fall.yvel) != 0
+var(2) = floor(vel y)
+
+[state 5110, 7]
+type = gamemakeanim
+trigger1 = time = 0
+trigger1 =!var(1)
+value = 60 + (var(2) > 5) + (var(2) > 14)
+pos = 0, 0
+under = var(2) <= 14
+
+[state 5110, 8]
+type = velset
+trigger1 = time = 0
+y = 0
+
+[state 5110, 9]
+type = changeanim
+persistent = 0
+triggerall = anim = [5171,5179]
+triggerall = selfanimexist(5110 + (anim % 10))
+trigger1 = animtime = 0
+trigger2 = var(1) ;var(1) = 1 avoids hit ground anim
+value = 5110 + (anim % 10)
+
+[state 5110, 10]
+type = changeanim
+persistent = 0
+triggerall = anim != [5111,5119]
+trigger1 = animtime = 0
+trigger2 = var(1) ;var(1) = 1 avoids hit ground frame
+value = 5110
+
+[state 5110, 11]
+type = changestate
+triggerall =!alive
+trigger1 = animtime = 0
+trigger2 = var(1) ;var(1) = 1 avoids hit ground frame
+trigger3 = anim = [5110,5119]
+value = 5150
+
+[state 5110, 12]
+type = varset
+trigger1 = var(1)
+trigger1 = time = 0
+var(1) = 0
+
+[state 5110, 13] ;friction
+type = velmul
+trigger1 = 1
+x = 0.85
+
+[state 5110, 14]
+type = forcefeedback
+trigger1 = alive
+trigger1 = time = 0
+time = 8
+ampl = 240
+waveform = sine
+
+[state 5110, 15]
+type = forcefeedback
+trigger1 =!alive
+trigger1 = time = 0
+ampl = 200, 7, -.467
+time = 30
+waveform = sine
+
+[state 5110, 16]
+type = changestate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 300
+trigger1 = alive
+value = 0
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击起身
+[statedef 5120]
+type    = l
+movetype= i
+physics = n
+
+[state 无敌解除]
+type = hitby
+trigger1 = name != "A.I.Channel"
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state 5120, 1a]
+type = changeanim
+triggerall = time = 0
+trigger1 = anim != [5111,5119]
+trigger2 =!selfanimexist(5120 + (anim % 10))
+value = 5120
+
+[state 5120, 1b]
+type = changeanim
+triggerall = time = 0
+trigger1 = anim = [5111,5119]
+trigger1 = selfanimexist(5120 + (anim % 10))
+value = 5120 + (anim % 10)
+
+[state 5120, 2]
+type = velset
+trigger1 = time = 0
+x = 0
+
+[state 5120, 3]
+type = hitfallset
+trigger1 = animtime = 0
+value = 1
+
+[state 5120, 4]
+type = nothitby
+trigger1 = name = "A.I.Channel"
+value2 = sca
+time = 5
+
+[state 5120, 5]
+type = selfstate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+[state -1]
+type = destroyself
+trigger1 = 1
+
+;---------------------------------------------------------------------------
+;躺地受击死亡
+[statedef 5150]
+type    = l
+movetype= h
+physics = n
+sprpriority = -1
+
+[state helper无影子flge设定]
+type = assertspecial
+trigger1 = ishelper
+flag = noshadow
+
+[state 5150, 1]
+type = changeanim
+triggerall = time = 0
+triggerall = selfanimexist(5140)
+trigger1 = (anim != [5111,5119]) && (anim != [5171,5179])
+trigger2 =!selfanimexist(5140 + (anim % 10))
+value = 5140
+
+[state 5150, 2]
+type = changeanim
+trigger1 = time = 0
+trigger1 = (anim = [5111,5119]) || (anim = [5171,5179])
+trigger1 = selfanimexist(5140 + (anim % 10))
+value = 5140 + (anim % 10)
+
+[state 5150, 3]
+type = changeanim
+persistent = 0
+trigger1 = matchover = 1
+trigger1 = anim = [5140,5149]
+trigger1 = selfanimexist(anim+10)
+value = anim+10
+
+[state 5150, 4]
+type = changeanim
+trigger1 = time = 0
+trigger1 = anim != [5140,5159]
+trigger1 = anim != [5110,5119]
+value = 5110
+
+[state 5150, 6]
+type = velmul
+trigger1 = 1
+x = 0.85
+
+[state 5150, 7]
+type = velset
+trigger1 = vel x < .05
+persistent = 0
+x = 0
+
+[state 5150, 8]
+type = nothitby
+trigger1 = 1
+value2 = sca
+
+[state 5150, 9]
+type = changeanim
+trigger1 = (var(10)&4) = 0
+value = 176
+
+[state 5150, 10]
+type = selfstate
+triggerall = name = "A.I.Channel"
+trigger1 = time > 180
+trigger1 = alive
+value = 0
+
+;---------------------------------------------------------------------------
+;空中受击受身
+[statedef 5200]
+type    = a
+movetype= h
+physics = n
+
+[state 无敌解除]
+type = hitby
+triggerall = name != "A.I.Channel"
+trigger1 = time = 0
+value = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+value2 = sca,na,sa,ha,aa,nt,st,ht,at,np,sp,hp,ap
+time = 10
+ignorehitpause = 1
+
+[state -2]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 10
+
+[state 5200, 1]
+type = changeanim
+trigger1 = anim = 5035
+trigger1 = animtime = 0
+value = 5050
+
+[state 5200, 2]
+type = veladd
+trigger1 = 1
+y = gethitvar(yaccel)
+
+[state 5200, 3]
+type     = selfstate
+trigger1 = var(58) = 0
+trigger1 = vel y > 0
+trigger1 = pos y >= -20
+value    = ifelse(command !="holdfwd",5201,5202)
+
+[state 5200, ai]
+type     = selfstate
+trigger1 = var(58) = 1
+trigger1 = vel y > 0
+trigger1 = pos y >= -20
+value    = ifelse(p2bodydist x >= 100,5201,5202)
+
+;---------------------------------------------------------------------------
+;地面后受身
+[statedef 5201]
+type    = s
+movetype= h
+physics = s
+anim = 5200
+ctrl = 0
+
+[state -2]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 20
+
+[state -2]
+type = playerpush
+trigger1 = 1
+value = 0
+
+[state -2]
+type = posset
+trigger1 = time = 0
+y = 0
+
+[state -2]
+type = velset
+trigger1 = time = 0
+y = 0
+
+[state -]
+type = turn
+trigger1 = time = 0
+trigger1 = p2dist x < -5
+
+[state -2]
+type = velset
+trigger1 = animelem = 3,<0
+x = -4.5
+
+[state -2]
+type = palfx
+trigger1 = animelem = 1
+time = 3
+add = 230,230,230
+
+[state -2]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;地面前受身
+[statedef 5202]
+type    = s
+movetype= h
+physics = s
+anim = 5201
+ctrl = 0
+
+[state -2]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 20
+
+[state -2]
+type = playerpush
+trigger1 = 1
+value = 0
+
+[state -2]
+type = posset
+trigger1 = time = 0
+y = 0
+
+[state -2]
+type = velset
+trigger1 = time = 0
+y = 0
+
+[state -2]
+type = turn
+trigger1 = time = 0
+trigger1 = p2dist x < -5
+
+[state -2]
+type = velset
+trigger1 = animelem = 4,<0
+x = 7.15
+
+[state -2]
+type = palfx
+trigger1 = time = 0
+time = 3
+add = 230,230,230
+
+[state -2]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;空中受身
+[statedef 5210]
+type    = a
+movetype= i
+physics = n
+anim = 5210
+ctrl = 0
+
+[state -2]
+type = palfx
+trigger1 = time = 0
+time = 3
+add = 230,230,230
+
+[state -2]
+type = posfreeze
+trigger1 = time = 0
+value = 4
+
+[state -2]
+type = turn
+trigger1 = time = 0
+trigger1 = p2dist x < -20
+
+[state -2] 
+type = velmul
+trigger1 = time = 4
+x = .8
+y = -.8
+
+[state -2]
+type = velset
+trigger1 = time = 4
+y = -3.5
+
+[state -2] 
+type = velmul
+trigger1 = time = 4
+trigger1 = vel y > 0
+y = .5
+
+[state -2]
+type = veladd
+trigger1 = time = 4
+trigger1 = vel y > -3
+y = -2
+
+[state -2]
+type = veladd
+trigger1 = time = 4
+trigger1 = vel y > -2
+y = -1
+
+[state -2]
+type = veladd
+triggerall = var(58) <= 0
+trigger1 = time = 4
+trigger1 = command = "holdup"
+y = -1
+
+[state -2]
+type = veladd
+triggerall = var(58) <= 0
+trigger1 = time = 4
+trigger1 = command = "holddown"
+y = 1
+
+[state -2]
+type = velmul
+triggerall = var(58) <= 0
+trigger1 = time = 4
+trigger1 = command = "holdfwd"
+x = 1
+
+[state -2]
+type = veladd
+triggerall = var(58) <= 0
+trigger1 = time = 4
+trigger1 = command = "holdback"
+x = -1
+
+[state -2]
+type = nothitby
+trigger1 = 1
+value2 = sca
+time = 10
+
+[state -2]
+type = ctrlset
+trigger1 = time = 20
+value = 1
+
+[state -2]
+type = veladd
+trigger1 = time >= 4
+y = .35
+
+[state -2]
+type = changestate
+triggerall = var(58) = 1
+trigger1 = time >= 20
+value = 1400
+ctrl = 0
+
+[state -2]
+type = changestate
+trigger1 = vel y > 0
+trigger1 = pos y >= 0
+value = 52
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;继续游戏询问
+[statedef 5500]
+type = s
+ctrl = 0
+anim = 5300
+velset = 0,0
+
+[state 有继续动作的话则使用]
+type = changeanim
+trigger1 = time = 0
+trigger1 = selfanimexist(5500)
+value = 5500
+
+[statedef 5900]
+type = s
+[state ]
+type = varset
+trigger1 = 1
+var(5) = 12450
+ignorehitpause = 1
+[state 转入]
+type = changestate
+trigger1 = 1
+value = 0
+ignorehitpause = 1
