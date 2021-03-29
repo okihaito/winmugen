@@ -1,0 +1,26 @@
+[Info]
+name ="AngelLuigi"
+Displayname ="WEEGEE"
+versiondate =08,08,2006
+author ="ShinRyoga & Neo Ankh"
+editor ="FireMarioFireLuigi65" or "Cristian Ciomic"
+Pal.Defaults =2,5,3,1,6,10,11,12,7,8,9
+mugenversion=
+
+[Files]
+cmd      =Coding/SuperMario.cmd
+cns      =Coding/SuperMario.cns
+st       =Coding/SuperMario.cns
+;st1     =Coding/DOS.cns
+stcommon =common1.cns
+sprite   =Coding/SuperMario.sff
+anim     =Coding/SuperMario.air
+sound    =Sounds/SuperMario.snd
+pal1=Palettes/MarioColor1.act
+st1=Coding/SuperMario1.cns
+st2=Coding/SuperMario1.cns
+
+; Arcade mode
+[Arcade]
+intro.storyboard=
+ending.storyboard=
