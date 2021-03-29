@@ -1,0 +1,5042 @@
+;============================================================
+;helper
+[Statedef 77]
+type=A
+physics=N
+ctrl=0
+
+[State 77, nhb]
+type=nothitby
+trigger1= 1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[State 77, noshadow]
+type=assertspecial
+trigger1= 1
+flag=noshadow
+
+[State 77, bind]
+type=bindtoroot
+trigger1= 1
+pos= -1+(random%2), ceil(.3125*(gametime%32))-1+(random%2)
+facing=1
+
+[State 77, bind]
+type=bindtoroot
+trigger1= root,stateno=4010
+pos= -4+(random%8), ceil(1.25*(gametime%32))-4+(random%8)
+facing=1
+
+[State 77, trans]
+type=angledraw
+trigger1= 1
+scale= 1 + .01*(gametime%32), 1 + .01*(gametime%32)
+
+[State 77, trans]
+type=angledraw
+trigger1= root,stateno=4010
+scale= 4 + .04*(gametime%32), 4 + .04*(gametime%32)
+
+[State 77, trans]
+type=trans
+trigger1= 1
+trans=addalpha
+alpha= 256 - 8*(gametime%32), 8*(gametime%32)
+ignorehitpause=1
+
+[State 77, anim]
+type=changeanim
+trigger1= selfanimexist(root,anim)
+value=(root,anim)
+elem=(root,animelemno(0))
+
+[State 77, hide]
+type=assertspecial
+trigger1= !selfanimexist(root,anim)
+trigger2= root,stateno=194 && root,animelemtime(2)<0
+trigger3= root,stateno=178
+trigger4= root,stateno=179
+trigger5= root,stateno=[4902,4903]
+flag=invisible
+
+[State 77, spr]
+type=sprpriority
+trigger1= 1
+value=2
+
+[State 77]
+type=varrandom
+trigger1= 1
+v=1
+range=1,ifelse((root,stateno=195), 10, 40)
+
+[State 77]
+type=varrandom
+trigger1= root,stateno=195 || root,stateno=4901
+v=1
+range=1,10
+
+[State 77]
+type=varset
+trigger1= numhelper(7500)
+trigger2= !(root,alive) || gametime>root,var(58) || root,var(20)>0
+trigger3= root,stateno=177 && root,animelemtime(2)<0
+trigger4= root,stateno=178
+trigger5= root,stateno=188 && root,animelemtime(6)<0
+trigger6= root,stateno=192 && root,animelemtime(3)<0
+trigger7= root,stateno=194 && root,animelemtime(2)<0
+trigger8= root,stateno=[4020,4021]
+trigger9= root,stateno=[4902,4903]
+var(1)=-1
+
+[State 77]
+type=explod
+trigger1= var(1)=1
+anim=7250
+sprpriority=3
+postype=p1
+pos=0,ceil(-pos y)
+facing=ifelse(random<500,-1,1)
+random=160,40
+trans=addalpha
+alpha=192,256
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+
+[State 77]
+type=playsnd
+trigger1= var(1)=1
+value=5,15
+channel=1
+volume=-160-(32*numexplod)
+freqmul= .9 + (random/5000.0)
+
+[State 77]
+type=bgpalfx
+trigger1= var(1)=1
+trigger1= var(1):=-1
+time=20
+add=-128,-128,-128
+sinadd=128,128,128,80
+
+[State 77, end]
+type=changestate
+trigger1= random=1 && random<500
+trigger1= roundstate=2 && var(1)>0 && time>=300
+value=78
+
+;============================================================
+;helper
+[Statedef 78]
+type=A
+physics=N
+ctrl=0
+
+[State 78, noshadow]
+type=assertspecial
+trigger1= 1
+flag=invisible
+flag2=noshadow
+flag3=nomusic
+
+[State 78, bind]
+type=bindtoroot
+trigger1= 1
+pos=0,0
+facing=1
+
+[State 78]
+type=stopsnd
+trigger1= !time
+channel=-1
+
+[State 78]
+type=playsnd
+trigger1= !time
+value=5,41
+channel=2
+
+[State 78]
+type=bgpalfx
+trigger1= !time
+time=300
+add=-128,-128,-128
+
+[State 78, end]
+type=changestate
+trigger1= time>=300 && random<16
+value=77
+
+;============================================================
+;helper
+
+[Statedef 75]
+type=A
+physics=N
+movetype=I
+sprpriority=2
+ctrl=0
+
+[State 75, hitoverride]
+type=hitoverride
+trigger1= 1
+time=-1
+attr=SCA,AA,AP,AT
+stateno=75
+ignorehitpause=1
+
+[State 75,hitby]
+type=hitby
+trigger1= 1
+time=-1
+value=SCA,NP,SP,HP
+ignorehitpause=1
+
+[State 75, snd]
+type=playsnd
+trigger1= !time && prevstateno=75
+value=5,24
+channel=1
+
+[State 75]
+type=bgpalfx
+trigger1= movehit=[1,10]
+time=1
+add= (280-25*movehit), (280-25*movehit), (280-25*movehit)
+
+[State 75, drop]
+type=targetdrop
+trigger1= numtarget
+
+[State 75, bind]
+type=bindtoroot
+trigger1= 1
+facing=1
+time=-1
+
+[State 75, anim]
+type=changeanim
+trigger1= 1
+value=75
+
+[State 75, noshadow]
+type=assertspecial
+trigger1= 1
+flag=invisible
+flag2=noshadow
+
+[State 75, end]
+type=destroyself
+trigger1= roundstate!=2
+
+;============================================================
+;armor
+
+[statedef 1728]
+
+type=S
+movetype=I
+
+
+
+[state 1728]
+type=selfstate
+trigger1=!ishelper
+value=50
+
+ctrl=1
+
+
+
+
+[state 1728]
+type=assertspecial
+trigger1=ishelper(1728)
+flag=invisible
+
+flag2=noshadow
+
+ignorehitpause=1
+
+
+
+
+[state 1728]
+type=bindtoroot
+trigger1=ishelper(1728)
+ignorehitpause=1
+
+
+
+
+[state 1728]
+type=hitoverride
+
+trigger1=ishelper(1728)
+time=-1
+
+attr=sca,aa,at,ap
+slot=0
+
+stateno=1728
+ignorehitpause=1
+
+
+
+
+[state 1728]
+type = changeanim
+trigger1=ishelper(1728)
+
+trigger1 = anim != root,anim
+value = root,anim
+ignorehitpause = 1
+
+[state 1728]
+type=playerpush
+trigger1=ishelper(1728)
+value=1
+
+ignorehitpause=1
+
+
+
+
+[state 1728]
+type=turn
+trigger1=ishelper(1728)
+
+trigger1=facing!=root,facing
+
+ignorehitpause=1
+
+
+
+
+[state 1728]
+type=destroyself
+triggerall=ishelper
+
+trigger1=name!="Will of prison flame"
+trigger2=roundstate>2
+
+;============================================================
+;時止め解除
+
+[statedef 20000]
+anim=20000
+
+[state ]
+type=pause
+trigger1=1
+time=0
+movetime=0
+
+[state ]
+type=superpause
+trigger1=1
+time=0
+movetime=0
+anim=-1
+
+[state ]
+type=destroyself
+trigger1=1
+
+
+;---------------------------------------------------------------------------
+;OPTION FIRE!!!
+[Statedef 10001]
+type    = A
+movetype= A
+physics = N
+anim = 1807
+
+[State 10001]
+type = VelSet
+trigger1 = 1
+x = 9
+
+[State 10001]
+type = PlaySnd
+trigger1 = Time = 10
+value = S0,1
+
+[State 10001]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 20
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10001]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 10001]
+type = DestroySelf
+trigger1 = Time = 100
+
+;FIRE!!!!
+[Statedef 10002]
+type    = A
+movetype= A
+physics = N
+anim = 1102
+
+[State 10002]
+type = VelSet
+trigger1 = 1
+x = 4
+
+[State 10002]
+type = PlaySnd
+trigger1 = Time = 10
+value = S0,1
+
+[State 10002]
+type = HitDef
+triggerall = palno != 12
+trigger1 = 1
+attr = S, HA
+damage = 20
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10002]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 10002]
+type = DestroySelf
+trigger1 = Time = 100
+
+[State 10002, 攻撃用ヘルパー呼び出し]
+type = Helper
+triggerall = !ishelper
+triggerall = palno = 12
+trigger1 = numhelper(1010002) = 0
+ID = 1010002
+pos = 0,0
+postype = p1
+stateno = 1010002
+helpertype = player
+ignorehitpause = 1
+
+;FIRE!!!!!
+[Statedef 10003]
+type    = A
+movetype= A
+physics = N
+anim = 1807
+
+[State 10003]
+type = VelSet
+trigger1 = 1
+x = -13
+
+[State 10003]
+type = PlaySnd
+trigger1 = Time = 10
+value = S0,1
+
+[State 10003]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 20
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10003]
+type = AssertSpecial
+trigger1 = 1
+flag = unguardable
+
+[State 10003]
+type = DestroySelf
+trigger1 = Time = 100
+
+;============================================================
+;周りの火
+
+[Statedef 10020]
+type = A
+ctrl = 0
+anim = 1102
+velset = 0,0
+movetype = A
+physics = N
+sprpriority = 0
+
+[state 10020]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10020]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 1
+animtype = Light
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10020]
+type = Palfx
+trigger1 = root, palno < 7
+add = 200, -100, -100
+sinadd = 10, 10, 10
+time = -1
+
+[state 10020]
+type = varadd
+trigger1 = 1
+var(1) = 8
+
+[state 10020]
+type = varset
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10020]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10020]
+type = varadd
+trigger1 = 1
+var(1) = 8
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10020]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10020]
+type = velset
+trigger1 = 1
+x = -1-var(10)+var(1)*0.01
+
+[state 10020]
+type = velset
+trigger1 = root, statetype = A
+y = 1+var(11)+var(1)*0.01
+
+[state 10020]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 290-var(1), 256
+
+[state 10020]
+type = angleset
+trigger1 = time = 0
+value = 0
+
+[State 10020]
+type = AngleAdd
+trigger1 = time = 0
+trigger1 = root, statetype = A
+value =  -45
+
+[state 10020]
+type = destroyself
+trigger1 = time = 20
+
+[Statedef 10022]
+type = A
+ctrl = 0
+anim = 1102
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 0
+
+[state 10022]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10022]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 4
+animtype = Light
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10022]
+type = Palfx
+trigger1 = root, palno < 7
+add = 200, -100, -100
+sinadd = 10, 10, 10
+time = -1
+
+[state 10022]
+type = varadd
+trigger1 = 1
+var(1) = 8
+
+[state 10022]
+type = varset
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10022]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10022]
+type = velset
+trigger1 = 1
+x = -1-var(10)+var(1)*0.01
+y = -1-var(11)+var(1)*0.01
+
+[state 10022]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 290-var(1), 256
+
+[state 10022]
+type = angleset
+trigger1 = time = 0
+value = 0
+
+[State 10022]
+type = AngleAdd
+trigger1 = time = 0
+value =  -45
+
+[state 10022]
+type = destroyself
+trigger1 = time = 15
+
+[Statedef 10023]
+type = A
+ctrl = 0
+anim = 1807
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 0
+
+[State 10023]
+type = SprPriority
+trigger1 = 1
+value = 4
+
+[state 10023]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10023]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 3
+animtype = Light
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10023]
+type = Palfx
+trigger1 = root, palno = 7
+add = 200, -100, -100
+sinadd = 10, 10, 10
+time = -1
+
+[state 10023]
+type = varadd
+trigger1 = 1
+var(1) = 8
+
+[state 10023]
+type = varset
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10023]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10023]
+type = velset
+trigger1 = 1
+x = -1-var(10)+var(1)*0.01
+y = 1+var(11)-var(1)*0.01
+
+[state 10023]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 290-var(1), 256
+
+[state 10023]
+type = angleset
+trigger1 = time = 0
+value = 0
+
+[State 10023]
+type = AngleAdd
+trigger1 = time = 0
+value =  0
+
+[state 10023]
+type = destroyself
+trigger1 = time = 15
+
+[Statedef 10024]
+type = A
+ctrl = 0
+anim = 1807
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 0
+
+[State 10024]
+type = SprPriority
+trigger1 = 1
+value = 4
+
+[state 10024]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10024]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 6
+animtype = Light
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10024]
+type = Palfx
+trigger1 = root, palno = 7
+add = 200, -100, -100
+sinadd = 10, 10, 10
+time = -1
+
+[state 10024]
+type = varadd
+trigger1 = 1
+var(1) = 5
+
+[state 10024]
+type = varset
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10024]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10024]
+type = velset
+trigger1 = 1
+x = .5+var(10)-var(1)*0.005
+y = -.5-var(11)+var(1)*0.005
+
+[state 10024]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 290-var(1), 256
+
+[state 10024]
+type = angleset
+trigger1 = time = 0
+value = 0
+
+[State 10024]
+type = AngleAdd
+trigger1 = time = 0
+value =  -135
+
+[state 10024]
+type = destroyself
+trigger1 = time = 15
+
+[Statedef 10025]
+type = A
+ctrl = 0
+anim = 1807
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 0
+
+[State 10025]
+type = SprPriority
+trigger1 =1
+value = 4
+
+[state 10025]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 10025]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+damage = 5
+animtype = Light
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 10025]
+type = Palfx
+trigger1 = root, palno = 7
+add = 200, -100, -100
+sinadd = 10, 10, 10
+time = -1
+
+[state 10025]
+type = varadd
+trigger1 = 1
+var(1) = 5
+
+[state 10025]
+type = varset
+trigger1 = time = 0
+var(10) = random * 0.001
+
+[state 10025]
+type = varset
+trigger1 = time = 0
+var(11) = random * 0.001
+
+[state 10025]
+type = velset
+trigger1 = 1
+x = .5+var(10)-var(1)*0.005
+y = .5+var(11)-var(1)*0.005
+
+[state 10025]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 290-var(1), 256
+
+[state 10025]
+type = angleset
+trigger1 = time = 0
+value = 0
+
+[State 10025]
+type = AngleAdd
+trigger1 = time = 0
+value =  135
+
+[state 10025]
+type = destroyself
+trigger1 = time = 15
+
+
+;======================================================
+;ヘルパーアーマー2
+
+;FIRE!!!!
+
+[Statedef 1010002]
+type    = A
+movetype= A
+physics = N
+anim = 1102
+
+[State 1010002, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(1010002)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 1010002, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(1010002)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 1010002, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(1010002)
+value = 0
+ignorehitpause = 1
+
+[State 1010002, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(1010002)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 1010002, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(1010002)
+value = 1
+ignorehitpause = 1
+
+[State 1010002, ヒット定義]
+type = HitDef
+triggerall = ishelper(1010002)
+trigger1 = 1
+attr = S, HA
+damage = 20
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+sparkxy = 0,-30
+hitsound = S0,2
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+getpower = 50
+fall = 1
+
+[State 1010002, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(1010002)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 10002
+ignorehitpause = 1
+
+
+;=======================================
+
+; Stand Light Punch
+
+[Statedef 10200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+poweradd = 20
+velset = 0,0
+ctrl = 0
+anim = 200
+
+[State 10200, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10200)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10200, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10200)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10200, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10200)
+value = 0
+ignorehitpause = 1
+
+[State 10200, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10200)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10200, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10200)
+value = 1
+ignorehitpause = 1
+
+[State 10200, ヒット定義]
+type = HitDef
+triggerall = ishelper(10200)
+trigger1 = AnimElem = 2
+attr = S, NA
+damage    = 20
+animtype = Light
+getpower = 20
+givepower = 10
+guardflag = MA
+hitflag = MAFD
+priority = 5, Hit
+sparkno = 0
+pausetime = 8,8
+sparkxy = -10, -42
+hitsound = S5,0
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1,-3
+
+[State 10200, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10200)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 200
+ignorehitpause = 1
+
+;========================================================
+; Stand Medium Punch
+
+[Statedef 10210]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 210
+poweradd = 40
+sprpriority = 2
+
+[State 10210, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10210)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10210, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10210)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10210, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10210)
+value = 0
+ignorehitpause = 1
+
+[State 10210, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10210)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10210, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10210)
+value = 1
+ignorehitpause = 1
+
+[State 10210, ヒット定義]
+type = HitDef
+triggerall = ishelper(10210)
+trigger1 = AnimElem = 3
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 40                      ;Damage that move inflicts, guard damage
+animtype = Medium                ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF
+pausetime = 10,10
+sparkno = 0                      ;Spark anim no (Def: set above)
+sparkxy = -10, -42               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 2                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 7             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -2
+air.velocity = -2,-3
+
+[State 10210, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10210)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 210
+ignorehitpause = 1
+
+;========================================================
+;Crouching light punch
+
+[Statedef 10400]
+type    = C
+movetype= A
+physics = C
+juggle  = 5
+poweradd= 20
+ctrl = 0
+anim = 400
+sprpriority = 2
+
+[State 10400, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10400)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10400, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10400)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10400, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10400)
+value = 0
+ignorehitpause = 1
+
+[State 10400, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10400)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10400, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10400)
+value = 1
+ignorehitpause = 1
+
+[State 10400, ヒット定義]
+type = HitDef
+triggerall = ishelper(10400)
+trigger1 = Time = 0
+attr = C, NA
+damage    = 20
+animtype = Light
+getpower = 20,10
+givepower = 15,8
+guardflag = L
+hitflag = MAFD
+sparkno = 0
+pausetime = 12,8
+sparkxy = -10, -22
+hitsound = S5,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -2
+air.velocity = -2,-3
+down.velocity = -3,-4
+
+[State 10400, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10400)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 400
+ignorehitpause = 1
+
+;========================================================
+;Crouching medium punch
+
+[Statedef 10410]
+type    = C
+movetype= A 
+physics = C 
+juggle  = 7
+velset = 0,0
+ctrl = 0
+anim = 410
+poweradd = 40
+sprpriority = 2
+
+[State 10410, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10410)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10410, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10410)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10410, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10410)
+value = 0
+ignorehitpause = 1
+
+[State 10410, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10410)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10410, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10410)
+value = 1
+ignorehitpause = 1
+
+[State 10410, ヒット定義]
+type = HitDef
+triggerall = ishelper(10410)
+trigger1 = AnimElem = 3
+attr = C, NA                     ;Attribute: Standing, Normal Attack
+damage = 40                   ;Damage that move inflicts, guard damage
+animtype = Medium                ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = L                    ;Flags on how move is to be guarded against
+hitflag = MAFD                   ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 defaul                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 10,10                ;Time attacker pauses, time opponent shakes
+sparkno = 0                      ;Spark anim no (Def: set above)
+sparkxy = -10, -22               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 2                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = Low                ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 7             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -2           ;Velocity at which opponent is pushed
+airguard.velocity = -1.2,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.velocity = -2,-3           ;X-velocity at which opponent is pushed,
+down.velocity = -3,-4
+
+[State 10410, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10410)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 410
+ignorehitpause = 1
+
+;========================================================
+; Stand Strong Punch
+
+[Statedef 10220]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+;Commonly-used controllers:
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 220                       ;Change animation (Def: no change)
+poweradd = 65                    ;Power to add (Def: 0)
+sprpriority = 2
+
+[State 10220, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10220)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10220, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10220)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10220, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10220)
+value = 0
+ignorehitpause = 1
+
+[State 10220, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10220)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10220, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10220)
+value = 1
+ignorehitpause = 1
+
+[State 10220, ヒット定義]
+type = HitDef
+triggerall = ishelper(10220)
+trigger1 = AnimElem = 3
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 60                      ;Damage that move inflicts, guard damage
+animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 12,12                ;Time attacker pauses, time opponent shakes
+sparkxy = -10, -42               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 1                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 15             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -5             ;Velocity at which opponent is pushed
+air.velocity = -4,-3         ;X-velocity at which opponent is pushed,
+down.velocity = -3,-4
+
+[State 10220, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10220)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 220
+ignorehitpause = 1
+
+
+;========================================================
+; Crouching Strong Punch
+
+[Statedef 10420]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+poweradd= 65
+ctrl = 0
+anim = 420
+
+[State 10420, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10420)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10420, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10420)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10420, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10420)
+value = 0
+ignorehitpause = 1
+
+[State 10420, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10420)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10420, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10420)
+value = 1
+ignorehitpause = 1
+
+[State 10420, ヒット定義]
+type = HitDef
+triggerall = ishelper(10420)
+trigger1 = AnimElem = 3
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 60                      ;Damage that move inflicts, guard damage
+animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 12,12                ;Time attacker pauses, time opponent shakes
+sparkxy = -10, -42               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 1                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 15             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -5             ;Velocity at which opponent is pushed
+air.velocity = -4,-3         ;X-velocity at which opponent is pushed,
+down.velocity = -3,-4
+
+[State 10420, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10420)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 420
+ignorehitpause = 1
+
+;========================================================
+;Jump Light Punch
+
+[Statedef 10600]
+type    = A
+movetype= A
+physics = A
+juggle  = 3
+poweradd= 20
+ctrl = 0
+anim = 600
+
+[State 10600, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10600)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10600, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10600)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10600, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10600)
+value = 0
+ignorehitpause = 1
+
+[State 10600, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10600)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10600, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10600)
+value = 1
+ignorehitpause = 1
+
+[State 10600, ヒット定義]
+type = HitDef
+triggerall = ishelper(10600)
+trigger1 = AnimElem = 2
+attr = A, NA
+damage    = 20
+animtype = Light
+guardflag = HA
+priority = 3
+pausetime = 8,8
+sparkxy = -10,-58
+hitsound   = S5,0
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = 0,-2
+air.hittime = 10
+
+[State 10600, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10600)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 600
+trigger4 = AnimElem = 2
+ignorehitpause = 1
+
+
+;========================================================
+;Jump Medium Punch
+
+[Statedef 10610]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd= 40
+ctrl = 0
+anim = 610
+
+[State 10610, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10610)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10610, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10610)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10610, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10610)
+value = 0
+ignorehitpause = 1
+
+[State 10610, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10610)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10610, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10610)
+value = 1
+ignorehitpause = 1
+
+[State 10610, ヒット定義]
+type = HitDef
+triggerall = ishelper(10610)
+trigger1 = AnimElem = 4
+attr = A, NA
+damage = 40
+animtype = Medium
+guardflag = HA
+priority = 3
+pausetime = 10,10
+sparkxy = -10,-55
+hitsound   = S5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = 0,-2
+air.hittime = 12
+
+[State 10610, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10610)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 610
+trigger4 = AnimElem = 4
+ignorehitpause = 1
+
+
+;========================================================
+;Jump Strong Punch
+
+[Statedef 10620]
+type    = A
+movetype= A
+physics = A
+juggle  = 1
+poweradd= 65
+ctrl = 0
+anim = 620
+
+[State 10620, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10620)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10420, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10420)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10620, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10620)
+value = 0
+ignorehitpause = 1
+
+[State 10620, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10620)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10620, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10620)
+value = 1
+ignorehitpause = 1
+
+[State 10620, ヒット定義]
+type = HitDef
+triggerall = ishelper(10620)
+trigger1 = AnimElem = 5
+attr = A, NA
+damage = 60
+animtype = Heavy
+guardflag = HA
+priority = 3
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 9
+ground.hittime  = 9
+ground.velocity = -4
+air.velocity = -1.3,19
+air.hittime = 20
+fall = 1
+
+[State 10620, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10620)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 620
+trigger4 = AnimElem = 5
+ignorehitpause = 1
+
+
+;========================================================
+; Stand Light Kick
+
+[Statedef 10230]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+poweradd= 20
+velset = 0,0
+ctrl = 0
+anim = 230
+
+[State 10230, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10230)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10230, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10230)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10230, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10230)
+value = 0
+ignorehitpause = 1
+
+[State 10230, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10230)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10230, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10230)
+value = 1
+ignorehitpause = 1
+
+[State 10230, ヒット定義]
+type = HitDef
+triggerall = ishelper(10230)
+trigger1 = AnimElem = 2
+attr = S, NA
+damage    = 20
+animtype = Light
+getpower = 20,10
+givepower = 15,8
+guardflag = MA
+hitflag = MAFD
+priority = 5, Hit
+sparkno = 0
+pausetime = 8,8
+sparkxy = -10, -22
+hitsound = S5,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.type = Low
+air.velocity = -1,-3
+air.hittime = 10
+down.velocity = -1,-3
+
+[State 10230, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10230)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 230
+ignorehitpause = 1
+
+
+;========================================================
+; Stand Medium Kick
+
+[Statedef 10240]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 240                       ;Change animation (Def: no change)
+poweradd = 40                    ;Power to add (Def: 0)
+sprpriority = 2
+
+[State 10240, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10240)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10240, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10240)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10240, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10240)
+value = 0
+ignorehitpause = 1
+
+[State 10240, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10240)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10240, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10240)
+value = 1
+ignorehitpause = 1
+
+[State 10240, ヒット定義]
+type = HitDef
+triggerall = ishelper(10240)
+trigger1 = AnimElem = 3
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 40                   ;Damage that move inflicts, guard damage
+animtype = Medium                ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 10,10                ;Time attacker pauses, time opponent shakes
+sparkno = 0                      ;Spark anim no (Def: set above)
+sparkxy = -10, -42               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 3                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 7             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -2             ;Velocity at which opponent is pushed
+airguard.velocity = -1.9,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -2.2,-3.2         ;X-velocity at which opponent is pushed,                                 ;Y-velocity at which opponent is pushed
+air.hittime = 12
+
+[State 10240, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10240)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 240
+ignorehitpause = 1
+
+
+;========================================================
+; Stand Strong Kick
+
+[Statedef 10250]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 250                       ;Change animation (Def: no change)
+poweradd = 65                    ;Power to add (Def: 0)
+sprpriority = 2
+
+[State 10250, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10250)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10250, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10250)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10250, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10250)
+value = 0
+ignorehitpause = 1
+
+[State 10250, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10250)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10250, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10250)
+value = 1
+ignorehitpause = 1
+
+[State 10250, ヒット定義]
+type = HitDef
+triggerall = ishelper(10250)
+trigger1 = AnimElem = 3
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 60                      ;Damage that move inflicts, guard damage
+animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 12,12                ;Time attacker pauses, time opponent shakes
+sparkxy = -10, -42               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 1                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = High               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 15             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -5             ;Velocity at which opponent is pushed
+air.velocity = -4,-3         ;X-velocity at which opponent is pushed,
+down.velocity = -3,-4
+
+[State 10250, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10250)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 250
+ignorehitpause = 1
+
+;========================================================
+;Crouching light kick
+
+[Statedef 10430]
+type    = C
+movetype= A
+physics = C
+juggle  = 15
+poweradd= 20
+ctrl = 0
+anim = 430
+sprpriority = 2
+
+[State 10430, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10430)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10430, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10430)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10430, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10430)
+value = 0
+ignorehitpause = 1
+
+[State 10430, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10430)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10430, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10430)
+value = 1
+ignorehitpause = 1
+
+[State 10430, ヒット定義]
+type = HitDef
+triggerall = ishelper(10430)
+trigger1 = Time = 0
+attr = C, NA
+damage    = 20
+animtype = Light
+getpower = 20,10
+givepower = 15,8
+guardflag = L
+hitflag = MAFD
+priority = 5, Hit
+sparkno = 0
+pausetime = 12,8
+sparkxy = -10, -22
+hitsound = S5,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -2
+air.type = Low
+air.velocity = -2,-3
+air.hittime = 10
+down.velocity = -2,-3
+
+[State 10430, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10430)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 430
+ignorehitpause = 1
+
+
+;========================================================
+;Crouching medium kick
+
+[Statedef 10440]
+type    = C                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = C                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 7                      ;Number of air juggle points move takes
+velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 440                       ;Change animation (Def: no change)
+poweradd = 40                    ;Power to add (Def: 0)
+sprpriority = 2
+
+[State 10440, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10440)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10440, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10440)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10440, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10440)
+value = 0
+ignorehitpause = 1
+
+[State 10440, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10440)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10440, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10440)
+value = 1
+ignorehitpause = 1
+
+[State 10440, ヒット定義]
+type = HitDef
+triggerall = ishelper(10440)
+trigger1 = AnimElem = 3
+attr = C, NA                     ;Attribute: Standing, Normal Attack
+damage = 40                   ;Damage that move inflicts, guard damage
+animtype = Medium                ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = L                    ;Flags on how move is to be guarded against
+hitflag = MAFD                   ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 10,10                ;Time attacker pauses, time opponent shakes
+sparkno = 0                      ;Spark anim no (Def: set above)
+sparkxy = -10, -22               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 3                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = Low                ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 7             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -2           ;Velocity at which opponent is pushed
+airguard.velocity = -1.2,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = Low                   ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.2,-3
+
+[State 10440, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10440)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 440
+ignorehitpause = 1
+
+
+;========================================================
+;Crouching strong kick
+
+[Statedef 10450]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+poweradd= 65
+ctrl = 0
+anim = 420
+
+[State 10450, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10450)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10450, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10450)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10450, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10450)
+value = 0
+ignorehitpause = 1
+
+[State 10450, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10450)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10450, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10450)
+value = 1
+ignorehitpause = 1
+
+[State 10450, ヒット定義]
+type = HitDef
+triggerall = ishelper(10450)
+trigger1 = AnimElem = 7
+attr = C, NA                     ;Attribute: Standing, Normal Attack
+damage = 60                      ;Damage that move inflicts, guard damage
+animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = L                    ;Flags on how move is to be guarded against
+hitflag = MAFD                   ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 12,12                ;Time attacker pauses, time opponent shakes
+sparkxy = -10, -22               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 3                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = Trip               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 7             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -2           ;Velocity at which opponent is pushed
+airguard.velocity = -1.2,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = Trip                  ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.2,-3
+
+[State 10450, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10450)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 450
+ignorehitpause = 1
+
+
+;========================================================
+;Jump Light Kick
+
+[Statedef 10630]
+type    = A
+movetype= A
+physics = A
+juggle  = 3
+poweradd= 20
+ctrl = 0
+anim = 630
+
+[State 10630, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10630)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10630, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10630)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10630, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10630)
+value = 0
+ignorehitpause = 1
+
+[State 10630, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10630)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10630, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10630)
+value = 1
+ignorehitpause = 1
+
+[State 10630, ヒット定義]
+type = HitDef
+triggerall = ishelper(10630)
+trigger1 = AnimElem = 2
+attr = A, NA
+damage    = 20
+animtype = Light
+guardflag = HA
+priority = 3
+pausetime = 8,8
+sparkxy = -10,-58
+hitsound   = S5,0
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = 0,-2
+air.hittime = 10
+
+[State 10630, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10630)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 630
+trigger4 = AnimElem = 2
+ignorehitpause = 1
+
+
+;========================================================
+;Jump Medium Kick
+
+[Statedef 10640]
+type    = A
+movetype= A
+physics = A
+juggle  = 3
+poweradd= 40
+ctrl = 0
+anim = 640
+
+[State 10640, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10640)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10640, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10640)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10640, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10640)
+value = 0
+ignorehitpause = 1
+
+[State 10640, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10640)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10640, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10640)
+value = 1
+ignorehitpause = 1
+
+[State 10640, ヒット定義]
+type = HitDef
+triggerall = ishelper(10640)
+trigger1 = AnimElem = 4
+attr = A, NA
+damage = 40
+animtype = Medium
+guardflag = HA
+priority = 3
+pausetime = 10,10
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 7
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = 0,-2
+air.hittime = 12
+
+[State 10640, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10640)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 640
+trigger4 = AnimElem = 4
+ignorehitpause = 1
+
+
+;========================================================
+;Jump Strong Kick
+
+[Statedef 10650]
+type    = A
+movetype= A
+physics = A
+juggle  = 7
+poweradd= 65
+ctrl = 0
+anim = 650
+
+[State 10650, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10650)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10650, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10650)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10650, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10650)
+value = 0
+ignorehitpause = 1
+
+[State 10650, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10650)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10650, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10650)
+value = 1
+ignorehitpause = 1
+
+[State 10650, ヒット定義]
+type = HitDef
+triggerall = ishelper(10650)
+trigger1 = AnimElem = 7
+attr = A, NA
+damage = 60
+animtype = Heavy
+guardflag = HA
+priority = 3
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -8,-7
+air.velocity = -8,-7
+air.hittime = 17
+fall = 1
+
+[State 10650, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10650)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 650
+trigger4 = AnimElem = 7
+ignorehitpause = 1
+
+
+;========================================================
+; Slide Kick
+
+[Statedef 10460]
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air
+juggle  = 1                      ;Number of air juggle points move takes
+velset = 15,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 460                       ;Change animation (Def: no change)
+poweradd = 65                    ;Power to add (Def: 0)
+sprpriority = 2 
+
+[State 10460, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(10460)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 10460, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(10460)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 10460, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(10460)
+value = 0
+ignorehitpause = 1
+
+[State 10460, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(10460)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 10460, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(10460)
+value = 1
+ignorehitpause = 1
+
+[State 10460, ヒット定義]
+type = HitDef
+triggerall = ishelper(10460)
+trigger1 = AnimElem = 4
+attr = S, NA                     ;Attribute: Standing, Normal Attack
+damage = 60, 7                   ;Damage that move inflicts, guard damage
+animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA                   ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit                                 ;Attack priority: 0 (least) to 7 (most), 4 default                                 ;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 11,11                ;Time attacker pauses, time opponent shakes
+sparkxy = -10, -22               ;X-offset for the "hit spark" rel. to p2,                                 ;Y-offset for the spark rel. to p1
+hitsound = S5, 3                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = Trip               ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 3             ;Time that the opponent slides back
+ground.hittime  = 15             ;Time opponent is in hit state
+ground.velocity = -5             ;Velocity at which opponent is pushed
+airguard.velocity = -1.9,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = Trip                  ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -2.2,-3.2         ;X-velocity at which opponent is pushed,                                 ;Y-velocity at which opponent is pushed
+air.hittime = 15 
+
+[State 10460, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(10460)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 460
+ignorehitpause = 1
+
+
+;========================================================
+;Light Tornado Spin
+
+[Statedef 101200]
+type    = S
+movetype= A
+physics = S
+poweradd = 65
+ctrl = 0
+juggle = 5
+velset = 3, 0
+anim = 1200
+sprpriority = 2
+
+[State 101200, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101200)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101200, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101200)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101200, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101200)
+value = 0
+ignorehitpause = 1
+
+[State 101200, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101200)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101200, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101200)
+value = 1
+ignorehitpause = 1
+
+[State 101200, ヒット定義]
+type = HitDef
+triggerall = ishelper(101200)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7    
+attr = A, SA
+damage   = 6,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101200, ヒット定義]
+type = HitDef
+triggerall = ishelper(101200)
+trigger1 = Animelem = 10   
+attr = S, SA
+damage   = 20,10
+animtype = Heavy
+getpower = 30
+givepower = 20
+guardflag = MAF
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101200, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101200)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1200
+ignorehitpause = 1
+
+;========================================================
+;Medium Tornado Spin
+
+[Statedef 101201]
+type    = S     
+movetype= A     
+physics = S  
+poweradd = 650
+ctrl = 0
+juggle = 5
+velset = 3, 0
+anim = 1201
+sprpriority = 2
+
+[State 101201, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101201)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101201, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101201)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101201, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101201)
+value = 0
+ignorehitpause = 1
+
+[State 101201, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101201)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101201, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101201)
+value = 1
+ignorehitpause = 1
+
+[State 101201, ヒット定義]
+type = HitDef
+triggerall = ishelper(101201)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13  
+attr = A, SA
+damage   = 8,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101201, ヒット定義]
+type = HitDef
+triggerall = ishelper(101201)
+trigger1 = Animelem = 16   
+attr = S, SA
+damage   = 30,10
+animtype = Hard
+getpower = 30
+givepower = 20
+guardflag = MAF
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 30
+ground.hittime  = 20
+ground.velocity = -15
+air.velocity = -2.5,-5.5
+
+[State 101201, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101201)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1201
+ignorehitpause = 1
+
+
+;========================================================
+;Strong Tornado Spin
+
+[Statedef 101202]
+type    = S     
+movetype= A     
+physics = S  
+poweradd = 650
+ctrl = 0
+juggle = 4
+velset = 3, 0
+anim = 1202
+sprpriority = 2
+
+[State 101202, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101202)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101202, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101202)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101202, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101202)
+value = 0
+ignorehitpause = 1
+
+[State 101202, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101202)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101202, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101202)
+value = 1
+ignorehitpause = 1
+
+[State 101202, ヒット定義]
+type = HitDef
+triggerall = ishelper(101202)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13 || Animelem = 14 || Animelem = 16 || Animelem = 19
+attr = A, SA
+damage   = 10,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101202, ヒット定義]
+type = HitDef
+triggerall = ishelper(101202)
+trigger1 = AnimElem = 22
+attr = S, SA
+damage    = 30,8
+priority  = 3, Hit
+animtype  = Heavy
+guardflag =MA
+pausetime = 22,8
+numhits = 1
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High               
+ground.slidetime = 20            
+ground.hittime  = 22             
+ground.velocity = -2 ,-10.5            
+airguard.velocity = -1.8,-.8                       
+air.velocity = -2,-6                                  
+air.hittime = 12             
+fall = 1
+
+[State 101202, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101202)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1202
+ignorehitpause = 1
+
+
+;========================================================
+;Light Tornado Spin (Air)
+
+[Statedef 101203]
+type    = A     
+movetype= A     
+physics = A  
+poweradd = 650
+ctrl = 0
+juggle = 5
+velset = 3, 0
+anim = 1200
+sprpriority = 2
+
+[State 101203, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101203)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101203, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101203)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101203, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101203)
+value = 0
+ignorehitpause = 1
+
+[State 101203, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101203)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101203, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101203)
+value = 1
+ignorehitpause = 1
+
+[State 101203, ヒット定義]
+type = HitDef
+triggerall = ishelper(101203)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7    
+attr = A, SA
+damage   = 6,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101203, ヒット定義]
+type = HitDef
+triggerall = ishelper(101203)
+trigger1 = Animelem = 10   
+attr = S, SA
+damage   = 20,10
+animtype = Heavy
+getpower = 30
+givepower = 20
+guardflag = MAF
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101203, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101203)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1203
+trigger4 = Animelem = 7 || Animelem = 10
+ignorehitpause = 1
+
+
+;========================================================
+;Medium Tornado Spin (Air)
+
+[Statedef 101204]
+type    = A     
+movetype= A     
+physics = A  
+poweradd = 65
+ctrl = 0
+juggle = 5
+velset = 3, 0
+anim = 1201
+sprpriority = 2
+
+[State 101204, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101204)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101204, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101204)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101204, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101204)
+value = 0
+ignorehitpause = 1
+
+[State 101204, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101204)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101204, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101204)
+value = 1
+ignorehitpause = 1
+
+[State 101204, ヒット定義]
+type = HitDef
+triggerall = ishelper(101204)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13  
+attr = A, SA
+damage   = 8,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101204, ヒット定義]
+type = HitDef
+triggerall = ishelper(101204)
+trigger1 = Animelem = 16   
+attr = S, SA
+damage   = 30,10
+animtype = Hard
+getpower = 30
+givepower = 20
+guardflag = MAF
+pausetime = 12,12
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 30
+ground.hittime  = 20
+ground.velocity = -15
+air.velocity = -2.5,-5.5
+
+[State 101204, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101204)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1204
+trigger4 = Animelem = 13  || Animelem = 16  
+ignorehitpause = 1
+
+;========================================================
+;Strong Tornado Spin (Air)
+
+[Statedef 101205]
+type    = A     
+movetype= A     
+physics = A  
+poweradd = 65
+ctrl = 0
+juggle = 5
+velset = 3, 0
+anim = 1206
+sprpriority = 2
+
+[State 101205, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101205)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101205, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101205)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101205, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101205)
+value = 0
+ignorehitpause = 1
+
+[State 101205, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101205)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101205, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101205)
+value = 1
+ignorehitpause = 1
+
+[State 101205, ヒット定義]
+type = HitDef
+triggerall = ishelper(101205)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13 || Animelem = 14 || Animelem = 16 || Animelem = 19
+attr = A, SA
+damage   = 10,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101205, ヒット定義]
+type = HitDef
+triggerall = ishelper(101205)
+trigger1 = AnimElem = 22
+attr = S, SA
+damage    = 30,8
+priority  = 3, Hit
+animtype  = Heavy
+guardflag =MA
+pausetime = 22,8
+numhits = 1
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High               
+ground.slidetime = 20            
+ground.hittime  = 22             
+ground.velocity = -2 ,-10.5            
+airguard.velocity = -1.8,-.8                       
+air.velocity = -2,-6                                  
+air.hittime = 12             
+fall = 1
+
+[State 101205, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101205)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1205
+trigger4 = Animelem = 2 || Animelem = 4 || Animelem = 7 || Animelem = 10 || Animelem = 13 || Animelem = 14 || Animelem = 16 || Animelem = 19 || Animelem = 22
+ignorehitpause = 1
+
+
+
+;========================================================
+;Strong Tornado SpinEX
+
+[Statedef 101250]
+type    = S     
+movetype= A     
+physics = S  
+ctrl = 0
+juggle = 6
+velset = 10, 0
+anim = 1202
+sprpriority = 2
+poweradd = 2000
+
+[State 101250, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101250)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101250, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101250)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101250, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101250)
+value = 0
+ignorehitpause = 1
+
+[State 101250, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101250)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101250, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101250)
+value = 1
+ignorehitpause = 1
+
+[State 101250, ヒット定義]
+type = HitDef
+triggerall = ishelper(101250)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13 || Animelem = 14 || Animelem = 16 || Animelem = 19
+attr = A, SA
+damage   = 20,8
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+sparkxy = -10,-42
+numhits = 2
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101250, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101250)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1250
+ignorehitpause = 1
+
+
+;========================================================
+;Strong Tornado SpinEX (Air)
+
+[Statedef 101251]
+type    = A     
+movetype= A     
+physics = A  
+ctrl = 0
+juggle = 6
+velset = 3, 0
+anim = 1206
+sprpriority = 2
+poweradd = 2000
+
+[State 101251, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101251)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101251, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101251)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101251, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101251)
+value = 0
+ignorehitpause = 1
+
+[State 101251, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101251)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101251, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101251)
+value = 1
+ignorehitpause = 1
+
+[State 101251, ヒット定義]
+type = HitDef
+triggerall = ishelper(101251)
+trigger1 = Animelem = 2 || Animelem = 4 || Animelem = 7  || Animelem = 10 || Animelem = 13 || Animelem = 14 || Animelem = 16 || Animelem = 19
+attr = A, SA
+damage   = 20,8
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 0,12
+numhits = 2
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+air.velocity = -2.5,-5.5
+
+[State 101251, ヒット定義]
+type = HitDef
+triggerall = ishelper(101251)
+trigger1 = AnimElem = 22
+attr = S, SA
+damage    = 30,8
+priority  = 3, Hit
+animtype  = Heavy
+guardflag =MA
+pausetime = 22,8
+numhits = 1
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High               
+ground.slidetime = 20            
+ground.hittime  = 22             
+ground.velocity = -2 ,-10.5            
+airguard.velocity = -1.8,-.8                       
+air.velocity = -2,-6                                  
+air.hittime = 12             
+fall = 1
+
+[State 101251, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101251)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1251
+trigger4 = Animelem = 14 || Animelem = 16 || Animelem = 19  || Animelem = 22
+ignorehitpause = 1
+
+
+;========================================================
+;Drill Kick
+
+[Statedef 101300]
+type    = A     
+movetype= A     
+physics = A  
+poweradd = 750
+ctrl = 0
+juggle = 5
+velset = 0, 0
+anim = 1300
+sprpriority = 2
+
+[State 101300, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101300)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101300, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101300)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101300, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101300)
+value = 0
+ignorehitpause = 1
+
+[State 101300, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101300)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101300, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101300)
+value = 1
+ignorehitpause = 1
+
+[State 101300, ヒット定義]
+type = HitDef
+triggerall = ishelper(101300)
+trigger1 = Animelem = 3 || Animelem = 4 || Animelem = 5 || Animelem = 7 || Animelem = 9
+attr = A, SA
+damage   = 10,4
+animtype = Light
+getpower = 30
+givepower = 20
+guardflag = MA
+pausetime = 5,2
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 20
+ground.velocity = -8
+;air.velocity = -2.5,-5.5
+
+[State 101300, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101300)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1300
+trigger4 = Animelem = 3 || Animelem = 4 || Animelem = 5 || Animelem = 7 || Animelem = 9
+ignorehitpause = 1
+
+
+;========================================================
+;Head Stomp
+
+[Statedef 101400]
+type    = A
+physics = A
+movetype = A
+poweradd = 650
+ctrl = 0
+velset = 0,0
+anim = 1400
+
+[State 101400, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101400)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101400, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101400)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101400, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101400)
+value = 0
+ignorehitpause = 1
+
+[State 101400, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101400)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101400, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101400)
+value = 1
+ignorehitpause = 1
+
+[State 101400, ヒット定義]
+type = HitDef
+triggerall = ishelper(101400)
+trigger1 = time = 0
+attr = A, SA
+hitflag = MAFD
+guardflag = MA
+animtype = HEAVY
+damage = 10,2
+pausetime = 11,11
+sparkno = 0
+hitsound = S5,1
+ground.slidetime = 20
+guard.dist = 0
+
+[State 101400, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101400)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1400
+ignorehitpause = 1
+
+
+;========================================================
+;Head Stomp
+
+[Statedef 101401]
+type = A
+physics = A
+movetype = A
+ctrl = 0
+velset = 3,-7
+anim = 1401
+
+[State 101401, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101401)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101401, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101401)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101401, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101401)
+value = 0
+ignorehitpause = 1
+
+[State 101401, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101401)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101401, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101401)
+value = 1
+ignorehitpause = 1
+
+[State 101401, ヒット定義]
+type = HitDef
+triggerall = ishelper(101401)
+trigger1 = time = 0
+attr = A, SA
+hitflag = MAFD
+guardflag = MA
+animtype = HEAVY
+damage = 10,2
+pausetime = 11,11
+sparkno = 0
+hitsound = S5,1
+ground.slidetime = 20
+guard.dist = 0
+
+[State 101401, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101401)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1401
+trigger4 = 1
+ignorehitpause = 1
+
+
+;========================================================
+;Light Coin Punch
+
+[Statedef 101500]
+type = S
+movetype = A
+physics = N
+anim = 1500
+poweradd = 650
+velset = 0
+ctrl = 0
+juggle = 0
+
+[State 101500, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101500)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101500, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101500)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101500, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101500)
+value = 0
+ignorehitpause = 1
+
+[State 101500, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101500)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101500, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101500)
+value = 1
+ignorehitpause = 1
+
+[State 101500, ヒット定義]
+type = HitDef
+triggerall = ishelper(101500)
+trigger1 = AnimElem = 2
+attr = S, SA
+damage    = 90
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 9,6
+sparkno = 0
+sparkxy = 0, -20
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2, -3
+air.velocity = -1.3,-9
+fall = 1
+fall.recover = 0
+
+[State 101500, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101500)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1500
+trigger4 = AnimElem = 2
+ignorehitpause = 1
+
+
+
+;========================================================
+;Light Coin Punch Still
+
+[Statedef 101501]
+type = A
+movetype = A
+anim = 1501
+physics = A
+ctrl = 0
+velset = 4,-5.5
+juggle = 7
+
+[State 101501, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101501)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101501, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101501)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101501, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101501)
+value = 0
+ignorehitpause = 1
+
+[State 101501, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101501)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101501, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101501)
+value = 1
+ignorehitpause = 1
+
+[State 101501, ヒット定義]
+type = HitDef
+triggerall = ishelper(101501)
+trigger1 = AnimElem = 1
+attr = S, SA
+damage    = 60
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = L
+pausetime = 12,12
+sparkno = 0
+sparkxy = 0, -20
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2.8, -9
+air.velocity = -2.8,-9
+fall = 1
+fall.recover = 0
+
+[State 101501, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101501)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1501
+ignorehitpause = 1
+
+
+
+;========================================================
+;Medium Coin Punch
+
+[Statedef 101502]
+type = S
+physics = N
+movetype = A
+anim = 1502
+poweradd = 65
+velset = 0
+ctrl = 0
+juggle = 0
+
+[State 101502, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101502)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101502, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101502)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101502, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101502)
+value = 0
+ignorehitpause = 1
+
+[State 101502, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101502)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101502, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101502)
+value = 1
+ignorehitpause = 1
+
+[State 101502, ヒット定義]
+type = HitDef
+triggerall = ishelper(101502)
+trigger1 = AnimElem = 2
+attr = A, SA
+damage    = 40,3
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 9,9
+sparkno = 0
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.3,-3
+
+[State 101502, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101502)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1502
+ignorehitpause = 1
+
+
+;========================================================
+;Medium Coin Punch Stil
+
+[Statedef 101503]
+type = A
+movetype = A
+anim = 1503
+physics = A
+ctrl = 0
+velset = 6,-7.5
+juggle = 7
+
+[State 101503, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101503)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101503, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101503)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101503, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101503)
+value = 0
+ignorehitpause = 1
+
+[State 101503, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101503)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101503, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101503)
+value = 1
+ignorehitpause = 1
+
+[State 101503, ヒット定義]
+type = HitDef
+triggerall = ishelper(101503)
+trigger1 = AnimElem = 1 || AnimElem = 2
+attr = A, SA
+damage    = 40, 4
+animtype  = Light
+getpower  = 10
+givepower = 8
+guardflag = L
+pausetime = 10,12
+sparkno = 0
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2.8, -10.5
+air.velocity = -2.8,-10.5
+fall = 1
+fall.recover = 0
+
+[State 101503, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101503)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1503
+ignorehitpause = 1
+
+;========================================================
+;Strong Coin Punch
+
+[Statedef 101504]
+type = S
+physics = N
+movetype = A
+poweradd = 65
+anim = 1504
+velset = 0
+ctrl = 0
+juggle = 0
+
+[State 101504, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101504)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101504, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101504)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101504, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101504)
+value = 0
+ignorehitpause = 1
+
+[State 101504, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101504)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101504, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101504)
+value = 1
+ignorehitpause = 1
+
+[State 101504, ヒット定義]
+type = HitDef
+triggerall = ishelper(101504)
+trigger1 = AnimElem = 6 || AnimElem = 7
+attr = A, SA
+damage    = 40,3
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 9,9
+sparkno = 0
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.3,-3
+
+[State 101504, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101504)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1504
+ignorehitpause = 1
+
+
+
+;========================================================
+;Strong Coin Punch Still
+
+[Statedef 101505]
+type = A
+movetype = A
+anim = 1505
+physics = A
+ctrl = 0
+velset = 6.5,-9
+juggle = 7
+
+[State 101505, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101505)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101505, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101505)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101505, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101505)
+value = 0
+ignorehitpause = 1
+
+[State 101505, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101505)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101505, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101505)
+value = 1
+ignorehitpause = 1
+
+[State 101505, ヒット定義]
+type = HitDef
+triggerall = ishelper(101505)
+trigger1 = AnimElem = 1 || AnimElem = 2 || AnimElem = 3
+attr = A, SA
+damage    = 40, 4
+animtype  = Light
+getpower  = 10
+givepower = 8
+guardflag = L
+pausetime = 10,12
+sparkno = 0
+sparkxy = -20, -62
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2.8, -10.5
+air.velocity = -2.8,-12
+fall = 1
+fall.recover = 0
+
+[State 101505, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101505)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1505
+ignorehitpause = 1
+
+
+
+;========================================================
+;Strong Coin PunchEX
+
+[Statedef 101550]
+type = S
+physics = N
+movetype = A
+anim = 1504
+velset = 0
+ctrl = 0
+juggle = 0
+poweradd = 2000
+
+[State 101550, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101550)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101550, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101550)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101550, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101550)
+value = 0
+ignorehitpause = 1
+
+[State 101550, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101550)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101550, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101550)
+value = 1
+ignorehitpause = 1
+
+[State 101550, ヒット定義]
+type = HitDef
+triggerall = ishelper(101550)
+trigger1 = AnimElem = 6 || AnimElem = 7
+attr = A, SA
+damage    = 40,3
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 30,40
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.3,-3
+
+[State 101550, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101550)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1550
+ignorehitpause = 1
+
+
+
+;========================================================
+;Strong Coin Punch StillEX
+
+[Statedef 101551]
+type = A
+movetype = A
+anim = 1551
+physics = A
+ctrl = 0
+velset = 6.5,-9
+juggle = 7
+
+[State 101551, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101551)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101551, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101551)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101551, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101551)
+value = 0
+ignorehitpause = 1
+
+[State 101551, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101551)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101551, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101551)
+value = 1
+ignorehitpause = 1
+
+[State 101551, ヒット定義]
+type = HitDef
+triggerall = ishelper(101551)
+trigger1 = AnimElem = 6 || AnimElem = 7
+attr = A, SA
+damage    = 40,3
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 30,40
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.3,-3
+
+[State 101551, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101551)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1551
+ignorehitpause = 1
+
+
+
+;========================================================
+;Alpha Counter Strong Coin PunchEX
+
+[Statedef 101560]
+type = S
+physics = N
+movetype = A
+anim = 1504
+velset = 0
+ctrl = 0
+juggle = 0
+poweradd = 2000
+
+[State 101560, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101560)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101560, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101560)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101560, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101560)
+value = 0
+ignorehitpause = 1
+
+[State 101560, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101560)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101560, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101560)
+value = 1
+ignorehitpause = 1
+
+[State 101560, ヒット定義]
+type = HitDef
+triggerall = ishelper(101560)
+trigger1 = AnimElem = 6 || AnimElem = 7
+attr = A, SA
+damage    = 40,3
+animtype  = Light
+getpower  = 10
+givepower = 8
+hitflag = MA
+guardflag = MA
+pausetime = 30,40
+sparkxy = 0, -20
+hitsound   = S5, 1
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 4
+ground.hittime  = 15
+ground.velocity = -2
+air.velocity = -1.3,-3
+
+[State 101560, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101560)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1560
+ignorehitpause = 1
+
+
+
+;========================================================
+;Butt Stomp
+
+[Statedef 101600]
+type = A
+physics = N
+movetype = A
+poweradd = 65
+velset = 0,0
+ctrl = 0
+anim = 1600
+
+[State 101600, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101600)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101600, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101600)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101600, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101600)
+value = 0
+ignorehitpause = 1
+
+[State 101600, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101600)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101600, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101600)
+value = 1
+ignorehitpause = 1
+
+[State 101600, ヒット定義]
+type = HitDef
+triggerall = ishelper(101600)
+trigger1 = Animelem = 1
+attr = A, SA
+hitflag = MAFD]
+guardflag = MA
+animtype = HEAVY
+damage = 50,5
+pausetime = 15,20
+sparkno = 0
+hitsound = S5,1
+ground.slidetime = 20
+guard.dist = 0
+
+[State 101600, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101600)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1600
+ignorehitpause = 1
+
+
+
+;========================================================
+;Butt Stomp Still
+
+[Statedef 101601]
+type = A
+movetype = A
+velset = 0,11
+anim = 1601
+
+[State 101601, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101601)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101601, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101601)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101601, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101601)
+value = 0
+ignorehitpause = 1
+
+[State 101601, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101601)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101601, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101601)
+value = 1
+ignorehitpause = 1
+
+[State 101601, ヒット定義]
+type = HitDef
+triggerall = ishelper(101601)
+trigger1 = Animelem = 1
+attr = S, SA
+hitflag = MAFD
+guardflag = MA
+animtype = Hard
+damage = 75,5
+pausetime = 15,14
+sparkno = 0
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 9
+ground.velocity = -4
+air.velocity = -1.3,19
+air.hittime = 15
+fall = 1
+
+[State 101601, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101601)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1601
+ignorehitpause = 1
+
+
+
+
+;========================================================
+;Butt StompEX
+
+[Statedef 101650]
+type = A
+physics = N
+movetype = A
+velset = 0,0
+ctrl = 0
+anim = 1650
+poweradd = 2000
+
+[State 101650, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101650)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101650, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101650)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101650, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101650)
+value = 0
+ignorehitpause = 1
+
+[State 101650, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101650)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101650, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101650)
+value = 1
+ignorehitpause = 1
+
+[State 101650, ヒット定義]
+type = HitDef
+triggerall = ishelper(101650)
+trigger1 = Animelem = 2 || AnimElem = 3 || AnimElem = 4 || AnimElem = 5
+attr = A, SA
+hitflag = MAFD
+guardflag = MA
+animtype = HEAVY
+sparkxy = -10, -53
+damage = 16,5
+pausetime = 7,5
+hitsound = S5,1
+ground.slidetime = 20
+guard.dist = 0
+
+[State 101650, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101650)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1650
+ignorehitpause = 1
+
+
+;========================================================
+;Butt Stomp StillEX
+
+[Statedef 101651]
+type = A
+movetype = A
+velset = 0,7
+anim = 1651
+
+[State 101651, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101651)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101651, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101651)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101651, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101651)
+value = 0
+ignorehitpause = 1
+
+[State 101651, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101651)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101651, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101651)
+value = 1
+ignorehitpause = 1
+
+[State 101651, ヒット定義]
+type = HitDef
+triggerall = ishelper(101651)
+trigger1 = Animelem = 1 || AnimElem = 2 || AnimElem = 3 || AnimElem = 4
+attr = S, SA
+hitflag = MAFD
+guardflag = MA
+animtype = Hard
+damage = 30,5
+pausetime = 20,28
+hitsound   = S5,1
+sparkxy = -10, -53
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 7
+ground.velocity = -1.3,-1
+air.velocity = -1.3,5
+air.hittime = 0
+fall = 1
+
+[State 101651, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101651)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1651
+ignorehitpause = 1
+
+
+
+;========================================================
+;Butt Stomp End
+
+[Statedef 101602]
+type = S
+movetype = A
+physics = C
+velset = 0,0
+ctrl = 0
+anim = 1602
+sprpriority = 2
+
+[State 101602, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101602)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101602, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101602)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101602, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101602)
+value = 0
+ignorehitpause = 1
+
+[State 101602, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101602)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101602, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101602)
+value = 1
+ignorehitpause = 1
+
+[State 101602, ヒット定義]
+type = HitDef
+triggerall = ishelper(101602)
+trigger1 = AnimElem = 1 
+attr = S, SA
+hitflag = MAFD
+guardflag = MA
+animtype = HEAVY
+damage = 36,5
+pausetime = 15,20
+hitsound = S5, 3           
+guardsound = 6, 0          
+ground.type = Trip         
+ground.slidetime = 0       
+ground.hittime  = 9             
+ground.velocity = -1.5           
+airguard.velocity = -1.2,-.8     
+air.type = Trip                 
+air.velocity = -1.2,-3  
+
+[State 101602, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101602)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1602
+ignorehitpause = 1
+
+
+
+;========================================================
+
+;Air Glide
+
+[Statedef 101700]
+type = A
+movetype = A
+poweradd = 65
+velset = 5.5,0
+juggle = 5
+ctrl = 0
+anim = 1700
+
+[State 101700, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(101700)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 101700, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(101700)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 101700, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(101700)
+value = 0
+ignorehitpause = 1
+
+[State 101700, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(101700)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 101700, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(101700)
+value = 1
+ignorehitpause = 1
+
+[State 101700, ヒット定義]
+type = HitDef
+triggerall = ishelper(101700)
+type = hitdef
+trigger1 = AnimElem = 3
+attr = S, SA
+hitflag = MAFD
+guardflag = MA
+animtype = HEAVY
+damage = 55,5
+pausetime = 15,20
+sparkno = 0
+sparkxy = -10,-55
+hitsound = S5, 1           
+guardsound = 6, 0          
+ground.type = Trip         
+ground.slidetime = 0       
+ground.hittime  = 9             
+ground.velocity = -1.5           
+airguard.velocity = -1.2,-.8     
+air.type = High              
+air.velocity = -7,0      
+
+[State 101700, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(101700)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 1700
+ignorehitpause = 1
+
+
+
+
+
+
+
+
+
+
+
+;========================================================
+
+;必要行動
+
+;SuperHammer
+
+[Statedef 102101]
+type = S
+movetype = A
+physics = S
+anim = 2101
+ctrl = 0
+velset = 0,0
+
+[State 102101, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(102101)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 102101, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(102101)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 102101, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(102101)
+value = 0
+ignorehitpause = 1
+
+[State 102101, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(102101)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 102101, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(102101)
+value = 1
+ignorehitpause = 1
+
+[State 102101, ヒット定義]
+type = HitDef
+triggerall = ishelper(102101)
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 7
+trigger3 = AnimElem = 11
+trigger4 = AnimElem = 15
+trigger5 = AnimElem = 19
+trigger6 = AnimElem = 23
+trigger7 = AnimElem = 27
+trigger8 = AnimElem = 31
+trigger9 = AnimElem = 35
+trigger10 = AnimElem = 39
+trigger11 = AnimElem = 44
+trigger12 = AnimElem = 48
+trigger13 = AnimElem = 52
+trigger14 = AnimElem = 56
+trigger15 = AnimElem = 60
+trigger16 = AnimElem = 64
+trigger17 = AnimElem = 68
+trigger18 = AnimElem = 72
+trigger19 = AnimElem = 76
+attr = S, HA
+damage = 15,1
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+pausetime = 0,45
+;sparkno = -1
+sparkxy = -20,-62
+hitsound = S5,3
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = 0,0
+air.velocity = 0,0
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+
+[State 102101, ヒット定義]
+type = HitDef
+triggerall = ishelper(102101)
+trigger1 = AnimElem = 80
+attr = S, HA
+damage = 200,10
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+pausetime = 0,15
+;sparkno = -1
+sparkxy = -20,-62
+hitsound = S5,3
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = 0,-15
+air.velocity = 0,-15
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+fall = 1
+
+[State 102101, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(102101)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 2101
+ignorehitpause = 1
+
+
+
+;========================================================
+
+;SuperFlame
+
+[Statedef 102000]
+type = S
+phySicS = S
+movetype = A
+ctrl = 0
+poweradd = 3000
+anim = 2000
+velSet = 0,0
+
+[State 102000, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(102000)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 102000, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(102000)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 102000, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(102000)
+value = 0
+ignorehitpause = 1
+
+[State 102000, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(102000)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 102000, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(102000)
+value = 1
+ignorehitpause = 1
+
+[State 102000, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(102000)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 2000
+ignorehitpause = 1
+
+
+
+;========================================================
+
+;Super Flame cont.
+
+[Statedef 102001]
+type = S
+movetype = A
+physics = S
+anim = 2002
+ctrl = 0
+velset = 0,0
+juggle = 7
+
+[State 102001, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(102001)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 102001, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(102001)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 102001, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(102001)
+value = 0
+ignorehitpause = 1
+
+[State 102001, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(102001)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 102001, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(104000)
+value = 1
+ignorehitpause = 1
+
+[State 102001, ヒット定義]
+type = HitDef
+triggerall = ishelper(102001)
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+trigger5 = AnimElem = 5
+trigger6 = AnimElem = 6
+trigger7 = AnimElem = 7
+trigger8 = AnimElem = 8
+trigger9 = AnimElem = 9
+trigger10 = AnimElem = 10
+trigger11 = AnimElem = 11
+trigger12 = AnimElem = 12
+trigger13 = AnimElem = 13
+trigger14 = AnimElem = 14
+trigger15 = AnimElem = 15
+trigger16 = AnimElem = 16
+trigger17 = AnimElem = 17
+trigger18 = AnimElem = 18
+trigger19 = AnimElem = 19
+trigger20 = AnimElem = 20
+trigger21 = AnimElem = 21
+trigger22 = AnimElem = 22
+trigger23 = AnimElem = 23
+trigger24 = AnimElem = 24
+trigger25 = AnimElem = 25
+trigger26 = AnimElem = 26
+trigger27 = AnimElem = 27
+trigger28 = AnimElem = 28
+trigger29 = AnimElem = 29
+trigger30 = AnimElem = 30
+trigger31 = AnimElem = 31
+trigger32 = AnimElem = 32
+trigger33 = AnimElem = 33
+trigger34 = AnimElem = 34
+trigger35 = AnimElem = 35
+trigger36 = AnimElem = 36
+trigger37 = AnimElem = 37
+trigger38 = AnimElem = 38
+trigger39 = AnimElem = 39
+trigger40 = AnimElem = 40
+attr = S, HA
+damage = 20,2
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+pausetime = 0,4
+;sparkno = -1
+sparkxy = -20,-62
+;hitsound = S5,1
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = .2,-2
+air.velocity = .2,-2
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+palfx.time = 70
+palfx.add = 32,0,0
+palfx.mul = 300,192,192
+fall = 1
+
+[State 102001, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(102001)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 2001
+ignorehitpause = 1
+
+;========================================================
+
+;Super Flame Wave
+
+[Statedef 102002]
+type = S
+movetype = A
+physics = S
+anim = 2003
+ctrl = 0
+velset = 0,0
+juggle = 7
+
+[State 102002, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(102002)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 102002, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(102002)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 102002, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(102002)
+value = 0
+ignorehitpause = 1
+
+[State 102002, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(102002)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 102002, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(102002)
+value = 1
+ignorehitpause = 1
+
+[State 102002, ヒット定義]
+type = HitDef
+triggerall = ishelper(102002)
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 5
+trigger4 = AnimElem = 6
+trigger5 = AnimElem = 7
+trigger6 = AnimElem = 8
+trigger7 = AnimElem = 9
+trigger8 = AnimElem = 10
+trigger9 = AnimElem = 11
+trigger10 = AnimElem = 12
+trigger11 = AnimElem = 13
+trigger12 = AnimElem = 14
+trigger13 = AnimElem = 15
+trigger14 = AnimElem = 16
+trigger15 = AnimElem = 17
+trigger16 = AnimElem = 18
+attr = S, HA
+damage = 72,12
+animtype = Hard
+hitflag = MAf
+guardflag = MA
+pausetime = 0,4
+;sparkno = -1
+sparkxy = -10,-42
+;hitsound = S5,1
+ground.type = High
+ground.slidetime = 4
+ground.hittime  = 25
+ground.velocity = 0,-15
+air.velocity = 0,-15
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+palfx.time = 70
+palfx.add = 32,0,0
+palfx.mul = 300,192,192
+fall = 1
+
+[State 102002, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(102002)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 2002
+ignorehitpause = 1
+
+
+
+;========================================================
+
+;Stone Transform
+
+[Statedef 104001]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+vel = 0, 0
+anim = 4001
+
+[State 104001, ヘルパー透明化] 
+type = AssertSpecial
+trigger1 = ishelper(104001)
+flag = invisible
+flag2 = noshadow
+ignorehitpause = 1
+
+[State 104001, ヘルパーライフ]
+type = Lifeset
+trigger1 = ishelper(104001)
+value = 9999999999999
+ignorehitpause = 1
+
+[State 104001, ヘルパーカメラ固定]
+type = Screenbound
+trigger1 = ishelper(104001)
+value = 0
+ignorehitpause = 1
+
+[State 104001, ヘルパー追従]
+type = Bindtoroot
+trigger1 = ishelper(104001)
+pos = 0, 0
+ignorehitpause = 1
+
+[State 104001, ヘルパー押し戻し判定追加]
+type = Playerpush
+trigger1 = ishelper(104001)
+value = 1
+ignorehitpause = 1
+
+[State 104001, ヒット定義]
+type = HitDef
+triggerall = ishelper(104001)
+trigger1 = Animelem = 1 || Animelem = 2 || Animelem = 3  
+attr = A, SA
+damage   = 20,4
+animtype = Light
+getpower = -500
+givepower = 30
+guardflag = HLAMFD
+pausetime = 0,12
+sparkno = 0
+sparkxy = -10,-42
+hitsound   = S5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 3
+ground.velocity = -10
+air.velocity = -2.5,-10.5
+fall = 1
+
+[State 104001, ヒット定義]
+type = HitDef
+triggerall = ishelper(104001)
+trigger1 = AnimElem = 4
+attr = S, SA
+damage    = 60,8
+priority  = 3, Hit
+animtype  = Heavy
+guardflag = HLAMFD
+pausetime = 22,8
+numhits = 1
+sparkxy = -10,-55
+hitsound   = S5,3
+guardsound = 6,0
+ground.type = High               
+ground.slidetime = 20            
+ground.hittime  = 22             
+ground.velocity = -2 ,-18.5            
+airguard.velocity = -1.8,-.8                       
+air.velocity = -2,-18                                  
+air.hittime = 3        
+fall = 1
+
+[State 104001, ヘルパー消去]
+type = Destroyself
+triggerall = ishelper(104001)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = root,stateno != 4001
+ignorehitpause = 1
+
+;========================================================
+
+;---------------------------------------------------------------------------
+;OTHKハンマー
+[Statedef 104444]
+type = C
+movetype = I
+physics = N
+anim = 10003
+ctrl = 0
+
+[state 104444, ヘルパー押し戻し判定解除]
+type = Playerpush
+trigger1 = ishelper(104444)
+value = 0
+ignorehitpause = 1
+
+[State 104444, ヘルパー本体追従]
+type = Bindtoroot
+trigger1 = ishelper(104444)
+ignorehitpause = 1
+
+[State 104444, 特定属性のみ命中]
+type = Hitby
+trigger1 = ishelper(104444)
+value = C, HP
+ignorehitpause = 1
+
+[State 104444, 食らいヘルパー消去]
+type = Destroyself
+triggerall = ishelper(104444)
+trigger1 = !alive
+trigger2 = !root,alive
+trigger3 = helper(104444),stateno != 104444
+trigger4 = root,stateno != 4444
+ignorehitpause = 1
+
