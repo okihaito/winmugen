@@ -1,0 +1,1 @@
+Inserire lo Statedef 0 del personaggio desiderato nel box "Statedef" + il displayname su "名字".
