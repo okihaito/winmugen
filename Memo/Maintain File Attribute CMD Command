@@ -1,0 +1,1 @@
+xcopy .\winmugen\chars\xxx .\winmugen\chars\xxx /x /o
