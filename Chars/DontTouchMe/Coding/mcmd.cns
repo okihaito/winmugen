@@ -1,0 +1,3986 @@
+
+;-| Single Button |---------------------------------------------------------
+
+[Command]
+name="a"
+command=a
+time=1
+
+[Command]
+name="b"
+command=b
+time=1
+
+[Command]
+name="c"
+command=c
+time=1
+
+[Command]
+name="x"
+command=x
+time=1
+
+[Command]
+name="y"
+command=y
+time=1
+
+[Command]
+name="z"
+command=z
+time=1
+
+[Command]
+name="start"
+command=s
+time=1
+
+;-| Hold Button |-----------------------------------------------------------
+
+[Command]
+name="holdfwd";Required (do not remove)
+command=/$F
+time=1
+
+[Command]
+name="holdback";Required (do not remove)
+command=/$B
+time=1
+
+[Command]
+name="holdup" ;Required (do not remove)
+command=/$U
+time=1
+
+[Command]
+name="holddown";Required (do not remove)
+command=/$D
+time=1
+
+[Command]
+name="up" 
+command=$U
+time=1
+
+[Command]
+name="hold_a"
+command =/a
+time=1
+
+[Command]
+name="hold_b"
+command =/b
+time=1
+
+[Command]
+name="hold_c"
+command =/c
+time=1
+
+[Command]
+name="hold_x"
+command =/x
+time=1
+
+[Command]
+name="hold_y"
+command =/y
+time=1
+
+[Command]
+name="hold_z"
+command =/z
+time=1
+
+[Command]
+name="hold_s"
+command =/s
+time=1
+
+;AI Start----------------------------------------------------------------------------
+
+ [Command]
+name="cpu1"
+command=U, U, U, U
+time=0
+[Command]
+name="cpu2"
+command=U, U, U, D
+time=0
+[Command]
+name="cpu3"
+command=U, U, D, D
+time=0
+[Command]
+name="cpu4"
+command=U, D, D, D
+time=0
+[Command]
+name="cpu5"
+command=D, D, D, D
+time=0
+[Command]
+name="cpu6"
+command=D, D, D, U
+time=0
+[Command]
+name="cpu7"
+command=D, D, U, U
+time=0
+[Command]
+name="cpu8"
+command=D, U, U, U
+time=0
+[Command]
+name="cpu9"
+command=U, D, U, U
+time=0
+[Command]
+name="cpu10"
+command=U, U, D, U
+time=0
+[Command]
+name="cpu11"
+command=D, U, U, D
+time=0
+[Command]
+name="cpu12"
+command=U, D, D, U
+time=0
+[Command]
+name="cpu13"
+command=D, U, D, U
+time=0
+[Command]
+name="cpu14"
+command=U, D, U, D
+time=0
+[Command]
+name="cpu15"
+command=F, F, F, F
+time=0
+[Command]
+name="cpu16"
+command=B, B, B, B
+time=0
+[Command]
+name="cpu17"
+command=F, B, F, F
+time=0
+[Command]
+name="cpu18"
+command=F, F, B, F
+time=0
+[Command]
+name="cpu19"
+command=B, F, F, F
+time=0
+[Command]
+name="cpu20"
+command=F, F, F, B
+time=0
+[Command]
+name="cpu21"
+command=F, B, B, F
+time=0
+[Command]
+name="cpu22"
+command=B, F, F, B
+time=0
+[Command]
+name="cpu23"
+command=F, B, F, B
+time=0
+[Command]
+name="cpu24"
+command=B, F, B, F
+time=0
+[Command]
+name="cpu25"
+command=D, F, D, F
+time=0
+[Command]
+name="cpu26"
+command=D, B, D, B
+time=0
+[Command]
+name="cpu27"
+command=D, B, D, F
+time=0
+[Command]
+name="cpu28"
+command=D, F, D, B
+time=0
+[Command]
+name="cpu29"
+command=U, F, D, B
+time=0
+[Command]
+name="cpu30"
+command=U, B, D, F
+time=0
+[Command]
+name="cpu31"
+command=B, D, F, U
+time=0
+[Command]
+name="cpu32"
+command=F, D, B, U
+time=0
+[Command]
+name="cpu33"
+command=U, U, U, U
+time=0
+[Command]
+name="cpu34"
+command=U, U, U, D
+time=0
+[Command]
+name="cpu35"
+command=U, U, D, D
+time=0
+[Command]
+name="cpu36"
+command=U, D, D, D
+time=0
+[Command]
+name="cpu37"
+command=D, D, D, D
+time=0
+[Command]
+name="cpu38"
+command=D, D, D, U
+time=0
+[Command]
+name="cpu39"
+command=D, D, U, U
+time=0
+[Command]
+name="cpu40"
+command=D, U, U, U
+time=0
+[Command]
+name="cpu41"
+command=U, D, U, U
+time=0
+[Command]
+name="cpu42"
+command=U, U, D, U
+time=0
+[Command]
+name="cpu43"
+command=D, U, U, D
+time=0
+[Command]
+name="cpu44"
+command=U, D, D, U
+time=0
+[Command]
+name="cpu45"
+command=D, U, D, U
+time=0
+[Command]
+name="cpu46"
+command=U, D, U, D
+time=0
+[Command]
+name="cpu47"
+command=F, F, F, F
+time=0
+[Command]
+name="cpu48"
+command=B, B, B, B
+time=0
+[Command]
+name="cpu49"
+command=F, B, F, F
+time=0
+[Command]
+name="cpu50"
+command=F, F, B, F
+time=0
+[Command]
+name="cpu51"
+command=B, F, F, F
+time=0
+[Command]
+name="cpu52"
+command=F, F, F, B
+time=0
+[Command]
+name="cpu53"
+command=F, B, B, F
+time=0
+[Command]
+name="cpu54"
+command=B, F, F, B
+time=0
+[Command]
+name="cpu55"
+command=F, B, F, B
+time=0
+[Command]
+name="cpu56"
+command=B, F, B, F
+time=0
+[Command]
+name="cpu57"
+command=D, F, D, F
+time=0
+[Command]
+name="cpu58"
+command=D, B, D, B
+time=0
+[Command]
+name="cpu59"
+command=D, B, D, F
+time=0
+[Command]
+name="cpu60"
+command=D, F, D, B
+time=0
+[Command]
+name="cpu61"
+command=U, F, D, B
+time=0
+[Command]
+name="cpu62"
+command=U, B, D, F
+time=0
+[Command]
+name="cpu63"
+command=B, D, F, U
+time=0
+[Command]
+name="cpu64"
+command=F, D, B, U
+time=0
+
+
+;-| Super Motions |--------------------------------------------------------
+
+[Command]
+name="teleport"
+command= ~D,D,D
+time=35
+
+[Command]
+name="EXThrow"
+command= ~D,DB,B,a+x
+time=35
+
+[Command]
+name="EXThrow"
+command= ~D,DB,B,b+y
+time=35
+
+[Command]
+name="EXThrow"
+command= ~D,DB,B,c+z
+time=35
+
+[Command]
+name="Throw"
+command= a+x
+time=35
+
+[Command]
+name="Throw"
+command= b+y
+time=35
+
+[Command]
+name="Throw"
+command= c+z
+time=35
+
+[Command]
+name="InvincibleStar"
+command=~D, DF, F, D, DF, F, a
+time=35
+
+[Command]
+name="HAMMER"
+command= ~D, DF, F, D, DF, F, b
+time=35
+
+[Command]
+name="SuperFlameTower"
+command= ~D, DF, F, D, DF, F, c
+time=35
+
+[Command]
+name="SuperFlameBlust"
+command= ~D, DF, F, D, DF, F, x
+time=35
+
+[Command]
+name="?box"
+command=~D, DF, F, D, DF, F, a+c
+time=35
+
+[Command]
+name="SS"
+command= ~F, D, F, b+c
+time=35
+
+[Command]
+name="DEADF"
+command= ~F, D, B, b+c
+time=35
+
+[Command]
+name="Missile_Punch"
+command=~D, DF, F, D, DF, F, z
+time=25
+
+[Command]
+name="Ray_laser"
+command=~D, DF, F, D, DF, F, z
+time=25
+
+[Command]
+name="EXbuttstomp"
+command=/D, a+b
+
+[Command]
+name="EXbuttstomp"
+command=/D, b+c
+
+[Command]
+name="EXbuttstomp"
+command=/D, a+c
+
+[Command]
+name="EXCoinPunch"
+command=~F, D, DF, x+y
+
+[Command]
+name="EXCoinPunch"
+command=~F, D, DF, y+z
+
+[Command]
+name="EXCoinPunch"
+command=~F, D, DF, x+z
+
+[Command]
+name="CoinPunch_x"
+command=~F, D, DF, x
+
+[Command]
+name="CoinPunch_y"
+command=~F, D, DF, y
+
+[Command]
+name="CoinPunch_z"
+command=~F, D, DF, z
+
+[Command]
+name="EXfireball"
+command=~D, DF, F, x+y
+
+[Command]
+name="EXfireball"
+command=~D, DF, F, y+z
+
+[Command]
+name="EXfireball"
+command=~D, DF, F, x+z
+
+[Command]
+name="fireball_x"
+command=~D, DF, F, x
+
+[Command]
+name="fireball_y"
+command=~D, DF, F, y
+
+[Command]
+name="fireball_z"
+command=~D, DF, F, z
+
+[Command]
+name="EXtornado"
+command=~D, DB, B, x+y
+
+[Command]
+name="EXtornado"
+command=~D, DB, B, y+z
+
+[Command]
+name="EXtornado"
+command=~D, DB, B, x+z
+
+[Command]
+name="tornado_x"
+command=~D, DB, B, x
+
+[Command]
+name="tornado_y"
+command=~D, DB, B, y
+
+[Command]
+name="tornado_z"
+command=~D, DB, B, z
+
+[Command]
+name="buttstomp"
+command=/D,c
+
+[Command]
+name="drillkick"
+command=/D,b
+
+[Command]
+name="headstomp"
+command=/D,a
+
+[Command]
+name="airglideEX"
+command=B, B, F
+
+[Command]
+name="airglide"
+command=F, F
+time=10
+
+[Command]
+name="rollfwd"
+command=a+b
+
+[Command]
+name="rollfwd"
+command=b+c
+
+[Command]
+name="rollfwd"
+command=c+a
+
+;-| Double Tap |-----------------------------------------------------------
+
+[Command]
+name="FF"     ;Required (do not remove)
+command=F, F
+time=10
+
+[Command]
+name="BB"     ;Required (do not remove)
+command=B, B
+time=10
+
+;-| 2/3 Button Combination |-----------------------------------------------
+
+[Command]
+name="recovery";Required (do not remove)
+command=x+y
+time=1
+
+[Command]
+name="recovery"
+command=y+z
+time=1
+
+[Command]
+name="recovery"
+command=z+x
+time=1
+
+[Command]
+name="Sjump"
+command=D,U
+time=3
+
+;――――――――――――――――――――――――――――――――
+;――――――――――――――――――――――――――――――――
+[statedef -1]
+;――――――――――――――――――――――――――――――――
+;――――――――――――――――――――――――――――――――
+
+;◆―――――――――――――――――――――――――――◆
+;│ヘルパー召喚						 │
+;◆―――――――――――――――――――――――――――◆
+
+[State 時止め解除メモリ確保ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=!(enemynear,name="Hama")
+trigger1=!numhelper(130)
+ID=130
+name="kaijo_dummy"
+helpertype=player
+postype=p1
+stateno=130
+pos=0,0
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 解除ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=!(enemynear,name="Hama")
+trigger1=!numhelper(131)
+ID=131
+name="kaijo_helper"
+helpertype=player
+postype=p1
+stateno=131
+pos=0,0
+size.xscale=1.1
+size.yscale=1.1
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State マーキング用ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=teamside=2
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!(enemynear,name="DollMaster"||enemynear,name="T-Zetsu")
+trigger1=!numhelper(135)
+ID=135
+name="Marking_helper"
+postype=p1
+pos=0,0
+stateno=135
+helpertype=player
+keyctrl=0
+size.xscale=0.8
+size.yscale=0.8
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State みらくるヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666"||enemynear,name="T-Zetsu")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+trigger1=!numhelper(136)
+ID=136
+name="mirakuru_helper"
+postype=p1
+pos=0,0
+stateno=136
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 習得ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666"||enemynear,name="T-Zetsu")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+trigger1=!numhelper(137)
+ID=137
+name="Syutoku_helper"
+postype=p1
+pos=0,0
+stateno=137
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 被弾用ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=10
+triggerall=!(enemynear,name="Hama"||enemynear,name="TOKI-TEN-KU")
+trigger1=!numhelper(132)
+ID=132
+name="kansi"
+postype=p1
+pos=0,0
+stateno=132
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 火の玉ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,6]
+triggerall=palno!=10
+triggerall=!(enemynear,name="Hama"||enemynear,name="T-Zetsu")
+trigger1=!numhelper(133)
+ID=133
+name="Fire_helper"
+stateno=133
+helpertype=player
+postype=p1
+pos=0,0
+keyctrl=0
+size.xscale=1
+size.yscale=1
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー1呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3100)
+ID=138
+name="senyuu_1"
+postype=p1
+pos=0,0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー１呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3100)
+ID=3100
+name="seisei_1"
+postype=p1
+pos=0,0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー2呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3101)
+ID=138
+name="senyuu_2"
+postype=p1
+pos=0,0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー２呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3101)
+ID=3101
+name="seisei_2"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー3呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3102)
+ID=138
+name="senyuu_3"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー３呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3102)
+ID=3102
+name="seisei_3"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー4呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3103)
+ID=138
+name="senyuu_4"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー４呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3103)
+ID=3103
+name="seisei_4"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー5呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3104)
+ID=138
+name="senyuu_5"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー５呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3104)
+ID=3104
+name="seisei_5"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー6呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3105)
+ID=138
+name="senyuu_6"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー６呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3105)
+ID=3105
+name="seisei_6"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー7呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3106)
+ID=138
+name="senyuu_7"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー７呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3106)
+ID=3106
+name="seisei_7"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー8呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3107)
+ID=138
+name="senyuu_8"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー８呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3107)
+ID=3107
+name="seisei_8"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー9呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3108)
+ID=138
+name="senyuu_9"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー9呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3108)
+ID=3108
+name="seisei_9"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー10呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3109)
+ID=138
+name="senyuu_10"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー10呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3109)
+ID=3109
+name="seisei_10"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー11呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3110)
+ID=138
+name="senyuu_11"
+postype=p1
+pos=0,0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー11呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3110)
+ID=3110
+name="seisei_11"
+postype=p1
+pos=0,0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー12呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3111)
+ID=138
+name="senyuu_12"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー12呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3111)
+ID=3111
+name="seisei_12"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー13呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3112)
+ID=138
+name="senyuu_13"
+postype=p1
+pos=0,0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー13呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3112)
+ID=3112
+name="seisei_13"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー14呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3113)
+ID=138
+name="senyuu_14"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー14呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3113)
+ID=3113
+name="seisei_14"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー15呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3114)
+ID=138
+name="senyuu_15"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー15呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3114)
+ID=3114
+name="seisei_15"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー16呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3115)
+ID=138
+name="senyuu_16"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー16呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3115)
+ID=3115
+name="seisei_16"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー17呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3116)
+ID=138
+name="senyuu_17"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー17呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3116)
+ID=3116
+name="seisei_17"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー18呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3117)
+ID=138
+name="senyuu_18"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー18呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3117)
+ID=3117
+name="seisei_18"
+postype=p1
+pos=0,0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー19呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3118)
+ID=138
+name="senyuu_19"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー19呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3118)
+ID=3118
+name="seisei_19"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー20呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3119)
+ID=138
+name="senyuu_20"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー20呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3119)
+ID=3119
+name="seisei_20"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー21呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3120)
+ID=138
+name="senyuu_21"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー21呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3120)
+ID=3120
+name="seisei_21"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー22呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3121)
+ID=138
+name="senyuu_22"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー22呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3121)
+ID=3121
+name="seisei_22"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー23呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3122)
+ID=138
+name="senyuu_23"
+postype=p1
+pos=0, 0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー23呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3122)
+ID=3122
+name="seisei_23"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 占有ヘルパー24呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3123)
+ID=138
+name="senyuu_24"
+postype=p1
+pos=0,0
+stateno=138
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 混線受身,親ヘルパー24呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+triggerall=!numhelper(139)
+trigger1=!numhelper(3123)
+ID=3123
+name="seisei_24"
+postype=p1
+pos=0, 0
+stateno=163
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State マーキング用ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage")
+triggerall=!(enemynear,name="T-Zetsu")
+trigger1=!numhelper(135)
+ID=135
+name="Marking_helper"
+postype=p1
+pos=0,0
+stateno=135
+helpertype=player
+keyctrl=0
+size.xscale=1
+size.yscale=1
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 最終設置ヘルパー呼び出し]
+type=Helper
+triggerall=!ishelper
+triggerall=palno!=[1,10]
+triggerall=!(enemynear,name="D_MINORIKO"||enemynear,name="Hama"||enemynear,name="ryujin"||enemynear,name="AxAyAzSSX"||enemynear,name="Case-666")
+triggerall=!(enemynear,name="Felix"||enemynear,name="TOKI-TEN-KU"||enemynear,name="1st Chaos Satellite"||enemynear,name="Mirage"||enemynear,name="V-Madoka")
+trigger1=!numhelper(139)
+ID=139
+name="Final_helper"
+postype=p1
+pos=0,0
+stateno=139
+helpertype=player
+keyctrl=0
+supermove=1
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+[State 対ダンボール稔子]
+type=Helper
+triggerall=!ishelper
+triggerall=!numhelper(16500)
+trigger1=enemynear,name="D_MINORIKO"
+ID=16500
+name="D_MINORIKO"
+postype=p1
+pos=0,0
+stateno=16500
+helpertype=player
+keyctrl=0
+supermovetime=9999999999999
+pausemovetime=9999999999999
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│なんか重要なこと						 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State イントロ]
+type=Selfstate
+triggerall=!ishelper
+triggerall=roundstate=0
+triggerall=!time
+trigger1=!(stateno=[160,183])
+value=5900
+ignorehitpause=1
+
+[state ]
+type=Selfstate
+triggerall=!ishelper
+trigger1=roundstate=3
+value=stateno
+ignorehitpause=1
+
+[State ]
+type=Lifeset
+trigger1=!ishelper
+value=floor(lifemax-sysfvar(2))
+ignorehitpause=1
+
+[State 10Ｐ時]
+type=Selfstate
+triggerall=!ishelper
+trigger1=palno=10
+value=99999
+ignorehitpause=1
+
+[State ターゲット削除]
+type=Targetdrop
+triggerall=!ishelper
+trigger1=numtarget=8
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│PalFx管理							 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State TooManyShrooms]
+type=PalFX
+triggerall=!ishelper
+trigger1=Var(11)
+mul=floor(Random/3), floor(Random/3),floor(Random/3)
+add=floor(Random/5), floor(Random/5),floor(Random/5)
+time=1
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│専用								 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State Senyou]
+type=Selfstate
+value=2103
+triggerall=!ishelper
+triggerall=ctrl
+triggerall=roundstate=2
+trigger1=(enemynear,name="ONI-MIKO-REIMU"&&enemynear,SelfAnimExist(13000))
+trigger1=palno=[11,12]
+ignorehitpause=1
+
+[State Senyou]
+type=Selfstate
+value=2103
+triggerall=!ishelper
+triggerall=ctrl
+triggerall=roundstate=2
+trigger1=(enemynear,name="ONI-MIKO-REIMU"&&enemynear,SelfAnimExist(13000))
+trigger1=palno=[11,12]
+ignorehitpause=1
+
+[State SenyouHAMMER]
+type=Selfstate
+value=2102
+triggerall=!ishelper
+triggerall=ctrl
+triggerall=roundstate=2
+trigger1=enemynear,name="TOKI-TEN-KU"
+trigger2=enemynear,name="W-Reimu"
+trigger2=palno=[11,12]
+trigger3=enemynear,name="T-Zetsu"
+trigger3=palno=[11,12]
+ignorehitpause=1
+
+[State SenyouHAMMER]
+type=Selfstate
+value=2102
+triggerall=!ishelper
+triggerall=ctrl
+triggerall=roundstate=2
+trigger1=enemynear,name="TOKI-TEN-KU"
+trigger2=enemynear,name="W-Reimu"
+trigger2=palno=[11,12]
+trigger3=enemynear,name="T-Zetsu"
+trigger3=palno=[11,12]
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│AI								 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State -1]
+type=VarSet
+triggerall=!(enemynear,name="TOKI-TEN-KU")
+;triggerall=!(enemynear,name="T-Zetsu")
+triggerall=!(enemynear,name="W-Reimu")
+triggerall=!(enemynear,name="ONI-MIKO-REIMU"&&enemynear,SelfAnimExist(13000))
+triggerall=Alive&&RoundState=2
+triggerall=!var(7)
+trigger1=command="cpu1"||command="cpu2"||command="cpu3"||command="cpu4"||command="cpu5"
+trigger2=command="cpu6"||command="cpu7"||command="cpu8"||command="cpu9"||command="cpu10"
+trigger3=command="cpu11"||command="cpu12"||command="cpu13"||command="cpu14"||command="cpu15"
+trigger4=command="cpu16"||command="cpu17"||command="cpu18"||command="cpu19"||command="cpu20"
+trigger5=command="cpu21"||command="cpu22"||command="cpu23"||command="cpu24"||command="cpu25"
+trigger6=command="cpu26"||command="cpu27"||command="cpu28"||command="cpu29"||command="cpu30"
+trigger7=command="cpu31"||command="cpu32"||command="cpu33"||command="cpu34"||command="cpu35"
+trigger8=command="cpu36"||command="cpu37"||command="cpu38"||command="cpu39"||command="cpu40"
+trigger9=command="cpu41"||command="cpu42"||command="cpu43"||command="cpu44"||command="cpu45"
+trigger10=command="cpu46"||command="cpu47"||command="cpu48"||command="cpu49"||command="cpu50"
+trigger11=command="cpu51"||command="cpu52"||command="cpu53"||command="cpu54"||command="cpu55"
+trigger12=command="cpu56"||command="cpu57"||command="cpu58"||command="cpu59"||command="cpu60"
+trigger13=command="cpu61"||command="cpu62"||command="cpu63"||command="cpu64"
+var(7)=1
+ignorehitpause=1
+
+[State -1]
+type=ctrlset
+value=0
+triggerall=!ishelper
+triggerall=Var(7)=1
+triggerall=!alive
+trigger1=statetype!=A
+trigger1=RoundState>2
+trigger1=ctrl
+ignorehitpause=1
+
+[State -1]
+type=ChangeState
+value=1900
+triggerall=var(7)=1
+triggerall=Ctrl
+triggerall=alive
+triggerall=statetype!=A
+triggerall=P2Dist X>=120
+triggerall=P2Dist Y=[0,60]
+trigger1=P2movetype=A
+trigger1=P2BodyDist X=[-60,120]
+trigger1=Random>600
+trigger1=P2statetype!=A
+trigger1=(gametime%150=[0,50])
+trigger2=stateno=0
+trigger2=Random>800
+trigger2=P2statetype!=A
+trigger2=P2BodyDist X=[0,400]
+ignorehitpause=1
+
+[State -1]
+type=ChangeState
+value=1900
+triggerall=var(7)=1
+triggerall=palno=[11,12]
+triggerall=Ctrl
+triggerall=alive
+triggerall=statetype!=A
+trigger1=stateno=0
+trigger1=Random>900
+ignorehitpause=1
+
+[State -1]
+type=ChangeState
+value=1700
+triggerall=var(7)=1
+triggerall=Ctrl
+triggerall=alive
+triggerall=statetype=A
+trigger1=P2movetype=I
+trigger1=P2BodyDist X=[-30,60]
+trigger1=P2BodyDist Y=[-10,10]
+trigger1=Random>600
+trigger1=P2statetype!=A
+trigger1=(gametime%150=[101,150])
+trigger2=stateno=50||stateno=9000
+trigger2=animelemtime(1)>8
+ignorehitpause=1
+
+[State -1]
+type=ChangeState
+value=660
+triggerall=var(7)=1
+triggerall=Ctrl
+triggerall=alive
+triggerall=statetype=A
+trigger1=P2movetype=I
+trigger1=P2BodyDist X=[-30,60]
+trigger1=P2BodyDist Y=[-10,10]
+trigger1=Random>600
+trigger1=P2statetype!=A
+trigger1=(gametime%150=[51,100])
+trigger2=stateno=50||stateno=9000
+trigger2=animelemtime(1)>18
+trigger3=stateno=1700||stateno=1701
+trigger3=animelemtime(1)>18
+ignorehitpause=1
+
+[State ]
+type=changeState
+value=2400
+triggerall=palno!=[11,12]
+triggerall=!var(12)
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=power>=5000
+triggerall=statetype=S
+triggerall=roundstate=2
+triggerall=gametime%600=[0,200]
+triggerall=Random>750
+trigger1=animelemtime(3)>0
+trigger1=stateno=110
+trigger2=animelemtime(3)>0
+trigger2=stateno=200
+trigger3=animelemtime(3)>0
+trigger3=stateno=420
+trigger4=stateno=110
+trigger4=P2movetype=I
+trigger5=stateno=110
+trigger5=P2movetype=A
+ignorehitpause=1
+
+[State ]
+type=changeState
+value=2300
+triggerall=palno!=[11,12]
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=power>=5000
+triggerall=roundstate=2
+triggerall=gametime%600=[201,300]
+triggerall=Random>750
+trigger1=animelemtime(3)>0
+trigger1=stateno=110
+trigger2=animelemtime(3)>0
+trigger2=stateno=200
+trigger3=animelemtime(3)>0
+trigger3=stateno=420
+trigger4=stateno=110
+trigger4=P2movetype=I
+trigger5=stateno=110
+trigger5=P2movetype=A
+ignorehitpause=1
+
+[State ]
+type=Changestate
+value=2100
+triggerall=palno!=[11,12]
+triggerall=!var(11)
+triggerall=Var(7)=1
+triggerall=ctrl
+triggerall=power>=5000
+triggerall=statetype!=A
+triggerall=gametime%600=[301,400]
+triggerall=Random>750
+trigger1=animelemtime(3)>0
+trigger1=stateno=200
+trigger2=animelemtime(3)>0
+trigger2=stateno=210
+trigger3=animelemtime(3)>0
+trigger3=stateno=420
+trigger4=stateno=110
+trigger4=P2movetype=I
+trigger5=stateno=0
+trigger5=P2movetype=A
+ignorehitpause=1
+
+[State ]
+type=changeState
+value=2200
+triggerall=palno!=[11,12]
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=statetype!=A
+triggerall=power>=5000
+triggerall=roundstate=2
+triggerall=gametime%600=[401,500]
+triggerall=Random>750
+trigger1=animelemtime(3)>0
+trigger1=stateno=110
+trigger2=animelemtime(3)>0
+trigger2=stateno=200
+trigger3=animelemtime(3)>0
+trigger3=stateno=420
+trigger4=stateno=110
+trigger4=P2movetype=I
+trigger5=stateno=110
+trigger5=P2movetype=A
+ignorehitpause=1
+
+[State ]
+type=ChangeState
+value=20021
+triggerall=PalNo!=[11,12]
+triggerall=var(7)=1
+triggerall=power>=5000
+triggerall=roundstate=2
+triggerall=statetype!=A
+triggerall=PalNo=[7,9]
+triggerall=EnemyNear,Ctrl=0
+triggerall=ctrl
+triggerall=gametime%600=[501,600]
+triggerall=Random>750
+trigger1=animelemtime(3)>0
+trigger1=stateno=0
+trigger2=animelemtime(3)>0
+trigger2=stateno=110
+trigger3=animelemtime(3)>0
+trigger3=stateno=105
+ignorehitpause=1
+
+[State -1]
+type=Changestate
+value=2100
+triggerall=(gametime%3000=[0,400])
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=200
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(4) > 0
+trigger4=stateno=220
+trigger4=animelemtime(4) > 0
+trigger5=stateno=400
+trigger5=animelemtime(4) > 0
+trigger6=stateno=410
+trigger6=animelemtime(4) > 0
+trigger7=stateno=420
+trigger7=animelemtime(4) > 0
+ignorehitpause=1
+
+[State -1, SSFB11,12p]
+type=ChangeState
+value=2300
+triggerall=(gametime%3000=[401,800])
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=30
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(2) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State -1]
+type=ChangeState
+value=2100
+triggerall=(gametime%3000=[800,1200])
+triggerall=!var(12)
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=240
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(3) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State -1, SFT11,12p]
+type=ChangeState
+value=20020
+triggerall=sysvar(1)>=18000
+triggerall=(gametime%3000=[1201,1600])
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=250
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(3) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State -1, SFT11,12p]
+type=ChangeState
+value=20021
+triggerall=sysvar(1)<=18000
+triggerall=(gametime%3000=[1201,1600])
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=250
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(3) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State 11,12pスター]
+type=ChangeState
+value=2200
+triggerall=(gametime%3000=[1601,2000])
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=250
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(3) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State -1]
+type=Changestate
+value=2100
+triggerall=(gametime%3000=[2001,2400])
+triggerall=!var(11)
+triggerall=!numprojid(8)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=200
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(4) > 0
+trigger4=stateno=220
+trigger4=animelemtime(4) > 0
+trigger5=stateno=400
+trigger5=animelemtime(4) > 0
+trigger6=stateno=410
+trigger6=animelemtime(4) > 0
+trigger7=stateno=420
+trigger7=animelemtime(4) > 0
+ignorehitpause=1
+
+[State -1]
+type=Changestate
+value=20001
+triggerall=(gametime%3000=[2001,2400])
+triggerall=!var(11)
+triggerall=numprojid(8)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=200
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(4) > 0
+trigger4=stateno=220
+trigger4=animelemtime(4) > 0
+trigger5=stateno=400
+trigger5=animelemtime(4) > 0
+trigger6=stateno=410
+trigger6=animelemtime(4) > 0
+trigger7=stateno=420
+trigger7=animelemtime(4) > 0
+ignorehitpause=1
+
+[State 11,12p?BOX]
+type=ChangeState
+value=2400
+triggerall=(gametime%3000=[2401,3000])
+triggerall=!var(12)
+triggerall=!var(11)
+triggerall=var(7)=1
+triggerall=PalNo!=[1,10]
+triggerall=statetype!=A
+triggerall=roundstate=2
+trigger1=ctrl
+trigger1=EnemyNear,ctrl=0
+trigger2=stateno=250
+trigger2=animelemtime(2) > 0
+trigger3=stateno=210
+trigger3=animelemtime(3) > 0
+trigger4=stateno=220
+trigger4=animelemtime(3) > 0
+trigger5=stateno=400
+trigger5=animelemtime(2) > 0
+trigger6=stateno=410
+trigger6=animelemtime(3) > 0
+trigger7=stateno=420
+trigger7=animelemtime(3) > 0
+ignorehitpause=1
+
+[State -1, AI Ghosteleport]
+type=ChangeState
+value=3900
+triggerall=gametime%2000=0
+triggerall=Var(7)>0
+triggerall=statetype!=A
+triggerall=ctrl
+trigger1=P2BodyDist X>=20
+trigger1=PalNo=6
+trigger2=P2BodyDist X>=40
+trigger2=PalNo=7
+trigger3=P2BodyDist X>=20
+trigger3=PalNo=8
+trigger4=P2BodyDist X>=40
+trigger4=PalNo=9
+trigger5=P2BodyDist X>=20
+trigger5=PalNo=11
+trigger6=P2BodyDist X>=40
+trigger6=PalNo=12
+trigger7=P2BodyDist X>=10
+trigger7=PalNo=12
+trigger9=life <= 50
+trigger9=PalNo=12
+trigger9=statetype != A
+ignorehitpause=1
+
+;12p用↑----------------------------------
+
+[State -1, AI RollBack]
+type=ChangeState
+value=105
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=P2Movetype != H||P2StateType=L
+triggerall=P2BodyDist X <= 80
+trigger1=Random > 200
+trigger1=stateno=440||stateno=230
+trigger1=!MoveContact
+trigger1=AnimTime=0
+ignorehitpause=1
+
+[State -1, AI Drill Kick]
+type=ChangeState
+value=1300
+triggerall=var(7)=1
+triggerall=var(1) <= 1
+triggerall=statetype=A
+triggerall=EnemyNear,HitFall=0
+triggerall=anim!=9000
+triggerall=ctrl
+triggerall=Pos Y<=-20
+triggerall=P2BodyDist X=[-30,150]
+triggerall=P2statetype != L
+trigger1=Random < 300
+trigger2=P2MoveType=A
+trigger2=P2StateType != A
+ignorehitpause=1
+
+[State -1, AI Standing FireballEX]
+type=ChangeState
+value=1050
+triggerall=var(7)=1
+triggerall=power=[1000,1499]
+triggerall=Random <= 200
+riggerall=numproj=0
+triggerall=P2StateType!=L
+triggerall=P2StateType!=A
+trigger1=P2BodyDist X=[90,160]
+trigger1=StateType != A
+trigger1=P2MoveType != A
+trigger1=EnemyNear,Ctrl=0
+trigger1=ctrl
+trigger2=moveguarded
+trigger2=stateno=420
+trigger3=movecontact
+trigger3=stateno=220
+ignorehitpause=1
+
+[State -1, AI Launcher]
+type=ChangeState
+value=420
+triggerall=var(7)=1
+triggerall=statetype!=A
+triggerall=P2stateno>=160
+triggerall=P2statetype!=L
+triggerall=random<600
+triggerall=ctrl
+trigger1=stateno=110
+trigger1=P2Dist Y>=-80
+trigger1=P2BodyDist X=[0,20]
+trigger1=random<=500||(P2MoveType=H && P2StateNo>=160)
+trigger1=P2movetype!=A
+trigger2=stateno=[200,410]
+trigger2=movehit
+trigger2=P2BodyDist X <= 8
+trigger3=stateno=110
+trigger3=P2BodyDist X <= 20
+trigger3=NumHelper(1100)=1
+trigger3=projHit>=1
+trigger3=P2movetype != A
+trigger4=stateno=[430,440]
+trigger4=movehit
+trigger4=P2BodyDist X <= 8
+trigger5=EnemyNear,Vel Y=[-3,3]
+trigger5=ctrl
+trigger5=EnemyNear,Ctrl=0
+trigger5=P2BodyDist X <= 15
+trigger5=P2Dist Y>=-80
+trigger6=stateno=[1200,1202]
+trigger6=movecontact
+trigger6=animelemtime(1)>=8
+ignorehitpause=1
+
+[State -1, AI Jump]
+type=ChangeState
+value=9000
+triggerall=var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+triggerall=P2statetype!=L
+trigger1=P2BodyDist X<=40
+trigger1=P2stateno=5061
+trigger1=P2Movetype!=A
+trigger2=Prevstateno!=52
+trigger2=P2statetype=A
+trigger2=P2stateno<1000
+trigger2=P2BodyDist X=[10,100]
+trigger2=Random>500
+trigger2=EnemyNear,NumProj=0
+trigger2=EnemyNear,NumHelper < 4
+trigger2=P2Dist Y>=-150
+trigger2=EnemyNear,Vel Y=[-4,4]
+trigger3=P2BodyDist X <= 100
+trigger3=P2StateType=A
+trigger3=P2MoveType=A
+trigger4=P2Movetype != A
+trigger4=P2stateno < 1000
+trigger4=P2BodyDist X>=100
+trigger4=P2Dist Y=[-120,0]
+trigger4=Random > 800 ||NumprojId(1103)=1||NumprojId(1103)=1||EnemyNear,Vel X <= 0
+trigger4=NumprojId(1807)=0
+trigger4=EnemyNear,NumProj=0
+trigger4=EnemyNear,NumHelper < 4
+trigger5=P2Movetype != A
+trigger5=EnemyNear,Ctrl=0||P2StateNo=[120,159]
+trigger5=NumprojId(1807)=0
+trigger5=EnemyNear,NumProj=0
+trigger5=EnemyNear,NumHelper < 4
+trigger5=P2BodyDist X>=100
+trigger6=statetype!=A
+trigger6=anim!=9000
+trigger6=P2Dist Y>=-100
+trigger6=Random<200
+ignorehitpause=1
+
+[State ]
+type=VelSet
+triggerall=var(7)=1
+trigger1=stateno=9000
+trigger1=P2Dist X>=40
+x=3
+ignorehitpause=1
+
+[State VelSetBack]
+type=VelSet
+triggerall=var(7)=1
+trigger1=stateno=9000
+trigger1=P2Dist X=[-10,40]
+x=0
+ignorehitpause=1
+
+[State -1, AI Taunt]
+type=ChangeState
+value=165
+triggerall=Var(7)=1
+triggerall=statetype=S
+triggerall=ctrl
+triggerall=P2BodyDist X>=225
+trigger1=Random > 950
+trigger1=EnemyNear,HitFall=1
+trigger1=EnemyNear,CanRecover=0
+trigger1=EnemyNear,NumProj=0
+trigger1=EnemyNear,NumHelper=0
+trigger1=P2stateno=5050
+ignorehitpause=1
+
+[State -1, AI Throw]
+type=ChangeState
+value=900 
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+triggerall=P2statetype != A
+triggerall=power < 1000||P2Life < 100
+triggerall=P2BodyDist X=[0,22]
+triggerall=(P2stateno=[150,153])
+triggerall=EnemyNear,Ctrl=0
+triggerall=NumHelper(1051)=0
+trigger1=random=[0,400]
+trigger1=P2statetype=S
+trigger2=P2statetype=C
+trigger3=stateno=52
+trigger3=P2stateno=[150,153]
+ignorehitpause=1
+
+[State -1, AI EX Throw]
+type=ChangeState
+value=910 
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+triggerall=P2statetype != A
+triggerall=power>=1000
+triggerall=P2BodyDist X=[0,22]
+triggerall=EnemyNear,Ctrl=0
+triggerall=NumHelper(1051)=0
+trigger1=P2statetype=S
+trigger1=random=[0,400]
+trigger2=P2statetype=C
+trigger3=stateno=52
+trigger3=P2stateno=[150,153]
+ignorehitpause=1
+
+[State -1, AI Ghosteleport]
+type=ChangeState
+value=3900
+triggerall=Var(7)=1
+triggerall=statetype=S
+triggerall=statetype != A
+triggerall=ctrl
+trigger1=P2BodyDist X>=90
+trigger1=PalNo=[7,12]
+ignorehitpause=1
+
+;AI Fireballs
+[State -1, AI Strong Fireball]
+type=ChangeState
+value=1002
+triggerall=Var(7)=1
+triggerall=numproj=0
+triggerall=EnemyNear,numproj=0
+triggerall=Numprojid(1100)<1
+triggerall=Numprojid(1102)<1
+triggerall=Numprojid(1103)<1
+triggerall=statetype != A
+triggerall=ctrl||stateno=110
+trigger1=EnemyNear,HitFall=0
+trigger1=P2BodyDist X>=100
+trigger1=Random>=850||(P2StateNo=[130,159])
+trigger1=P2statetype != L
+trigger1=EnemyNear,NumHelper<5
+trigger2=P2BodyDist X>=100
+trigger2=Numprojid(1103)=1||Random>800||(P2StateNo=[130,159])
+trigger2=P2statetype!=L
+trigger2=EnemyNear,NumHelper<5
+ignorehitpause=1
+
+[State -1, AI Weak Fireball]
+type=ChangeState
+value=1000
+triggerall=NumHelper(1807)=0
+triggerall=Var(7)=1
+triggerall=numproj=0
+triggerall=EnemyNear,numproj=0
+triggerall=EnemyNear,numhelper <= 5
+triggerall=statetype != A
+triggerall=P2movetype != A
+triggerall=ctrl||stateno=110
+triggerall=P2Dist Y<=-30
+trigger1=P2Stateno!=5050
+trigger1=random<=150
+trigger1=P2BodyDist X=[70,200]
+trigger2=P2Stateno=5110
+trigger2=P2BodyDist X=[100,300]
+ignorehitpause=1
+
+[State -1, AI Air Fireball]
+type=ChangeState
+value=1806
+triggerall=Var(7)=1
+triggerall=numproj=0
+triggerall=P2statetype != L
+triggerall=statetype=A
+triggerall=ctrl
+triggerall=P2BodyDist X>=100
+triggerall=P2Dist Y=[-80,60]
+triggerall=EnemyNear,NumProj=0
+triggerall=EnemyNear,Vel X <= 3
+trigger1=EnemyNear,NumHelper < 5
+trigger1=Random<100
+ignorehitpause=1
+
+[State -1, AI Air Fireball]
+type=ChangeState
+value=1803
+triggerall=Var(7)=1
+triggerall=numproj=0
+triggerall=P2statetype != L
+triggerall=statetype=A
+triggerall=ctrl
+trigger1=Random < 100
+trigger1=P2BodyDist X=[70,130]
+trigger1=P2Dist Y=[50,80]
+trigger1=EnemyNear,NumProj=0
+trigger1=EnemyNear,NumHelper < 2
+ignorehitpause=1
+
+[State -1, AI Air Fireball]
+type=ChangeState
+value=1800
+triggerall=Var(7)=1
+triggerall=numproj=0
+triggerall=P2statetype != L
+triggerall=statetype=A
+triggerall=ctrl
+trigger1=Random < 100
+trigger1=P2BodyDist X=[35,80]
+trigger1=P2Dist Y=[50,80]
+trigger1=EnemyNear,NumProj=0
+trigger1=EnemyNear,NumHelper < 2
+ignorehitpause=1
+
+[State -1, AI RollFwd]
+type=ChangeState
+value=110 
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+trigger1=P2BodyDist X=[30,100]
+trigger1=NumProjID(1807)=1
+trigger1=P2MoveType=H
+trigger1=P2StateNo=[5020,5050]
+ignorehitpause=1
+
+[State -1, AI RollFwd]
+type=ChangeState
+value=110 
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+trigger1=EnemyNear,NumProj=0
+trigger1=EnemyNear,NumHelper<=1
+trigger1=P2movetype=A
+trigger1=P2BodyDist X=[10,50]
+trigger1=EnemyNear,Vel X > 0
+trigger2=NumPartner>=1 && TeamMode=Simul
+trigger2=Partner,NumTarget>=1
+trigger2=P2movetype=H
+trigger3=EnemyNear,NumProj=1||EnemyNear,NumHelper=[1,2]
+trigger3=P2movetype != A
+trigger3=Random < 100
+trigger3=InguardDist
+ignorehitpause=1
+
+[State -1, AI RollFwd]
+type=ChangeState
+value=110
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=ctrl
+trigger1=P2BodyDist X>50
+ignorehitpause=1
+
+;AI EX Combo
+[State -1, AI EX TS]
+type=ChangeState
+value=1250
+triggerall=NumHelper(1100)=0
+triggerall=var(7)=1
+triggerall=statetype=S
+triggerall=P2stateno=[160,5099]
+triggerall=EnemyNear,HitFall=0
+trigger1=power>=2000
+trigger1=P2BodyDist X=[20,60]
+trigger1=ctrl
+trigger1=enemynear,Vel x>=-1
+trigger2=power>=1000
+trigger2=stateno=220||stateno=410||stateno=440
+trigger2=movehit
+ignorehitpause=1
+
+[State -1, AI EX DP]
+type=ChangeState
+value=1550
+triggerall=PrevStateNo != 52||(P2StateNo=[154,155])
+triggerall=P2StateNo != [5200,5210]
+triggerall=var(7)=1
+triggerall=P2statetype != C
+triggerall=EnemyNear,HitFall=0||NumHelper(1051)=1
+triggerall=P2Dist Y>=-50
+triggerall=P2BodyDist X>=0
+triggerall=P2Dist X > 0
+triggerall=time=[45,50]
+triggerall=power>=1000
+trigger1=stateno=1250
+trigger1=movehit
+trigger2=stateno=1202
+trigger2=movehit
+trigger3=power>=2000
+trigger3=stateno=[200,420]
+trigger3=P2statetype=A
+trigger3=MoveGuarded||(MoveHit>=2 && Random > 600)
+ignorehitpause=1
+
+;AI Ground Combo 1
+[State -1, AI Light Stand Punch]
+type=ChangeState
+value=200+200*(Random<800&&P2StateType!=A)
+triggerall=var(7)=1
+triggerall=P2movetype != H
+triggerall=ctrl
+trigger1=P2Movetype != A
+trigger1=statetype != A
+trigger1=P2statetype != L
+trigger1=P2BodyDist X=[0,20]
+trigger1=P2Dist X>0
+ignorehitpause=1
+
+[State -1, AI Light Crouch Kick]
+type=ChangeState
+value=430
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=P2Dist Y>=-7
+trigger1=P2statetype != L
+trigger1=stateno=110
+trigger1=P2BodyDist X <= 7
+trigger1=random > 500
+trigger1=P2movetype != A
+ignorehitpause=1
+
+[State -1, AI Fierce TS]
+type=ChangeState
+value=1202
+triggerall=NumHelper(1100)=0
+triggerall=P2stateno>=160
+triggerall=Var(7)=1
+triggerall=statetype != A
+triggerall=P2statetype != L
+trigger1=ctrl
+trigger1=P2Dist X=[-20,20]
+trigger1=P2Dist Y>=-30
+trigger2=stateno=220||stateno=420
+trigger2=movehit
+trigger2=Numprojid(1103)=1
+trigger3=EnemyNear,Ctrl=0
+trigger3=P2Movetype != A
+trigger3=P2statetype=A
+trigger3=stateno=110
+trigger3=P2Dist X=[-40,60]
+trigger3=P2Dist Y=[-130,0]
+trigger3=random>=700
+trigger3=EnemyNear,Vel Y>=6
+ignorehitpause=1
+
+;AI Ground Combo 1
+[State -1, AI Medium Stand Punch]
+type=ChangeState
+value=210
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=EnemyNear,Ctrl=0
+trigger1=P2statetype != L
+trigger1=P2Movetype != A
+trigger1=stateno=110
+trigger1=statetype != A
+trigger1=P2Dist Y>=-70
+trigger1=P2BodyDist X <= 20
+trigger1=random=[0, 800]
+ignorehitpause=1
+
+[State -1, AI Medium Stand Kick]
+type=ChangeState
+value=240
+triggerall=var(7)=1
+triggerall=P2BodyDist X <= 30
+triggerall=statetype != A
+triggerall=P2statetype != L
+triggerall=P2Movetype != A
+triggerall=ctrl
+trigger1=P2statetype != A
+trigger1=stateno=210
+trigger1=movehit
+trigger2=EnemyNear,Ctrl=0
+trigger2=Random>=800
+trigger2=ctrl
+trigger2=P2Dist Y>=-30
+trigger3=stateno=230
+trigger3=movehit
+ignorehitpause=1
+
+[State -1, AI Fierce Strong Punch]
+type=ChangeState
+value=220
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=Statetype!=A
+triggerall=P2Statetype!=A
+trigger1=P2BodyDist X<=120
+trigger1=stateno=[200,410]
+trigger1=anim!=220
+trigger1=anim!=250
+trigger1=movehit
+trigger2=P2Dist X=[-30,120]
+trigger2=P2Dist Y>=-120
+ignorehitpause=1
+
+[State -1, AI Fierce DP]
+type=ChangeState
+value=1504
+triggerall=var(7)=1
+triggerall=P2StateNo <= 5099
+triggerall=P2statetype != L
+triggerall=EnemyNear,Vel X=[-3,3]
+trigger1=stateno=220||stateno=250||(stateno=240 && P2stateType=A)
+trigger1=movehit
+trigger1=P2BodyDist X=[1,50]
+trigger1=P2statetype != C
+trigger2=ctrl
+trigger2=P2movetype != H
+trigger2=statetype != A
+trigger2=P2BodyDist X=[0,100]
+trigger2=P2BodyDist Y=[-300,-10]
+trigger2=P2statetype != C
+trigger3=var(3)=0
+trigger3=Numprojid(1103)=0
+trigger3=ctrl||stateno=110
+trigger3=(P2movetype=A && var(9) <= 2)||Random < 50
+trigger3=statetype != A
+trigger3=P2BodyDist X=[1,50]
+trigger3=P2Dist Y=[-150,0]
+trigger3=P2Stateno <= 1999
+trigger3=P2statetype != C
+trigger4=prevstateno=1204
+trigger4=P2Life <= 20||(P2StateNo=[154,155])||Var(9)>=1
+trigger4=stateno=52
+trigger5=stateno=[200,420]
+trigger5=P2statetype=A
+trigger5=MoveGuarded||(MoveHit > 2 && Random > 600)
+trigger6=stateno=0
+trigger6=Random>600
+trigger6=P2statetype=A
+trigger6=P2BodyDist Y=[-10,100]
+ignorehitpause=1
+
+[State -1, AI Light Stand Kick]
+type=ChangeState
+value=230
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=P2Statetype=L
+triggerall=statetype != A
+triggerall=P2Dist X=[-10,20]
+trigger1=Random>=700
+trigger1=ctrl
+ignorehitpause=1
+
+;AI Ground Combo 2
+[State -1, AI Medium Crouch Kick]
+type=ChangeState
+value=440
+triggerall=EnemyNear,Ctrl=0
+triggerall=PrevStateNo != 440
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=P2Movetype != A
+triggerall=statetype != A
+triggerall=P2Dist Y>=-30
+triggerall=Time > 0
+trigger1=Random <= 100
+trigger1=P2BodyDist X=[10,50]
+trigger1=ctrl
+trigger2=stateno=240
+trigger2=movecontact
+trigger3=P2Statetype=L||(P2StateNo=[150,151])
+trigger3=P2BodyDist X <= 50
+trigger3=ctrl||stateno=110
+ignorehitpause=1
+
+[State -1, AI Fierce Crouch Kick]
+type=ChangeState
+value=450
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=P2statetype!=A
+trigger1=stateno=440
+trigger1=movehit
+ignorehitpause=1
+
+[State -1, AI Fierce Stand Kick]
+type=ChangeState
+value=250
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=statetype!=A
+trigger1=P2statetype=A
+trigger1=stateno=440
+trigger1=movehit
+trigger2=P2statetype=A
+trigger2=Ctrl
+trigger2=PrevStateNo=52
+trigger2=P2Dist X <= 40
+trigger2=P2Dist Y>=-155
+trigger2=EnemyNear,Vel X=0||FrontEdgeBodyDist < 60
+trigger2=EnemyNear,Vel Y>=5
+trigger2=EnemyNear,HitFall=1
+trigger3=P2Dist X=[-20,120]
+trigger3=P2Dist Y<=-60
+ignorehitpause=1
+
+[State -1, AI Weak DP]
+type=ChangeState
+value=1500
+triggerall=var(7)=1
+triggerall=P2statetype != L
+trigger1=stateno=450
+trigger1=movehit
+trigger1=P2BodyDist X <= 50
+trigger2=var(3)=0
+trigger2=P2Stateno < 1000
+trigger2=stateno=5120 && time=[4, 9]; ["Wake up" code by SorrowEdge]
+trigger2=P2BodyDist X=[-80,60]
+trigger3=var(3)=0
+trigger3=NumHelper(1100)=0
+trigger3=(ctrl && var(9) <= 2)||stateno=110
+trigger3=P2movetype=A||Random < 50
+trigger3=statetype != A
+trigger3=P2BodyDist X=[-30,30]
+trigger3=P2Stateno <= 1999
+trigger3=P2statetype != A
+ignorehitpause=1
+
+[State -1, AI Weak DP]
+type=ChangeState
+value=460
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=stateno=450
+trigger1=movehit
+trigger1=P2BodyDist X <= 50
+trigger2=var(3)=0
+trigger2=P2Stateno < 1000
+trigger2=stateno=5120 && time=[4, 9]
+trigger2=P2BodyDist X=[-80,60]
+trigger3=var(3)=0
+trigger3=(ctrl && var(9) <= 2)||prevstateno=100
+trigger3=P2movetype=A||Random < 50
+trigger3=statetype != A
+trigger3=P2BodyDist X=[-30,30]
+trigger3=P2Stateno <= 1999
+trigger3=P2statetype != A
+ignorehitpause=1
+
+[State -1, AI Slide Kick]
+type=ChangeState
+value=460
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=stateno=100
+trigger1=P2BodyDist X>=10
+ignorehitpause=1
+
+[State -1, AI Super Jump]
+type=ChangeState
+value=9000
+triggerall=!ishelper
+triggerall=var(7)=1
+triggerall=P2statetype=A
+trigger1=stateno=420
+trigger1=movecontact
+trigger2=EnemyNear,HitFall=0
+trigger2=Ctrl
+trigger2=P2StateNo != [130,155]
+trigger2=StateType != A
+trigger2=EnemyNear,Ctrl=0
+trigger2=P2MoveType != A
+trigger2=P2BodyDist X=[0,60]
+trigger2=P2Dist Y=[-150,-20]
+ignorehitpause=1
+
+[State -1, AI Air Fierce punch]
+type=ChangeState
+value=620
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=movecontact
+triggerall=EnemyNear,HitFall=1
+triggerall=statetype=A
+triggerall=P2BodyDist X=[-30,30]
+trigger1=stateno=610
+trigger1=PrevStateNo=640
+trigger2=stateno=640
+trigger2=PrevStateNo=610
+trigger3=P2BodyDist Y=[-20,20]
+trigger3=stateno=1700||stateno=50
+trigger3=random<300
+ignorehitpause=1
+
+[State -1, AI Air Medium Kick]
+type=ChangeState
+value=640
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=stateno=9000
+trigger1=time>5
+trigger1=P2Dist Y>=-35
+trigger2=PrevStateNo!=1300
+trigger2=ctrl
+trigger2=EnemyNear,ctrl=0
+trigger2=statetype=A
+trigger2=P2Movetype!=A
+trigger2=P2statetype=A
+trigger2=P2BodyDist X<=35
+trigger2=P2Dist Y=[-20,50]
+trigger3=stateno=610
+trigger3=P2Dist Y>=0
+trigger3=movecontact>1
+trigger4=stateno=610
+;trigger4=prevstateno!=610
+trigger4=EnemyNear,HitFall=1
+trigger4=movecontact
+ignorehitpause=1
+
+[State -1, AI Air Medium Kick]
+type=ChangeState
+value=660
+triggerall=var(7)=1
+triggerall=ctrl
+triggerall=statetype=A
+trigger1=P2BodyDist X<=100
+trigger1=stateno=640
+trigger1=!movecontact
+ignorehitpause=1
+
+[State -1, AI Air Glide]
+type=ChangeState
+value=1700
+triggerall=var(7)=1
+triggerall=var(1) <= 1
+triggerall=EnemyNear,HitFall=0
+trigger1=stateno=640
+trigger1=movecontact
+trigger1=EnemyNear,Pos Y > -120
+trigger2=stateno=1300
+trigger2=movecontact
+trigger2=Enemynear,Pos Y > -120
+trigger2=P2Dist Y > 0||EnemyNear,Pos Y>=-100
+trigger2=AnimElem=10,> 0||P2Dist Y > 30||EnemyNear,Pos Y>=-40
+ignorehitpause=1
+
+[State -1, AI Air Medium Punch]
+type=ChangeState
+value=610
+triggerall=var(7)=1
+triggerall=ctrl
+trigger1=stateno=1700
+trigger1=movecontact
+trigger2=stateno=640
+trigger2=movecontact
+trigger2=EnemyNear,HitFall=1
+trigger3=stateno=9000
+trigger3=time > 15
+trigger3=P2Dist Y>=-50
+ignorehitpause=1
+
+[State -1, AI Drill Kick]
+type=ChangeState
+value=1300
+triggerall=var(7)=1
+triggerall=var(1) <= 1
+triggerall=statetype=A
+triggerall=EnemyNear,HitFall=0
+trigger1=stateno=610
+trigger1=Pos Y <= -10
+trigger1=movecontact
+trigger2=anim != 9000
+trigger2=ctrl
+trigger2=Pos Y <= -20
+trigger2=P2BodyDist X=[-30,150]
+trigger2=P2statetype != L
+trigger3=stateno=640
+trigger3=EnemyNear,Pos Y <= -100
+trigger3=movehit
+trigger4=Prevstateno=1300
+trigger4=ctrl
+trigger4=EnemyNear,Pos Y <= -40
+trigger4=P2Dist Y=[-100,20]
+trigger4=P2stateno=[5000,5099]
+ignorehitpause=1
+
+[State -1, AI Medium TS]
+type=ChangeState
+value=1205
+triggerall=var(7)=1
+triggerall=statetype=A
+trigger1=var(1)=2
+trigger1=stateno=610
+trigger1=movecontact
+trigger1=P2Dist Y <= 0
+trigger2=stateno=1400||stateno=610||stateno=640
+trigger2=movecontact
+trigger2=Pos Y > -20
+trigger2=P2Dist Y <= 0
+trigger3=var(1)=2
+trigger3=stateno=640
+trigger3=movecontact
+ignorehitpause=1
+
+[State -1, AI EX Air Throw]
+type=ChangeState
+value=930
+triggerall=P2statetype=A
+triggerall=var(7)=1
+trigger1=stateno=610
+trigger1=MoveGuarded
+trigger1=P2Dist Y>=20
+trigger1=power>=1000
+ignorehitpause=1
+
+[State -1, AI Butt Stomp]
+type=ChangeState
+value=1205
+triggerall=var(7)=1
+triggerall=gametime%50=[0,25]
+trigger1=stateno=1300
+trigger1=EnemyNear,HitFall=1
+trigger1=movecontact
+trigger2=statetype=A
+trigger2=ctrl
+trigger2=P2BodyDist X=[-35,35]
+trigger2=P2Dist Y>=80
+ignorehitpause=1
+
+[State -1, AI Butt Stomp]
+type=ChangeState
+value=1600
+triggerall=var(7)=1
+triggerall=gametime%50=[26,50]
+trigger1=stateno=1300
+trigger1=EnemyNear,HitFall=1
+trigger1=movehit
+trigger2=statetype=A
+trigger2=ctrl
+trigger2=P2BodyDist X=[-35,35]
+trigger2=P2Dist Y>=80
+ignorehitpause=1
+
+[State -1, AI Air Throw]
+type=ChangeState
+value=920
+triggerall=P2statetype=A
+triggerall=var(7)=1
+trigger1=stateno=610
+trigger1=P2Dist Y>=20
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│statetype=S(!=A) 攻撃						 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State ?box]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(12)
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=command="?box"
+trigger1=ctrl
+value=2400
+ignorehitpause=1
+
+[State HAMMER]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=statetype!=A
+triggerall=command="HAMMER"
+trigger1=ctrl
+value=2100
+ignorehitpause=1
+
+[State InvincibleStar]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=command="InvincibleStar"
+trigger1=ctrl
+value=2200
+ignorehitpause=1
+
+[State SuperFlameBlust]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=command="SuperFlameBlust"
+trigger1=ctrl
+value=2300
+ignorehitpause=1
+
+[State SuperFlameTower]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=statetype!=A
+triggerall=Random=[0,499]
+triggerall=command="SuperFlameTower"
+trigger1=ctrl
+value=20020
+ignorehitpause=1
+
+[State SuperFlameTower2]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=power>=5000
+triggerall=statetype!=A
+triggerall=Random=[500,999]
+triggerall=command="SuperFlameTower"
+trigger1=ctrl
+value=20021
+ignorehitpause=1
+
+[State SS]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=numprojid(8)
+triggerall=!var(11)
+triggerall=!var(7)
+triggerall=palno=[6,12]
+triggerall=power>=5000
+triggerall=statetype!=A
+triggerall=command="SS"
+trigger1=ctrl
+value=20001
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│必殺攻撃							 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State Missile_Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="Missile_Punch"
+trigger1=ctrl
+value=1900
+ignorehitpause=1
+
+[State Air laser]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="Ray_laser"
+trigger1=ctrl
+value=1950
+ignorehitpause=1
+
+[State Strong Coin PunchEX]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=command="EXCoinPunch"
+trigger1=ctrl
+value=1550
+ignorehitpause=1
+
+[State Light Coin Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="CoinPunch_x"
+trigger1=ctrl
+value=1500
+ignorehitpause=1
+
+[State Medium Coin Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="CoinPunch_y"
+trigger1=ctrl
+value=1502
+ignorehitpause=1
+
+[State Strong Coin Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="CoinPunch_z"
+trigger1=ctrl
+value=1504
+ignorehitpause=1
+
+[State Hard Air FireballEX (Air)]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=numproj=0
+triggerall=power>=1000
+triggerall=statetype=A
+triggerall=command="EXfireball"
+trigger1=ctrl
+value=1052
+ignorehitpause=1
+
+[State Strong Standing FireballEX]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=numproj=0
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=command="EXfireball"
+trigger1=ctrl
+value=1050
+ignorehitpause=1
+
+[State Light Standing Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="fireball_x"
+trigger1=ctrl
+value=1000
+ignorehitpause=1
+
+[State Medium Standing Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="fireball_y"
+trigger1=ctrl
+value=1001
+ignorehitpause=1
+
+[State Strong Standing Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="fireball_z"
+trigger1=ctrl
+value=1002
+ignorehitpause=1
+
+[State Strong Tornado SpinEX (Air)]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype=A
+triggerall=command="EXtornado"
+trigger1=ctrl
+value=1251
+ignorehitpause=1
+
+[State Strong Tornado SpinEX]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=command="EXtornado"
+trigger1=ctrl
+value=1250
+ignorehitpause=1
+
+[State Light Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="tornado_x"
+trigger1=ctrl
+value=1200
+ignorehitpause=1
+
+[State Medium Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="tornado_y"
+trigger1=ctrl
+value=1201
+ignorehitpause=1
+
+[State Strong Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="tornado_z"
+trigger1=ctrl
+value=1202
+ignorehitpause=1
+
+[State Light Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="tornado_x"
+trigger1=ctrl
+value=1203
+ignorehitpause=1
+
+[State Medium Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="tornado_y"
+trigger1=ctrl
+value=1204
+ignorehitpause=1
+
+[State Strong Tornado Spin]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="tornado_z"
+trigger1=ctrl
+value=1205
+ignorehitpause=1
+
+[State Drill Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="drillkick"
+trigger1=ctrl
+value=1300
+ignorehitpause=1
+
+[State Head Stomp]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="headstomp"
+trigger1=ctrl
+value=1400
+ignorehitpause=1
+
+[State Butt StompEX]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype=A
+triggerall=command="EXbuttstomp"
+trigger1=ctrl
+value=1650
+ignorehitpause=1
+
+[State Butt Stomp]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="buttstomp"
+trigger1=ctrl
+value=1600
+ignorehitpause=1
+
+[State Light Air Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="fireball_x"
+trigger1=ctrl
+value=1800
+ignorehitpause=1
+
+[State Medium Air Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="fireball_y"
+trigger1=ctrl
+value=1803
+ignorehitpause=1
+
+[State Hard Air Fireball]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="fireball_z"
+trigger1=ctrl
+value=1806
+ignorehitpause=1
+
+[State teleport]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=PalNo=[6,12]
+triggerall=command="teleport"
+triggerall=statetype!=A
+trigger1=ctrl
+value=3900
+ignorehitpause=1
+
+[State Air GlideEX]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype=A
+triggerall=command="airglideEX"
+trigger1=ctrl
+value=1701
+ignorehitpause=1
+
+[State Air Glide]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="airglide"
+trigger1=ctrl
+value=1700
+ignorehitpause=1
+
+[State EXAir Throw]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype=A
+triggerall=command="EXThrow"
+trigger1=ctrl
+value=930
+ignorehitpause=1
+
+[State EXAir Throw]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=power>=1000
+triggerall=statetype!=A
+triggerall=command="EXThrow"
+trigger1=ctrl
+value=910
+ignorehitpause=1
+
+[State Air Throw]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="Throw"
+trigger1=ctrl
+value=920
+ignorehitpause=1
+
+[State Throw]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="Throw"
+trigger1=ctrl
+value=900
+ignorehitpause=1
+
+[State 無双転生]
+type=Changestate
+value=3901
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=PalNo=[1,5]
+triggerall=statetype!=A
+triggerall=command="teleport"
+trigger1=ctrl
+ignorehitpause=1
+
+[State Jump Strong Kick2]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="rollfwd"
+trigger1=ctrl
+value=660
+ignorehitpause=1
+
+[State Roll Fwd]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="rollfwd"
+trigger1=ctrl
+value=110
+ignorehitpause=1
+
+[State Roll Back]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="BB"
+trigger1=ctrl
+value=105
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│通常攻撃							 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State Stand Light Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="x"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=200
+ignorehitpause=1
+
+[State Stand Medium Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="y"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=210
+ignorehitpause=1
+
+[State Stand Strong Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="z"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=220
+ignorehitpause=1
+
+[State Stand Light Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="a"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=230
+ignorehitpause=1
+
+[State Stand Medium Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="b"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=240
+ignorehitpause=1
+
+[State Stand Strong Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="c"
+triggerall=command!="holddown"
+trigger1=ctrl
+value=250
+ignorehitpause=1
+
+[State Crouching Light Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="x"
+triggerall=command="holddown"
+trigger1=ctrl
+value=400
+ignorehitpause=1
+
+[State Crouching Medium Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="y"
+triggerall=command="holddown"
+trigger1=ctrl
+value=410
+ignorehitpause=1
+
+[State Crouching Strong Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="z"
+triggerall=command="holddown"
+trigger1=ctrl
+value=420
+ignorehitpause=1
+
+[State Crouching Light Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="a"
+triggerall=command="holddown"
+trigger1=ctrl
+value=430
+ignorehitpause=1
+
+[State Crouching Medium Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="b"
+triggerall=command="holddown"
+trigger1=ctrl
+value=440
+ignorehitpause=1
+
+[State Slide Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=command="c"
+triggerall=command="holddown"
+trigger1=ctrl
+value=450
+ignorehitpause=1
+
+[State Crouching Strong Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=stateno=100
+triggerall=command="c"
+trigger1=ctrl
+value=460
+ignorehitpause=1
+
+[State Jump Light Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="x"
+trigger1=ctrl
+value=600
+ignorehitpause=1
+
+[State Jump Medium Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="y"
+trigger1=ctrl
+value=610
+ignorehitpause=1
+
+[State Jump Strong Punch]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="z"
+trigger1=ctrl
+value=620
+ignorehitpause=1
+
+[State Jump Light Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="a"
+trigger1=ctrl
+value=630
+ignorehitpause=1
+
+[State Jump Medium Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="b"
+trigger1=ctrl
+value=640
+ignorehitpause=1
+
+[State Jump Strong Kick]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=command="c"
+trigger1=ctrl
+value=650
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│勝敗判断							 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State 引き分け]
+type=Changestate
+triggerall=!ishelper
+triggerall=alive
+triggerall=!((stateno=[160,190])||stateno=5150||stateno=5300)
+triggerall=!time
+triggerall=roundstate>3
+trigger1=drawgame
+value=158
+ignorehitpause=1
+
+[State -1,タイムオーバー負け]
+type=Changestate
+triggerall=!ishelper
+triggerall=alive
+triggerall=!((stateno=[160,190])||stateno=5150||stateno=5300)
+triggerall=!time
+triggerall=roundstate>3
+trigger1=lose
+value=158
+ignorehitpause=1
+
+[State 勝利]
+type=Changestate
+triggerall=!ishelper
+triggerall=alive
+triggerall=roundstate>3
+triggerall=!(anim=[180,183])
+triggerall=!time
+trigger1=win
+value=180
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――─◆
+;│基本動作							 │
+;◆―――――――――――――――――――――――――――――――◆
+
+[State Sジャンプ]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="Sjump"
+trigger1=ctrl
+value=9000
+ignorehitpause=1
+
+[State Taunt]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="start"
+trigger1=ctrl
+value=165
+ignorehitpause=1
+
+[State Run Fwd]
+type=Changestate
+value=100
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=command="FF"
+trigger1=ctrl
+ignorehitpause=1
+
+[State ジャンプ]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype!=A
+triggerall=command="holdup"
+trigger1=ctrl
+value=40
+ignorehitpause=1
+
+[state 空中ジャンプ]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=A
+triggerall=vel y>1
+triggerall=command="up"
+triggerall=animelemtime(1)>1
+trigger1=ctrl
+value=40
+ignorehitpause=1
+
+[State 歩き]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=ctrl
+triggerall=roundstate=2
+triggerall=anim!=[10,15]
+triggerall=anim!=[100,105]
+trigger1=command="holdfwd" 
+trigger2=command="holdback"
+value=20
+ignorehitpause=1
+
+[State 立ち上がる動作]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=ctrl
+trigger1=command!="holddown" 
+value=12
+ignorehitpause=1
+
+[State しゃがみ]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=C
+triggerall=ctrl
+triggerall=!animtime
+trigger1=command="holddown" 
+value=11
+ignorehitpause=1
+
+[State しゃがむ動作]
+type=Changestate
+triggerall=!ishelper&&alive
+triggerall=!var(7)
+triggerall=statetype=S
+triggerall=ctrl
+trigger1=command="holddown" 
+value=10
+ignorehitpause=1
+
+;◆――――――――――――――――――――――――――――――◆
