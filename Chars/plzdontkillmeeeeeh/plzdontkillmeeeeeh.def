@@ -1,0 +1,15 @@
+[Info]
+name="t[-_-t]"
+displayname="t[-_-t]"
+Author="Occhihaytoh"
+pal.defaults=1
+
+[Files]
+cmd=pdkm.cmd
+cns=pdkm.cns
+st=States.st
+st0=Common.st
+st1=pdkm.st
+sprite=Remilia.sff
+anim=Remilia.air
+pal1=pdkm.act
