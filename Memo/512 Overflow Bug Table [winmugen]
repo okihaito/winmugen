@@ -1,0 +1,3365 @@
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+・５１２オーバーフローバグ表
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+
+あんまり確認してないのでミスとかあるかもしれません
+あとmugen-hiで確認したものなので他mugenだと環境差によるアドレス変動があるかも
+
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・プレイヤーアドレス
+※1個目のPersistentを1と定義しています
+アドレスとして使う場合は+3067してね
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+
+-3067:リダイレクトで指定されてる場所。Nameの指定。AuthorNameの指定。利用Animの指定。
+[P]:キャッシュ領域
++0~47  :Name
++48~95 :DisplayName
++96~143:AuthorName
++144   :VersionDate(月)
++148   :VersionDate(日)
++152   :VersionDate(年)
++156   :MugenVersion(月)
++160   :MugenVersion(日)
++164   :MugenVersion(年)
++684   :Life
++688   :Power
++692   :Attack.Z.Width.Front
++696   :Attack.Z.Width.Back
++700   :AirJuggle
++704   :Attack.Dist
++708   :Proj.Attack.Dist
++712   :Defence
++716   :Fall.Defence_Up(?)
+
+(おそらくConstと同じ順番なので中略)
+
++944   :FloatPersistIndex
++948   :コマンド領域だと思われるが規則性がわからない
+[[P]+948]+24*X
++0:コマンドについて?
++4:何回入力があるか
++8:Time
++12:Buff.Time
++16:何番目のコマンドに対応しているか(ただしrecoveryは0)
++20:recoveryは2、それ以外は1。投げの影響フラグ？
+なお、Nameの重複するコマンドは何個書いても1個分とカウントされるが、
+recoveryのみ書いた数だけカウントされる。
+つまりrecoveryが多ければ多いほど定義できるコマンドラベルが減ってしまう。
+もしコマンド数を減らしたくない場合は自分のコモンステにあるrecoveryのコマンドトリガーを
+別の条件にすること。(投げ先ではステートの所有者のコマンドが使われる)
+例:
+Name="aiueo"
+Name="aiueo"
+Name="kakikukeko"
+Name="kakikukeko"
+Name="aiueo"
+これは2つとカウントされ、あと124個Nameを定義できる。
+Name="recovery"
+Name="recovery"
+Name="recovery"
+Name="recovery"
+Name="recovery"
+これは5つとカウントされ、あと121個Nameを定義できる。
+
+
+[[[P]+948]+24*X]
+1~2Byte:16*α
+α=
+a=|1
+b=|2
+c=|4
+x=|8
+y=|16
+z=|32
+s=|64
+U=|256
+F=|512
+D=|1024
+B=|2048
+(DF)のような複数方向ある場合は|512+1024と加算される。
+a+bのような同時押しも|1+2と加算される。
+なお、a + bのようにスペースを入れてはいけない。a+bとくっつける必要がある。
+記述にスペースを入れる性格の人は注意。
+3Byte:
+~(押してから離す)= 1
+/(長押し)=2
+$(両端の2方向許可)=4、なお方向キーでなくても落ちない模様(効果あるかは不明)
+~XXコマンド=1に加え、16*Xが加算される。
+X=Floor(XX/4)*4
+4ごとに区切られているらしい。4の倍数のみ使用可能。
+コンマが来た場合は4Byteの空白のあとに次のコマンドが来る。
+前のコマンドに>(他キーとの同時押し不可)がある場合、0ではなく1になる。
+a,>b,cの場合は
+10 00 00 00 | 00 00 00 00 | 20 00 00 00 | 01 00 00 00
+40 00 00 00 | 00 00 00 00
+という感じになる。
+余談だが~/aは落ちてしまうが、/~aは落ちない。
+$/~aや/$~aは落ちるが、/~$aは落ちない。順番が重要である。
+にしても押してから離す長押しとは一体...
+
++952   :0x0
++956   :コマンド総数(重複コマンドを含む)
++960   :コマンド総数(recovery以外の重複コマンドは除く、総数+1がここの値の模様、なぜ総数+1なのかは不明)
+
++964   :利用ステート参照先
+※詳しい詳細はある程度下にある
+------------------------------------------------------------
++968   :利用Sff参照先
++972   :利用Anim参照先
++976   :Volume
++980   :利用Snd参照先(存在しない場合は0)
+[[[P]+980]]
++4:Sndは何Byte区切りか
++8,+12,+16:がSnd総数
++20が各Sound情報
++24がSndList
+[[[[P]+980]]+20]
++0:音声データ格納先
+[[[[[P]+980]]+20]+4*n]:音声データ格納先
++0:bit
++4:ステレオは-1になる？
++8:Hz
++12:128
++16:Byte(SAEでの表記は16bitでここの2倍、ステレオなら2倍、両方で4倍の模様)
++20:0
++24:Byte
++28:0
++32:音源データ
++36:0
+
+[[[[P]+980]]+24]
++0:有効フラグ
++4:何番目にあるか
++8:左の数字
++12:右の数字
+------------------------------------------------------------
++984~? :AIファイルの名前(ここを弄ればAIファイルが更新されなくなる)
++1496  :何かのアドレス(Animの一部だと思われるが不明)[おそらくAIファイルがないと0固定,1204区切り]
++1500  :何かのアドレス[おそらくAIファイルがないと0固定]
++1504  :-32760.0[おそらくAIファイルがないと0固定]
++1568  :-32760.0[おそらくAIファイルがないと0固定]
++1632  :-32760.0[おそらくAIファイルがないと0固定]
++1696  :-32760.0[おそらくAIファイルがないと0固定]
++1756  :終端
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+-3063:プレイヤーＩＤ
+-3059:自分のいる並び順の番号。デバッグ表示＋１
+-3055:TeamSide
+-3051:（本体は０でヘルパーだとマイナス１）
+-3047:
+-3043:
+-3039:IsHelper（本体だと落ちる）←DestroySelfやParentVarSet実行に必要。!IsHelperでNumPartnerに換算される。
+-3035～-2991:デバッグで表示上の名前
+-2987:Const(Data.Life)
+-2983:Const(Data.Power)
+-2979:Const(Data.Attack)
+-2975:Const(Size.Attack.Z.Width.Front)
+-2971:Const(Size.Attack.Z.Width.Back)
+-2967:Const(Data.AirJuggle)
+-2963:Const(Size.Attack.Dist)
+-2959:Const(Size.Proj.Attack.Dist)
+-2955:Const(Data.Defence)
+-2951:Const(Data.Fall.Defence_Mul)
+-2947:Const(Data.LieDown.Time)
+-2943:Const(Size.XScale)
+-2939:Const(Size.YScale)
+-2935:Const(Size.Ground.Back)
+-2931:Const(Size.Ground.Front)
+-2927:Const(Size.Air.Back)
+-2923:Const(Size.Air.Front)
+-2919:Const(Size.Z.Width)
+-2915:Const(Size.Height)
+-2911:Const(Size.Proj.DoScale)
+-2907:Const(Size.Head.Pos.X)
+-2903:Const(Size.Head.Pos.Y)
+-2899:Const(Size.Mid.Pos.X)
+-2895:Const(Size.Mid.Pos.Y)
+-2891:Const(Size.ShadowOffSet)
+-2887:Const(Velocity.Walk.Fwd.X)
+-2883:Const(Velocity.Walk.Back.X)
+-2879:Const(Velocity.Walk.Up.X)
+-2875:Const(Velocity.Walk.Down.X)
+-2871:Const(Velocity.Run.Fwd.X)
+-2867:Const(Velocity.Run.Fwd.Y)
+-2863:Const(Velocity.Run.Back.X)
+-2859:Const(Velocity.Run.Back.Y)
+-2855:Const(Velocity.Run.Down.X)
+-2851:Const(Velocity.Run.Down.Y)
+-2847:Const(Velocity.Run.Up.X)
+-2843:Const(Velocity.Run.Up.Y)
+-2839:Const(Velocity.Jump.Y)
+-2835:Const(Velocity.Jump.Neu.X)
+-2831:Const(Velocity.Jump.Fwd.X)
+-2827:Const(Velocity.Jump.Back.X)
+-2823:Const(Velocity.Jump.Up.X)
+-2819:Const(Velocity.Jump.Down.X)
+-2815:Const(Velocity.RunJump.Y)
+-2811:Const(Velocity.RunJump.Fwd.X)
+-2807:Const(Velocity.RunJump.Back.X)
+-2803:Const(Velocity.RunJump.Up.X)
+-2799:Const(Velocity.RunJump.Down.X)
+-2795:Const(Movement.AirJump.Num)
+-2791:Const(Movement.AirJump.Height)
+-2787:Const(Velocity.AirJump.Y)
+-2783:Const(Velocity.AirJump.Neu.X)
+-2779:Const(Velocity.AirJump.Fwd.X)
+-2775:Const(Velocity.AirJump.Back.X)
+-2771:Const(Velocity.AirJump.Up.X)
+-2767:Const(Velocity.AirJump.Down.X)
+-2763:Const(Movement.YAccel)
+-2759:Const(Movement.Stand.Friction)
+-2755:Const(Movement.Crouch.Friction)
+-2751:Const(Data.SparkNo)
+-2747:Const(Data.Guard.SparkNo)
+-2743:Const(Data.KO.Echo)
+-2739:Const(Size.Draw.OffSet.X)
+-2735:Const(Size.Draw.OffSet.Y)
+-2731:Const(Data.IntPersistIndex)
+-2727:Const(Data.FloatPersistIndex)
+-2723:プレイヤーフラグ
+-2719:Pauseで止まっているかどうか
+-2715:ライフ
+-2711:最大ライフ
+-2707:表示上のライフ
+-2703:ライフの赤い部分(下手にいじると落ちるので注意)
+-2699:パワー参照先(ヘルパーの場合はここの値に関わらず本体のここを利用する)
+-2695:パワーマックス参照先
+-2691:パワー
+-2687:最大パワー
+-2683:表示上のパワー
+-2679:パワーレベル(Power/1000をLv.1として値、毎F上書きされている)
+-2675:AttackMulSetの倍率
+-2671:DefenceMulSetの倍率
+-2667:Facing(1か否かで向きが決まる模様)
+-2663:Facingに連動？(よくわからないがここを弄ると向きが変わる模様、NoAutoTurnの影響も無視する、0だとそのまま、1か-1だと該当の向きに、それ以外だと反転する、おそらく自動振り向きの管理先？)
+-2659:不明(0に上書きされた、ヘルパーは1だった)
+-2655:ScreenPos X(厳密には違う、ステージの絶対座標だと思われる)
+-2651:Pos Y
+-2647:Pos Z(機能していない模様、なお処理終了時に勝手に0にリセットされる)
+-2643:ScreenPos Xに対応？弄っても変化なし、(凍結中だと反映されない模様、下記２つも同じ)
+-2639:Pos Yに対応？弄っても変化なし
+-2635:Pos Zに対応？弄っても変化なし
+-2631:Vel X、なおトリガーのVelで参照する値はここの値*Facingである。
+-2627:Vel Y
+-2623:Vel Z(機能していない模様,%nなしでは冒頭VelSetでのみ変更可能)
+-2619:OffSet-X(Int型)
+-2615:OffSet-Y(Int型)
+-2611:不明(上書きなし)
+-2607:SprPriority
+-2603:内部残り空中ジャンプ回数
+-2599:左座標の限界(?)(Int型)(-2655の領域と関係していると思われる。また、全プレイヤー共通の値の模様、ちなみに最初の1Fは0らしい)
+-2595:右座標の限界(?)(Int型)(-2655の領域と関係していると思われる。また、全プレイヤー共通の値の模様、ちなみに最初の1Fは0らしい)
+この２つはステージのScreenLeft/Rightに関与している
+-2591:PauseMoveTime
+-2587:SuperMoveTime
+-2583:ScreenBound
+-2579:ScreenBoundのMoveCamera(X軸)
+-2575:ScreenBoundのMoveCamera(Y軸)
+-2571:PlayerPush
+-2567:WidthのEdgeの左側
+-2563:WidthのEdgeの右側
+-2559:WidthのPlayerの左側
+-2555:WidthのPlayerの右側
+-2551:NoStandGuard
+-2550:NoCrouchGuard
+-2549:NoAirGuard
+-2548:NoAutoTurn
+-2547:NoShadow
+-2546:NoJuggleCheck
+-2545:NoWalk
+-2544:UnGuardAble
+-2543:Invisible
+-2539:ProjContact用のID
+-2535:Projの命中(0:命中なし、1:Guarded、2:Hit、3:Cancel[3の場合はContactに加算されない]、それ以外だとContactのみに反映される模様)
+-2531:ProjContactTime
+-2527:Projectileの領域らしい
+[P+3067-2527]
++0:Projデータ
++4:利用Anim
++8:利用Sff(OwnPal=1のほうが使われているが...)
+
+[[P+3067-2527]]
++0:不明
++4:Projは何Byte区切りか
++8:今のNumProj
++12:Proj上限(つまりPlayerProjectileMax)
++16:今までProjを出した回数
++20:Projectile参照先
++24:ProjList
++28:最後の位置のProj(1番目を0とする)
++32:現在の個数(0になったら計算しなくなる)
++36:最初の位置のProj(1番目を0とする)
++40:何番目までが有効データか
+本体のownpal=0用のスプライト領域を２つともownpal=1用にしても色が変わらなかったため、
+ProjのスプライトとかActは別の管理場所の模様？
+→[[P+3067+1985]+4]にある模様、この部分を変えればownpal=1のProjを出せるらしい
+
+ProjList
++0:存在時は1になる？
++4:どんどん増えていく
++8:0
++12:0
+------------------------------------------------------------
+-2523:ターゲット中継１
+[P+3067-2523]
++0:不明
++4:Targetは何Byte区切りか
++8:今のNumTarget
++12:Target上限(つまり8)
++16:何回Targetを取得したか
++20:Target情報
++24:TargetList
++28:Targetが外れたときに限り最後の位置のTargetが記憶されたようだ
++32:Targetを所持していれば1、していなければ最大NumTarget
++36:Targetが外れたときに限り最初の位置のTargetが記憶されたようだ[未検証]
++40:何番目までが有効データか
+
+Target情報[[P+3067-2523]+20]
++0:Target,Address
++4:残りJuggle
++8:殴ったときの[P+3067+1389]を反映？ただしProjで殴ったときは対象タゲ非所持時は0、対象タゲ所持時は変動しなかった
++12:不明FFFFFBFF
++16:不明FFFFFBFF
++28:不明0
+以下、終わるまで続く
+
+TargetList[[P+3067-2523]+24]
++0:タゲ所持時は1になる？
++4:何番目に取得したターゲットか
++8:0
++12:0
+以下、終わるまで続く
+------------------------------------------------------------
+-2519~-2499:攻撃時のノックバック管理
+・変化前
+-2519:
+-2515:
+-2511:1.0
+-2507:1.0
+-2503:
+-2499:勝手に0になった
+・変化後
+-2519:攻撃時のけぞり速度管理(CornerPush.VelOffの値が影響しているらしい、Fごとに0.7倍されている。-2511の数だけ乗算されている？)
+-2515:攻撃時に反映されることがある値らしいが詳細は不明
+-2511:攻撃を当てたら0.7が入った？
+-2507:変化前と同じ、変化前に弄った場合そのまま
+-2503:1.0
+-2499:攻撃直後は-1になりのけぞり速度が絶対値1未満になると0になる？
+※-2519~-2499は画面端で画面端に向かって殴ると管理方法が変化する。壁から遠いと反映されない
+-2495:KeyCtrl(1だと[Statedef -1]を認識できない)
+-2491:本体は-2495の領域が0以外なら1になる模様、0ならヘルパーでも0になる模様
+-2487:?
+-2483~-2367:cmdファイルとは個別のコマンドに関係している模様?
+規則性(予想)1の位がこの値になる
+Up:1
+Back:4
+Down:3
+Fwd:2
+a:5
+b:6
+c:7
+x:8
+y:9
+z:10
+s:11
+仕様
+4Byteおきに上記の値, 上記の値+0x10という感じで書き込まれる
+同時押しは値が連続する。
+Exam:a→b→cの順で押した場合
+0x5 0x15 0x6 0x16 0x7 0x17
+Exam:a,bを同時押しした場合
+0x5 0x6 0x15 0x16
+-2367まで達したらまた-2483から始まる
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+-2359:Uが押されていれば1
+-2355:Fが押されていれば1
+-2351:Dが押されていれば1
+-2347:Bが押されていれば1
+-2343:aが押されていれば1
+-2339:bが押されていれば1
+-2335:cが押されていれば1
+-2331:xが押されていれば1
+-2327:yが押されていれば1
+-2323:zが押されていれば1
+-2319:sが押されていれば1
+-2311,-2307:コマンドで今どこの領域を使っているか？
+-2483~-2367に関係しており、0x00~0x1Dまで使える
+
+-2295~-1787:
+1~2Byte:16*α
+α=
+a=|1
+b=|2
+c=|4
+x=|8
+y=|16
+z=|32
+s=|64
+U=|256
+F=|512
+D=|1024
+B=|2048
+3~4Byte:解除する場合は1が入る模様
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+-1783~-1275:コマンドを押してから離すまでのGameTimeを計算している模様
+-1275まで達したらまた-1783から始まる
+-1271~-763:上記の差分で求めた該当のコマンドが押されている時間?(押した瞬間を0とする)
+-759:2周目以降は(-755)に1を足して0x80で割った余りの値が入っていた
+-755,-751:コマンドで今どこの領域を使っているか？
+-1783~-1275と-1271~-763の使用領域に関係している模様
+また、0x00から0x7Fまで使える模様
+
+-731:command=aが押されているならGameTimeを代入する
+-727:command=bが押されているならGameTimeを代入する
+-723:command=cが押されているならGameTimeを代入する
+-719:command=xが押されているならGameTimeを代入する
+-715:command=yが押されているならGameTimeを代入する
+-711:command=zが押されているならGameTimeを代入する
+-707:command=sが押されているならGameTimeを代入する
+-699:command=Uが押されているならGameTimeを代入する
+-695:command=Fが押されているならGameTimeを代入する
+-691:command=Dが押されているならGameTimeを代入する
+-687:command=Bが押されているならGameTimeを代入する
+-667:何かのアドレス(内部アド+46296+52*(TeamSide=2)を示していた,ただしチームアーケード/サバイバルの場合はPartner(1)が2P側になっていた、2P側操作ならその逆)
+-663:何かのアドレス(キャッシュ領域+948を示していた,コマンド関連?[キャッシュ領域+948]ではないので注意)。投げられると投げられ先のコマンドになる。
+-659:recoveryのコマンド(ここらの値は1ずつ減っていく模様)
+-658:1個目のコマンド(下記含め元々recoveryが入っていた領域はダミーとなる模様)
+例えば
+"hoge1"
+"recovery"
+"hoge2"
+という順番の場合、2個目がダミー領域となり3個目が"hoge2"となる。
+-659+n:n個目のコマンド
+-532:127個目のコマンド(何のコマンドかは不明)
+例えば125個目がrecoveryの場合は125個目が真でもrecoveryは真にならない
+
+-531+4*n:該当の位置のコマンドが押されていればGameTimeを代入する(n=0ならrecovery)
+おそらくGameTimeが一致していれば-659+nのほうに反映される?
+-19:利用するステート指定
+-15:奪われているステート
+-11:誰にstを奪われているか判断するための数字（マイナス１以外のランダム値だと落ちる）
+-7:StateNo
+-3:PrevStateNo
++1~+512:Persistent(1Byte管理)
++513:Time
++517:Type
++521:MoveType
++525:Physics(N=0,S=1,C=2,A=3)
++529:Ctrl
++533:ここの部分の値が0以外だとガードステート化。
++537:MT=Iの時間を計測している模様(MT!=Iになったら0になる)
++541:HitPauseTime
++545:HitPauseTime(次フレームに付与？、おそらくHitDefの付与値だと思われる、ここが1以上のときに自分の処理が始まると値-1がHitPauseTimeになる)
++549:PosFreeze
++553:Alive
++557:Alive=0になるとここの値が1ずつ増えていく模様、凍結状態だと変動しなかった
++561:行動フラグ(ここの値がGameTimeと一致してれば読み込まれず、一致してなければ読み込む)
++565:Move系統に連動している(1:MoveGuardrd、2:MoveHit、4:MoveReversed、それ以外の数値だと無効な模様)
++569:MoveContact(+565が1,2,4でないと反映されない模様)
++573:不明(変動はしない)
++577:不明(1が代入されていた、凍結状態だとそのままだった)
++581~+817:Var(0)~Var(59)
++821~+977:FVar(0)~FVar(39)
++981~+997:SysVar(0)~SysVar(4)
++1001~+1017:SysFVar(0)~SysFVar(4)
++1021:特殊無敵（SuperPauseのUnHittable・投げ属性）
++1025:HitBy
++1029:HitBy2
+HitByのbitごとの属性
+1 :S
+2 :C
+3 :A
+4 :NA
+5 :SA
+6 :HA
+7 :NT
+8 :ST
+9 :HT
+10:NP
+11:SP
+12:HP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
++1033:HitByの効果時間
++1037:HitBy2の効果時間
++1041:GetHitVar(XVelAdd)[Int型]
++1045:GetHitVar(YVelAdd)[Int型]
++1049:自分を攻撃したプレイヤーのアドレスが入っていた
++1053:GetHitVar(Type)
++1057:GetHitVar(AnimType)
++1061:GetHitVar(AirType)
++1065:GetHitVar(GroundType)
++1069:GetHitVar(Damage)
++1073:GetHitVar(HitCount)
++1077:GetHitVar(FallCount)
++1081:GetHitVar(HitShakeTime)
++1085:GetHitVar(HitTime)
++1089:GetHitVar(SlideTime)
++1093:GetHitVar(CtrlTime)
++1097:GetHitVar(RecoverTime)
++1101:攻撃を食らった時の攻撃元のAttr(MT!=Hだとリセットされる)
++1105:GetHitVar(XOff)[Float型]
++1109:GetHitVar(YOff)[Float型]
++1113:GetHitVar(ZOff)[Float型]
++1117:GetHitVar(XVel)
++1121:GetHitVar(YVel)
++1125:GetHitVar(YAccel)
++1129:GetHitVar(ChainID)
++1133:GetHitVar(Guarded)
++1137:GetHitVar(IsBound)?(下手にいじると落ちる模様)
++1141:HitFall(GetHitVar(Fall)と同値)
++1145:GetHitVar(Fall.Damage)
++1149:GetHitVar(Fall.XVel)
++1153:GetHitVar(Fall.YVel)
++1157:GetHitVar(Fall.Recover)
++1161:GetHitVar(Fall.Time)[トリガー索引には載ってないがInt型]
++1165:GetHitVar(Fall.RecoverTime)
++1169:GetHitVar(Fall.Kill)
++1173:不明(+1573のパラメータ弄ったHD当てたら値が反映させたため何らかのトリガーに使われる予定だった？)
++1177:GetHitVar(Fall.EnvShake.Time)
++1181:GetHitVar(Fall.EnvShake.Dir)[トリガー索引には載ってないがInt型]
++1185:GetHitVar(Fall.EnvShake.Freq)
++1189:GetHitVar(Fall.EnvShake.Ampl)[Floatで管理されているが、返すときはInt型]
++1193:GetHitVar(Fall.EnvShake.Phase)
++1197:HitOverRide	slot=0	実行フラグ(0で無効化)
++1201:HitOverRide	slot=0	Attr
++1205:HitOverRide	slot=0	State
++1209:HitOverRide	slot=0	Time
++1213:HitOverRide	slot=0  ForceAir
++1197+20*n:HitOverRide	slot=n	実行フラグ(0で無効化)
++1357:攻撃食らうときに参照される何か（環境によっては試合後とかのタイミングでエラー落ち）
+当身くらいもこちら側となる
+256Byte分ある模様
+値は攻撃者の[P+3067+1389]、Projなら[対象アドレス+168]。
+重複する攻撃は当てられないからか捏造とかでここの値と攻撃者の[P+3067+1389]を一致させた状態で攻撃を
+当てようとしても一切当たらない。
+逆に攻撃者の[P+3067+1389]を常に変化させればHitDefを更新することなく多段ヒットさせられる
+ただし被弾対象の[[P+3067+1357]+攻撃者の位置*4]を弄り続けても多段ヒットしない
+こちらで多段ヒットさせる場合は自分の[[[P+3067-2523]+20]+ターゲットの位置*32+8]も弄る必要がある
+Target絡みなのでこちらの方法の場合はTargetDropでも可能
+
+この多段ヒット現象は捏造以外でも常時タゲドロかつHitDefを当てる→Projを当てる
+→ヒットIDの変化により最初のHitDefがもう一回当たる
+という感じで再現可能。
+
+小ネタとして誰もHDを振っておらず、Projも出してない状態で最初にHDを振る→Projを出す→Projを当てる(Projを当てるまでフレームでHDは当てない。Projと同時当ても×)
+とすると次F以降に最初に振ったHitDefが当たらない。2回目以降はしっかりと当たる、Projでタゲを取れないと1回目でも当たる。
+
+Projに関しては例外でその領域が一致していても攻撃回数が残っていれば当たる模様
+Projはあたったら消せばいいことが関わっているからか？(HitDefはプレイヤー別に当てたフラグを管理する必要があるからこういう管理をしている？一人に当てたいときはhitonceを用いることで対処可能)
++0:P0用の領域だった？
++4:P1の攻撃を食らうと反応する
++8:P2の攻撃を食らうと反応する
++12:P3の攻撃を食らうと反応する
++16:P4の攻撃を食らうと反応する
++20:1番目のヘルパーの攻撃を食らうと反応する
++24~240:X番目ののヘルパーの攻撃を食らうと反応する
++244:57番目ののヘルパーの攻撃を食らうと反応すると思われる？(この部分の初期値は0だった)
++248:58番目ののヘルパーの攻撃を食らうと反応すると思われる？
++252:59番目ののヘルパーの攻撃を食らうと反応すると思われる？
+HelperMaxによって領域数が変わる模様
+HelperMax=4なら48Byte分の領域があった(使用数は4*9=36Byte)
+使われていないヘルパーの領域の初期値は0だった
+それ以外は全部-1で埋め尽くされていた
+ラウンドをまたぐとリセットされる模様
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
++1361:被弾時に「攻撃者の」CornerPush.Veloffが入る模様。どのCornerPush.Veloffが使われるかは被弾側の状態次第
+ちなみに省略時はGuard.Velocity*1.3
++1365:MT!=H中に1ずつ加算される何か(MT=H中は0になる様子)
++1369:攻撃判定管理？(現状自分自身に対する攻撃以外は成功していない)
+256Byte分ある模様
++1357側と異なり初期値は0だった
+対象の位置へのプレイヤーの攻撃を管理していると思われるが
+軽く弄ったところ自分以外への攻撃は成功しない感じ
+対象の位置が0以外なら当たったと扱われると予想
+
++1373:HitDef実行時にオンになる何か
++1377:不明
++1381:AffectTeam(F:1, E:2, B:3)
++1385:HitDefAttrを制御している領域。
++1389:HitDefかReversalDefが更新されるたびに[内部アド+47984]の値を書き込むようだ
++1393:HitDefのID
++1397:HitDefのChainID
++1401:HitDefのNoChainID
++1405:HitDefのNoChainID(２つ目)
++1409:HitDefのKill
++1413:HitDefのGuard.Kill
++1417:HitDefのFall.Kill
++1421:HitDefのHitOnce
++1425:冒頭StatedefのJuggle値
++1429:HitDefのDamage
++1433:HitDefのGuard.Damage
++1437:HitDefのGetPower
++1441:HitDefのGetPower(ガード時)
++1445:HitDefのGivePower
++1449:HitDefのGivePower(ガード時)
++1453:HitDefのPauseTime(相手側)
++1457:HitDefのPauseTime(自分側)
++1461:HitDefのNumHits
++1465:HitDefのHitSound左側
++1469:HitDefのHitSound右側
++1473:HitDefのHitSound(Sなら0、Fなら1、デフォ1)
++1477:HitDefのGuardSound左側
++1481:HitDefのGuardSound右側
++1485:HitDefのGuardSound(Sなら0、Fなら1、デフォ1)
++1489:HitDefのGuardFlag
+[(空):2,   (省略時):0,   H:6,   L:10,  M:14,  A:18,   HL:14,  HLM:14,  HLMA:30,   LM:14,  LA:26,   MA:30,   HA:22]
+[(空):0x2, (省略時):0x0, H:0x6, L:0xA, M:0xE, A:0x12, HL:0xE, HLM:0xE, HLMA:0x1E, LM:0xE, LA:0x1A, MA:0x1E, HA:0x16]
+管理bit	:ALH10
+6	:00110
+10	:01010
+14	:01110
+18	:10010
+22	:10110
+26	:11010
+30	:11110
+M=H+L
+
+
+[(空):2,   (省略時):62,	 H:6,	L:10	M:14	A:18	F:34	D:66	P:130	+:258	-:0]
+[(空):0x2, (省略時):0x3E,H:0x6,	L:0xA	M:0xE	A:0x12	F:0x22	D:0x42	P:0x82	+:0x102	-:0x0]
+管理bit	:+PDFALH-0
+2	:000000010
+6	:000000110
+10	:000001010
+14	:000001110
+18	:000010010
+34	:000100010
+62	:000111110
+66	:001000010
+130	:010000010
+258	:100000010
+M=H+L
+
+このフラグ、HitFlagとGuardFlagで共通の模様(GuardFlagでFDP+-が機能するかは不明)
+1bit	:GuardFlagは0固定、HitFlagはFallの管理先
+2bit	:-がなければ1、GuardFlagはパラメータ自体がないと0の模様(MT!=H)
+3bit	:H(ST=S)
+4bit	:L(ST=C)
+5bit	:A(ST=A)
+6bit	:F(HitFall!=0)
+7bit	:D(ST=L)
+8bit	:P(Projかき消し)
+9bit	:+(MT=H)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
++1493:HitDefのHitFlag(上記参照)
++1497:HitDefのPriority
++1501:HitDefのPriority(相打ち時)[0:H, 1:M, 2:D]
++1505:HitDefのAttack.Width(左側)
++1509:HitDefのAttack.Width(右側)
++1513:HitDefのP1StateNo
++1517:HitDefのP2StateNo
++1521:HitDefのP2GetP1State
++1525:不明
++1529:HitDefの(P1)SprPriority
++1533:HitDefのP2SprPriority
++1537:HitDefのAnimType(0:L, 1:M, 2:H, 3:B, 4:U, 5:D)
++1541:HitDefのForceStand
++1545:Reversal.Attrを制御している領域。
++1549:HitDefのFall.Damage
++1553:HitDefのFall.AnimType(0:L, 1:M, 2:H, 3:B, 4:U, 5:D)
++1557:HitDefのFall.XVelocity
++1561:HitDefのFall.YVelocity
++1565:HitDefのFall.Recover
++1569:HitDefのFall.RecoverTime
++1573:不明(ここに値を設定したHitDefを当てたら対象の1173-1176がここの値に反映された)
++1577:HitDefのFall.EnvShake.Time
++1581:HitDefのFall.EnvShake.Dir 	HitDefステコンで入れることはできないが
+					%n等でここに値を入れたHDを当てると対象のFall.EnvShake.Dirを弄れる模様
+					ちなみにここに変な記述をしたらしっかりエラー落ちしたためステコンアドレス内には保存されているようだ
++1585:HitDefのFall.EnvShake.Freq
++1589:HitDefのFall.EnvShake.Ampl(やはり内部値はFloatのようだ)
++1593:HitDefのFall.EnvShake.Phase
++1597:HitDefのSparkNo
++1601:HitDefのSparkNoのSの有無(あるなら1)
++1605:HitDefのGuard.SparkNo
++1609:HitDefのGuard.SparkNoのSの有無(あるなら1)
++1613:HitDefのSparkX
++1617:HitDefのSparkY
++1621:HitDefのP1Facingに連動している(おそらく振り向く場合に1にする？[要検証])
++1625:HitDefのP1GetP2Facing
++1629:MinDistのX(Snapがある場合それのXに書き換わる)
++1633:MinDistのY(Snapがある場合それのYに書き換わる)
++1637:MinDistのZ 	HitDefステコンで入れることはできないが
+			%n等でここに値を入れたHDを当てるとGetHitVar(ZOff)に反映される模様
++1641:MaxDistのX(Snapがある場合それのXに書き換わる)
++1645:MaxDistのY(Snapがある場合それのYに書き換わる)
++1649:MaxDistのZ 	HitDefステコンで入れることはできないが
+			%n等でここに値を入れたHDを当てるとGetHitVar(ZOff)に反映される模様
+
+余談だが、GetHitVar(?Off)はsnapにより攻撃を食らう前からどのくらい動いたかを計測していると思われる
+なお、1Fしか反映されないため、すぐに0になる。
+また、Z軸は存在しないため、Zパラメータに値を入れた攻撃を当てると
+対応の値そのままが反映される模様
+なお、SnapやXXXDistはInt型だが、GetHitVar(?Off)はFloat型なので注意
+
++1653:HitDefのP2Facing
++1657:HitDefのGround.Type(0:N, 1:H, 2:L, 3:T)
++1661:HitDefのGround.HitTime
++1665:HitDefのGround.SlideTime
++1669:HitDefのGround.Velocity X
++1673:HitDefのGround.Velocity Y
++1677:HitDefのGround.CornerPush.VelOff(省略時はGuard.Velocity*1.3)
++1681:HitDefのAir.Type(0:N, 1:H, 2:L, 3:T)
++1685:HitDefのAir.AnimType(0:L, 1:M, 2:H, 3:B, 4:U, 5:D)
++1689:HitDefのAir.HitTime
++1693:HitDefのAir.Fall
++1697:HitDefのAir.Velocity X
++1701:HitDefのAir.Velocity Y
++1705:HitDefのAir.CornerPush.VelOff
++1709:HitDefのDown.Bounce
++1713:HitDefのDown.HitTime
++1717:HitDefのDown.Velocity X
++1721:HitDefのDown.Velocity Y
++1725:HitDefのDown.CornerPush.VelOff
++1729:HitDefのGuard.Velocity
++1733:HitDefのGuard.HitTime
++1737:HitDefのGuard.SlideTime
++1741:HitDefのGuard.CtrlTime
++1745:HitDefのGuard.Dist(AttackDistで上書きされる)
++1749:HitDefのGuard.PauseTime(相手側)
++1753:HitDefのGuard.PauseTime(自分側)
++1757:HitDefのGuard.CornerPush.VelOff
++1761:HitDefのAirGuard.Velocity X
++1765:HitDefのAirGuard.Velocity Y
++1769:HitDefのAirGuard.CtrlTime
++1773:HitDefのAirGuard.CornerPush.VelOff(省略時はGuard.CornerPush.VelOffと同値になる模様)
+※CornerPush.VelOffのパラメータは省略時はAir,Down,GuardはGroundのものを使い、AirGuardはGuardのものを使うと思われる
++1777:HitDefのYAccel
++1781:不明(0に上書きされた)
++1785:HitDefのPalFX.Time
++1789:HitDefのPalFX.Color
++1793:HitDefのPalFX.Add(R)
++1797:HitDefのPalFX.Add(G)
++1801:HitDefのPalFX.Add(B)
++1805:HitDefのPalFX.Mul(R)
++1809:HitDefのPalFX.Mul(G)
++1813:HitDefのPalFX.Mul(B)
++1817:HitDefのPalFX.SinAdd(R)
++1821:HitDefのPalFX.SinAdd(G)
++1825:HitDefのPalFX.SinAdd(B)
++1829:HitDefのPalFX.InvertAll
++1833:HitDefのPalFX.SinAdd(Time)
++1837:不明
++1841:不明
++1845:HitDefのEnvShake.Time
++1849:HitDefのEnvShake.Dir 	HitDefステコンで入れることはできないが
+				%n等でここに値を入れたHDを当てると(MUGENアドレス+46160)のEnvShakeのDirと思われしき領域を操作できる模様
++1853:HitDefのEnvShake.Freq
++1857:HitDefのEnvShake.Ampl(やはり内部値はFloatのようだ)
++1861:HitDefのEnvShake.Phase
+※Air.Juggleは見当たらなかった
+
++1865:不明
++1869:Anim縮小(デフォ1.0)
++1873:横Anim縮小
++1877:縦Anim縮小
++1881:OffSet分含めたScreenPos X(Float)(画面に反映される実際の座標)
++1885:OffSet分含めたScreenPos Y(Float)(画面に反映される実際の座標)
++1889:ScreenPos X(Int)
++1893:Pos Y(Int)
++1897:
++1901:X座標関連?(ScreenPosトリガー計算用のズレと思われるが不明)
++1905:Y座標関連?
++1909:ScreenPos Xの初期位置？(Int)
++1913:OffSetでのズレX(Int型の模様)
++1917:OffSetでのズレY(Int型の模様)
++1921:AngleDrawの回転角度(Float)
++1925:AngleDraw有効フラグ
++1929:
++1933:Trans(-1:Default,0:None,1:Add,2:Sub,3:Add1 or AddAlpha、それ以外だと影だけ残して消える[未検証だがおそらくAfterImageのTransと同じ])
++1937:TransのAddAlpha(AS値(色の明るさ)、左側)
++1941:TransのAddAlpha(D値(透過度)、右側)
+Add1だとAS値が256,D値が128固定になる模様
++1945:AfterImage参照ポイント(アドレス先+28がAfterImageTimeで弄る場所、+20も巻き込むので注意)
++1949:内部ヒット数(HitCountやUniqHitCountとは別物)、タゲが外れると0になる模様？
++1953:HitCount
++1957:UniqHitCount
++1961:
++1965:
++1969:利用Sff(OwnPal=0のヘルパーは本体のここと同値だった)
+※詳しいことは下を参照されたし
++1973:Sff関連(1969-1972と同値だった、各プレイヤー毎の値はこちらだと思われる[OwnPal=0のヘルパーは1969-1972とは別値])
++1977:Sff関連(OwnPal=1部分、基本ヘルパーも本体のここを参照する)
+何かの情報[P+3067+1977]
++0:+1969のほうと同じだった
++8:Act関係
++12:+1969のほうと同じだった
+
++1981:Sffアニメ関連(1977-1980と同値だった、また、ヘルパーは0だった)
++1985:Anim管理場所(ExplodのAnim参照先も同じ管理方法)
+※詳しいことは下を参照されたし
++1989:ChangeAnim2判定。ステート奪われてる時にACTION部分が黄色に。
+投げたプレイヤーのAnimAddと一致している
++1993:PalNoの値
++6605:何らかの値として使われているらしいが...
+いろいろ調べたところ、自分のPalFXの影響力に関与している？
+1:
+2:
+4:
+8:
+16:
+32:
+64:
+128:
+256:BG,FG(背景)
+512:ライフバー(TimeとDisplayName以外)
+1024:
+2048:ライフバーのDisplayNameとTime
+それ以外は見つからなかった
+また、ownpal=1のエフェクトや他プレイヤーには効果がない
+
++6609:なにかが入っていた(PalFXの実行可否に関係している模様?)
+P1:1,P2:2,P2:4,P4:8とプレイヤー数が進むたびに2の累乗になっていく模様?
+H1:16,H2:32,H3:64,H4:128,H5:256,...H28:-2147483648
++6613:6609-6613の33-64bit目
+H29以降はここから値が入る
++6625:PalFXの実行からの経過時間、PalFX-Time以上だと反映されずその後0に戻る？
++6629:PalFX-Time
++6633:PalFX-Color[これ含めてPalFXの値はPalFX-Timeが一定以上でないと反映されない模様]
++6637:PalFX-Add(R)
++6641:PalFX-Add(G)
++6645:PalFX-Add(B)
++6649:PalFX-Mul(R)
++6653:PalFX-Mul(G)
++6657:PalFX-Mul(B)
++6661:PalFX-SinAdd(R)
++6665:PalFX-SinAdd(G)
++6669:PalFX-SinAdd(B)
++6673:PalFX-InvertAll
++6677:PalFX-SinAddTime
++6681:PalFXリセットフラグ？
+ここを弄ったら自分のActの管理領域が初期値にリセットされた
+
++6685:HelperID
++6689:親のＩＤ
++6693:Parentリダイレクト
++6697:Rootリダイレクト
+
+※プレイヤーリダイレクト時の注意
+
+P+3067-3059	Playerの場所
+P+3067+10285	Enemyリダイレクト
+この２つが不定値だとMUGEN落ちする可能性があるのでリダイレクトを用いて値を参照する場合はこの2つを0にすること
+
++6701:PlayerType(0:Normal,1:Player,2:Proj[扱いはNormalと同じ？])
+	 適当な記述入れたらMUGEN落ちしたため何でもいいわけではない模様
+	 Projのみその後に何を書いてもOK
++6705:AIスイッチ(0にするとコントローラで操作できる模様)
++6709:内部AIレベル
+
+AIファイル関連?(ヘルパーは0だった)
++8625:1
++8629:なにかのアドレス(Aiファイル有りなら[[[P]+1496]+24]のListと共通点が多かった)
++8633:なにかのアドレス(Aiファイル有りなら[[[P]+1500]+24]のListと共通点が多かった)
++8637:-32760.0
++8701:-32760.0
++8765:-32760.0
++8829:-32760.0
++8889:AIファイルデータ終端？
+
+
+
+
++10177:-1
++10217:最後に出したProjのIDを保存している?
++10221:StateNoの保存先
++10225:StateTypeの保存先
++10229:MoveTypeの保存先
++10233:不明
++10237:4(ヘルパーは0)
++10241:-1
++10281:敵のアドレス(おそらくP2トリガーの参照先)
++10285:敵のアドレス(おそらくEnemyNearトリガーの参照先)
++10289:RoundsExisted
++10293:BindToRootかBindToParentのTime
++10297:BTRかBTPの対象のScreenPos Xのアドレス
++10301:BTRかBTPの対象のPos Yのアドレス
++10305:BTRかBTPの対象のPos Zのアドレス
++10309:BTRかBTPの対象のWidthのEdgeの左側のアドレス
++10313:BTRかBTPのFacing
++10317:BTRかBTPのPos X
++10321:BTRかBTPのPos Y
++10325:BTRかBTPのPos Z?(未検証)
++10329:BTRかBTPの対象のプレイヤーアドレス
++10337:Clipboard参照先
++0に行別の参照先、+4に先頭の参照先があった
++10341:StandBy
++10753:最後の値(詳細は不明)
+
+13824Byteある(半分くらいは使われていないが)
+
+以下、Pアドのほうでまとめられなかったアドレス
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━┓　━┳━　┏━┓　━┳━　┏━━
+┃　　　　┃　　┃　┃　　┃　　┃
+┗━┓　　┃　　┣━┫　　┃　　┣━━
+　　┃　　┃　　┃　┃　　┃　　┃
+┗━┛　　┸　　┸　┸　　┸　　┗━━
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+・各ステート情報
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+[[P]+964]or[P+3067-19]、以下、Stateと表す
++0:ステート参照先
+[State]
++0:?
++4:Defは何Byte区切りか
++8:Def総数
++12:Def総数
++16:Def総数
++20:StateDef情報
++24:DefList
++40:何番目のDefまで読み込むか(Def総数-1が入っていた)
+ここを変に弄るとアサートエラー391を吐かれた
+State総数と異なりチェックが厳し目の様子
+[[State]+24]:DefList
++0:有効フラグ?
++4:何番目にあるか
++8:ステート番号
++12:0
+[[State]+20]:Def情報、164Byte管理
++0:Def情報
++4:StateType(Uは-1)
++8:MoveType(Uは-1)
++12:Physics(Uは-1)
++16:Juggle[数字のみなら0]
++20:Juggle[数字のみなら0]
++24:Juggle(省略時-1)
+ここらへんの仕様は後に記すTrigger情報と同じだと思われる
++28~+36:FaceP2
++40~+48:HitDefPersist
++52~+60:HitCountPersist
++64~+72:MoveHitPersist
++76:SprPriorityに値があれば1。
++80~+88:SprPriority
++92:1
++100:Vel X(省略時-32760.0)
++104:1
++112:Vel Y(省略時-32760.0)
++116:1
++124:Vel Z(省略時-32760.0)
++128~+136:Ctrl(省略時-1)
++140~+148:Anim(省略時-1)
++152~+160:PowerAdd
+[[[State]+20]+164*n]:各Def情報
++0:?
++4:ステートは何Byte区切りか
++8:ステコン総数
++12:ステコン総数
++16:ステコン総数
++20:State情報
++24:StateList
++40:何番目まで読み込むか(ステコン総数-1が入っていた)
+[[[[State]+20]+164*n]+24]:State情報
++0:有効フラグ?
++4:何番目にあるか
++8:ステコンの種類(こっちは弄っても意味ない)
++12:基本0、一部は0じゃない模様、理由は不明
+[[[[State]+20]+164*n]+20]:各State情報
++0:トリガー参照先
++4:トリガーが何番まであるか
++8:Persistent
++12:ignorehitpause
++16:ステコンID
++20:0?
++24~+96の部分はトリガーごとに異なると思われる、内容は要調査
+[[[[[State]+20]+164*n]+20]+100*m]:各Trigger情報
++0:?
++4:トリガーは何Byte区切りか
++8:トリガー総数
++12:トリガー総数
++16:トリガー総数
++20:Trigger情報
++24:TriggerList
+[[[[[[State]+20]+164*n]+20]+100*m]+24]:TriggerList
++0:有効フラグ?
++4:何番目にあるか
++8:triggerXのXの部分-1(allの場合は強制的に一番最後に置かれ、-1になる。1→2→3→...→allの順番)
+トリガーの場所がバラバラでもしっかり整理(ソート)される
++12:そのトリガー番号で何番目か
+[[[[[[State]+20]+164*n]+20]+100*m]+20]:Trigger情報
++0:トリガー情報(4Byte区切り)
++4:トリガーの型を記録している？)(1Byte区切り)
+0:Int,1:Float:2:演算子,3:参照先有り
++8:パラメータと演算子の総計
++0と+4の関係性
++4が
+00 00 02
+で
++0が
+8 5 17
+なら
+8 +(0x17=23) 5 = 13
+になる。
+引数が必要なトリガー情報(Varは)
+(引数) (参照先)
+の順番で処理される
+複数必要な場合は(Exam:IfElse)
+(条件) (真) (偽) (参照先)
+Int単体だと
++0:0
++4:0
++8:値
+Float単体だと
++0:1
++4:0
++8:値
+
+
++0が参照先だった場合の参照先情報
++0:トリガーの種類
++4:リダイレクト先(ないなら0)
+(1:Parent,2:Root,3:Helper,4:Target,5:Partner,6:Enemy,7:EnemyNear,8:PlayerID)
++8:リダイレクト引数関連
++12:リダイレクト引数関連
++16:リダイレクト引数関連
++20:トリガーが否定形なら1になる(StateType != Sとか。AuthorName等'!='が機能しないトリガーでも一応ここは1のようだ)
+    AnimElemなら(0:=,1:!=,2:>,3:>=,4:<,5:<=)、ProjContact系も同じ？
++24:Float型トリガーは1だった
++28:トリガーごとの引数
+    TeamModeなら(0:Single,1:Simul,2:Turns)
+    StateTypeなら(1:S,2:C,3:A,4:L)
+    TimeModなら右の数
+    Commandならn番目にあるか
+    AnimElem,ProjContact系なら右の数
+    Velの場合(0:X,1:Y,2:Z)
+    GetHitVar(XXX)の引数
+    32:Fall.EnvShake.Dirとのことから予測が正しいとすると
+    参照できるGetHitVarでGetHitVar(XVelAdd)を0としてアドレス順だと思われる
+
+    Const(XXX)の引数(Const(Data.Life)を0として上から(n-1)番目?)
+    HitDefAttrならHitDefのAttr
+
++36:TimeModなら左の数
+    AnimElemなら左の数
+    EdgeDist系の場合、BodyDistなら1の模様
+    ProjContactならProjID(ProjContactX = Y, >= ZならX)
+    Winなら(Win:-1,WinKO:1,WinTime:3)
+    
++40:ProjContactなら中央の数(ProjContactX = Y, >= ZならY)
++52:NameならNameの参照先、AuthorNameならAuthorNameの参照先
+
+余談
+トリガーの種類を182(StageVar)に弄った結果、読み込んだ瞬間MUGEN落ちした。
+Error message: Missing trigger code 182
+意訳：そんなトリガーないです
+とのことからStageVarはどう頑張っても入れれない
+
+
+
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+各ステコンごとのState情報
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
++24~96に管理されているものは各ステートごとに異なる。
+基本的にトリガーの使えるパラメータは12Byte管理となっている
+
+・AssertSpecial
++32:Flag
++44:Flag2
++56:Flag3
++68:+32が実行プレイヤーのみにかかるものなら1になる
++80:+44が実行プレイヤーのみにかかるものなら1になる
++92:+56が実行プレイヤーのみにかかるものなら1になる
+Flagごとに対応したパラメータのようだ
+連続していないのはトリガー値を入れることも想定していたからだと思われる
+つまり厳密には
++24~32:Flag
++36~44:Flag2
++48~56:Flag3
++60~68:+24~32が実行プレイヤーのみにかかるものなら1になる
++72~80:+36~44が実行プレイヤーのみにかかるものなら1になる
++84~92:+48~56が実行プレイヤーのみにかかるものなら1になる
+だと思われる。
+
+※自分のみにかかるもの
+0:NoStandGuard
+1:NoCrouchGuard
+2:NoAirGuard
+3:NoAutoTurn
+4:NoShadow
+5:NoJuggleCheck
+6:NoWalk
+7:UnGuardAble
+8:Invisible
+
+※全体にかかるもの
+0:Intro
+1:RoundNotOver
+2:NoKO
+3:NoKOSnd
+4:NoKOSlow
+5:NoMusic
+6:GlobalNoShadow
+7:TimerFreeze
+8:NoBarDisplay
+9:NoBG
+10:NoFG
+ちなみに捏造で無理やり本来のアサートスペシャルの範囲外にしても正常に代入できる模様
+自分用は[P+3067-2551+代入値]に1Byte代入、全体にかかるなら[内部アド+47992+代入値]に1Byte代入、内部的にはMOV代入の様子。
+
+・Width
++24~32:Edge左
++36~44:Edge右
++48~56:Player左
++60~68:Player右
+優先度はEdge=Player>Value
+EdgeかPlayerがあればValueは使用されないどころか読み込みすらされない。
+その場合、Valueにデタラメな値が入っていてもMUGEN落ちしない。
+edgeあり、playerなし、valueありのような記述でもvalueは読まれない(読まれない方は0,0固定の模様)
+
+・VarSet(VarAddは未検証だがおそらく同じ？)
++24~32:Value
++36~44:V
++48~56:Varは0。FVarを使うなら1。SysVarは3。SysFVarは4。それ以外はどこにも代入しない。
+優先度はV&Value>FV&Value>Var(X)>FVar(X)>SysVar(X)>SysFVar(X)
+
+・ParentVarSet(ParentVarAddは未検証だがおそらく同じ？)
++24~32:Value
++36~44:V
++48~56:Varは0。それ以外はFVarだと思われる。FVarのときは1が代入される。
+優先度はV&Value>FV&Value>Var(X)>FVar(X)
+Sys系使えないこと除けばほとんどVarSetと同じ。
+
+・VarRandom
++24~32:Range(左側、単体の場合は0固定)
++36~44:V
++48~56:Range(右側、単体の場合はここの値)
+優先度はRange(単体)>Range(複数)
+
+・VarRangeSet
++24~32:First
++36~44:Last
++48~56:Value/FValue
++60~68:FValueなら1。
+優先度はValue>FValue
+
+・ScreenBound
++24~32:Value
++36~44:MoveCamera:X
++48~56:MoveCamera:Y
+
+・StateTypeSet
++24~32:StateType
++36~44:MoveType
++48~56:Physics
+
+・ExplodBindTime
++24~32:ID
++36~44:TimeかValue
+優先度はTime>Value
+
+・PosFreeze,CtrlSet,PlayerPush,SprPriority,PowerAdd,PowerSet
+LifeSet,HitAdd,AttackDist(引数がValue一つのステコンはこれ)
++24~32:Value
+
+・HitFallSet
++24~32:Value
++60~68:Velocity(X)
++72~80:Velocity(Y)
+なお、パラメータのXVelとYVelは無意味、注意
+値を入れたい場合はVelocity=X,Yの形にする必要がある。
+
+・HitVelSet
++24~32:X
++36~44:Y
+
+・HitOverRide
++24~32:Slot
++96:パラメータ
+[SC+96]:
++0:Attr
++4~12:StateNo
++16~24:Time
++28~36:ForceAir
+なぜか通常の領域と別領域の2つを使用している。
+下に書くか迷ったが量が少ないのでこっち
+
+・HitBy
++24~32:Value/Value2
++36~44:Time
++48~56:Value2なら1。
+優先度はValue>Value2
+
+・NotHitBy
++24~32:Value/Value2
++36~44:Time
++48~56:Value2なら1。
+優先度はValue>Value2
+ちなみにvalue値は入力したものの反転値が反映される
+SCA,AA,APなら,ATを示す0x1C0が代入される。
+
+・LifeAdd
++24~32:Value
++36~44:Kill
++48~56:Absolute
+
+・AfterImageTime
++24~32:TimeかValue
+優先度はTime>Value
+
+・EnvColor
++36~44:Time
++48~56:Under
++60~68:Value:R
++72~80:Value:G
++84~92:Value:B
+
+・VelSet,VelAdd,VelMul,PosSet,PosAdd(PosSet以外は詳しく調査してない)
++24~32:X軸が存在しているか
++36~44:Y軸が存在しているか
++48~56:Z軸が存在しているか
++60~68:X軸
++72~80:Y軸
++84~92:Z軸
+
+・OffSet
++24~32:X軸が存在しているか
++36~44:Y軸が存在しているか
++60~68:X軸
++72~80:Y軸
+上5つと異なり何故かZを読み込まない。Z軸と思われる空き領域はあるが。
+
+・AttackMulSet,DefenceMulSet
++60~68:Value(強制的にFloat型になる模様)
+
+・RemoveExplod
++24~32:ID
+
+・GameMakeAnim
++24~32:Value
++36~44:Under
++48~56:Random
++60~68:Pos X(強制的にFloat型になる模様)
++72~80:Pos Y(強制的にFloat型になる模様)
+
+・Null(ForceFeedBack),HitFallDamage,ClearClipboard,DestroySelf等オプションが存在しない(と思われる)ステコン全般
+なし
+
+・DisplayToClipboard(未検証だがAppendToClipboardも同様？)
++24~32:1個目のParams
++36~44:2個目のParams
++48~56:3個目のParams
++60~68:4個目のParams
++72~80:5個目のParams
++84:0
++88:0
++92:Params数
++96:テキスト情報
+
+・AngleDraw
++60~68:Value
++72~80:Scale X
++84~92:Scale Y
+
+・AngleMul,AngleAdd,AngleSet
++60~68:Value
+AngleDrawとの互換性を考慮してか+60~68にValue値が入るようだ
+
+・BindToRoot,BindToParent
++24~32:Time
++36~44:Facing
++48~56:0?
++60~68:Pos X
++72~80:Pos Y
++84~92:Pos Z
+
+・ChangeAnim(2)
++24~32:value
++36~44:elem
+
+・ChangeState,SelfState
++24~32:value
++36~44:ctrl(省略時-1)
++48~56:Anim(省略時-1)
+
+・SndPan
++24~32:Channel
++36~44:PanかAbsPan
++48~56:Panなら1。
+優先度はPlaySndと異なりPan>AbsPan
+1がつくフラグもPlaySndとは反対になっている。
+
+・StopSnd
++24~32:Channel
+
+・Trans
++24~32:Trans(-1:Default,0:None,1:Add,2:Sub,3:Add1かAddAlpha)
+内部的にはalpha値を入れた場合Add1もAddAlphaも同じ処理のようだ、省略値が変わるのだろうか
+Add1の省略値は256,128,AddAlphaの省略値は256,0
++36~44:AS値
++48~56:D値
+
+・TagIn
++24~32:StateNo
++36~44:PartnerStateNo
++48~56:Ctrl(デフォ-1)
+
+・TargetDrop
++24~32:ExcludeID
++36~44:KeepOne
+
+・TargetState,TargetPowerAdd,TargetFacing
++24~32:Value
++36~44:0
++48~56:ID
+
+・TargetVelSet,TargetVelAdd
++48~56:ID
++60~68:X
++72~80:Y
++84^92:Z
+変更しない場合の速度は-32760.0となる。
+
+・TargetLifeAdd
++24~32:Value
++36~44:Kill
++48~56:Absolute
++84~92:ID
+
+・TargetBind
++24~32:Time
++48~56:ID
++60~68:X
++72~80:Y
++84^92:Z?(入れるとエラー)
+
+・BindToTarget
++24~32:Time
++36~44:基準位置(Head:2,Mid:1,Foot:0)
++48~56:ID
++60~68:X
++72~80:Y
++84^92:Z?(入れるとエラー)
+
+◆一部のステコンは下記参照
+[[[[[State]+20]+164*n]+20]+100*m+96]:パラメータ数が多い場合
+
+・AfterImage
++0~8:Time
++12~20:Length
++24~32:Timegap
++36~44:Framegap
++48~56:PalColor
++60~68:PalInvertAll
++72~80:30?(本来PalBright-Rの領域のはずではあるがしっかり読まれてないのか30固定である...)
++84~92:PalBright-G
++96~104:PalBright-B
++108~116:PalContrast-R
++120~128:PalContrast-G
++132~140:PalContrast-B
++144~152:PalPostBright-R
++156~164:PalPostBright-G
++168~176:PalPostBright-B
++180~188:PalAdd-R
++192~200:PalAdd-G
++204~212:PalAdd-B
++216~224:PalMul-R
++228~236:PalMul-G
++240~248:PalMul-B
++252:Trans
++256~264:AddAlpha(AS値)
++268~276:AddAlpha(D値)
+
+・PalFX(未検証だがBGとAllも同様？)
++4~12:Time
++16~24:Color
++28~36:Add-R
++40~48:Add-G
++52~60:Add-B
++64~72:Mul-R
++76~84:Mul-G
++88~96:Mul-B
++100~108:SinAdd-R
++112~120:SinAdd-G
++124~132:SinAdd-B
++136~144:InvertAll
++148~156:SinAdd-Time
+
+・EnvShake
++0~8:Time
++12~20:Dir(なんと認識することができる。EnvShakeアドには反映されないが...)
++24~32:Freq(強制的にFloat型になる模様)
++36~44:Ampl
++48~56:Phase(強制的にFloat型になる模様)
+
+・Pause
++0~8:Time
++12~20:MoveTime
++24~32:EndCmdBufTime
++36~44:PauseBG
+
+・SuperPause
++0~8:Time
++12~20:MoveTime
++24~32:EndCmdBufTime
++36~44:PauseBG
++48:AnimのFかSか？Fなら1らしい。デフォ1。
++52~60:Anim
++64~72:Pos X(強制的にFloat型になる模様)
++76~84:Pos Y(強制的にFloat型になる模様)
++88~96:Darken
++100~108:P2DefMul(強制的にFloat型になる模様)省略時は0。
++112~120:PowerAdd
++124~132:Unhittable
++136:SoundのSの有無。Fなら1らしい。デフォ1。
++140~148:Soundの左側
++152~160:Soundの右側
+
+・PlaySnd
++0~8:Channel
++12~20:Value(左)
++24~32:Value(右)
++36~44:Volume
++48:Fがついているなら1。デフォ0。
++52~60:lowpriority
++64~72:FreqMul
++76~84:Loop
++88:AbsPanなら1。
++92~100:AbsPanかPan
+優先度はAbsPan>Pan
+
+・Explod,ModifyExplod
++0~8:ID
++12~20:Anim
++24:Fなら1。デフォ0。
++28~36:Pos X
++40~48:Pos Y
++52~60:Vel X
++64~72:Vel Y
++76~84:Accel X
++88~96:Accel Y
++100~108:Random X
++112~120:Random Y
++124~132:SuperMove(ModifyExplodは-32751で変更なし)
++136~144:SuperMoveTime(ModifyExplodは-32751で変更なし)
++148~156:PauseMoveTime(ModifyExplodは-32751で変更なし)
++160~168:RemoveTime(ModifyExplodは-32751で変更なし)
++172~180:Scale X(ModifyExplodは-32760.0で変更なし)
++184~192:Scale Y(ModifyExplodは-32760.0で変更なし)
++196:PosType(ModifyExplodは-32751で変更なし)
+P1	0
+Front	1
+Back	2
+Left	3
+Right	4
+P2	5
++200~208:BindTime(ModifyExplodは-32751で変更なし)
++212~220:SprPriority(ModifyExplodは-32751で変更なし)
++224~232:OnTop(ModifyExplodは-32751で変更なし)
++236~244:Facing
++248~256:VFacing
++260~268:Shadow-R(ModifyExplodは-32751で変更なし、-32751や-1の場合、ここだけに入る)
++272~280:Shadow-G
++284~292:Shadow-B
++296~304:OwnPal(ModifyExplodは-32751で変更なし)
++308~316:RemoveOnGetHit(ModifyExplodは-32751で変更なし)
++320~328:IgnoreHitPause(ちなみに省略時1)(ModifyExplodは-32751で変更なし)
++332:Trans(ModifyExplodは-32751で変更なし)
++336~344:Alpha(AS値)
++348~356:Alpha(D値)
+ModifyExplodに関しては本来使わないパラメータも参照される(Anim,OwnPalなど)
+何故か使用されないはずのOwnPalも-32751となる。
+
+・Helper
++0~47:HelperName
++48~56:ID
++60:HelperType
++64~72:Pos X
++76~84:Pos Y
++88:PosType
++92~100:Facing
++104~112:StateNo
++116~124:KeyCtrl
++128~136:OwnPal
++140~148:SuperMoveTime
++152~160:PauseMoveTime
++164~172:Scale X(省略時-32760.0)
++176~184:Scale Y(省略時-32760.0)
++188~196:Size.Ground.Back(省略時-32751)
++200~208:Size.Ground.Front(省略時-32751)
++212~220:Size.Air.Back(省略時-32751)
++224~232:Size.Air.Front(省略時-32751)
++236~244:Size.Height(省略時-32751)
++248~256:Size.Proj.DoScale(省略時-32751)
++260~268:Size.Head.Pos.X(省略時-32751)
++272~280:Size.Head.Pos.Y(省略時-32751)
++284~292:Size.Mid.Pos.X(省略時-32751)
++296~304:Size.Mid.Pos.Y(省略時-32751)
++308~316:Size.ShadowOffSet(省略時-32751)
+おそらくFloatは-32760.0、Intは-32751が不動用の値だと思われる。
+
+
+
+
+・HitDef,ReversalDef
++0:AffectTeam
++4:Attr
++8~16:ID
++20~28:ChainID
++32~40:NoChainID(左)
++44~52:NoChainID(右)
++56~64:Kill
++68~76:Guard.Kill
++80~88:Fall.Kill
++92~100:HitOnce
++104~112:Air.Juggle
++116~124:Damage
++128~136:Damage(ガード時)
++140~148:GetPower
++152~160:GetPower(ガード時)
++164~172:GivePower
++176~184:GivePower(ガード時)
++188~196:PauseTime(相手、「右側」)
++200~208:PauseTime(自分、「左側」)
++212~220:NumHits
++224~232:HitSound(左)
++236~244:HitSound(右)
++248:HitSoundがFなら1。
++252~260:GuardSound(左)
++264~272:GuardSound(右)
++276:GuardSoundがFなら1。
++280:GuardFlag
++284:HitFlag
++288~296:Priority
++300:Priorityの相打ち時処理
++304~312:Attack.Width(左)
++316~324:Attack.Width(右)
++328~336:P1StateNo
++340~348:P2StateNo
++352~360:P2GetP1State
++364~372:?
++376~384:(P1)SprPriority
++388~396:P2SprPriority
++400:AnimType
++404~412:ForceStand
++416:1?
++420:Reversal.Attr(ReversalDefのみ有効)
++424~432:Fall.Damage
++436:Fall.AnimType
++440~448:Fall.XVelocity
++452~460:Fall.YVelocity
++464~472:Fall.Recover
++476~484:Fall.RecoverTime
++488~496:Fall.EnvShake.Time
++500~508:Fall.EnvShake.Dir
++512~520:Fall.EnvShake.Freq
++524~532:Fall.EnvShake.Ampl(ここではInt型)
++536~544:Fall.EnvShake.Phase
++548:0?
++552~560:Fall
++564~572:SparkNo
++576:SparkNoのSの有無(あるなら1)
++580~588:Guard.SparkNo
++592:Guard.SparkNoのSの有無(あるなら1)
++596~604:SparkXYのX
++608~616:SparkXYのY
++620~628:P1Facing
++632~640:P2GetP1Facing
++644~652:MinDistのX
++656~664:MinDistのY
++668~676:MinDistのZ?(入れることは出来ない、内部値は-1025),
++680~688:MaxDistのX
++692~700:MaxDistのY
++704~712:MaxDistのZ?(入れることは出来ない、内部値は-1025)
++716~724:P2Facing
++728:Ground.Type
++732~740:Ground.HitTime
++744~752:Ground.SlideTime
++756~764:Ground.Velocity(X)
++768~776:Ground.Velocity(Y)
++780~788:Ground.CornerPush.VelOff
++792:Air.Type
++796:Air.AnimType
++800~808:Air.HitTime
++812~820:Air.Fall
++824~832:Air.Velocity(X)
++836~844:Air.Velocity(Y)
++848~856:Air.CornerPush.VelOff
++860~868:Down.Bounce
++872~880:Down.HitTime
++884~892:Down.Velocity(X)
++896~904:Down.Velocity(Y)
++908~916:Down.CornerPush.VelOff
++920~928:Guard.Velocity
++932~940:Guard.HitTime
++944~952:Guard.SlideTime
++960~968:Guard.CtrlTime
++972~980:Guard.Dist
++984~992:Guard.PauseTime(相手、「右側」)
++996~1004:Guard.PauseTime(自分、「左側」)
++1008~1012:Guard.CornerPush.VelOff
++1016~1024:AirGuard.Velocity(X)
++1028~1036:AirGuard.Velocity(Y)
++1040~1048:AirGuard.CtrlTime
++1052~1060:AirGuard.CornerPush.VelOff
++1064~1072:YAccel
++1076:0?
++1080~1088:PalFX.Time
++1092~1100:PalFX.Color
++1104~1112:PalFX.Add(R)
++1116~1124:PalFX.Add(G)
++1128~1136:PalFX.Add(B)
++1140~1148:PalFX.Mul(R)
++1152~1160:PalFX.Mul(G)
++1164~1172:PalFX.Mul(B)
++1176~1184:PalFX.SinAdd(R)
++1188~1196:PalFX.SinAdd(G)
++1200~1208:PalFX.SinAdd(B)
++1212~1220:PalFX.InvertAll
++1224~1232:PalFX.SinAdd(Time)
++1236~1244:EnvShake.Time
++1248~1256:EnvShake.Dir
++1260~1268:EnvShake.Freq
++1272~1280:EnvShake.Ampl
++1284~1292:EnvShake.Phase
+
+優先度はSnap>MinDist&MaxDist
+SnapがあればMinDistもMaxDistも無効になる。
+
+優先度はP1SprPriority>SprPriority
+
+・Projectile
++0~8:ProjID
++12~20:OffSet X
++24~32:OffSet Y
++36:PosType
++40~48:ProjRemove
++52~60:ProjRemoveTime
++64~72:ProjMissTime
++76~84:ProjEdgeBound
++88~96:ProjStageBound
++100~108:ProjHeightBound(左)
++112~120:ProjHeightBound(右)
++124~132:ProjHits
++136~144:ProjPriority
++148~156:ProjAnim
++160~168:ProjHitAnim
++172~180:ProjRemAnim
++184~192:ProjCancelAnim
++196~204:ProjShadow(R)
++208~216:ProjShadow(G)
++220~228:ProjShadow(B)
++232~240:ProjSprPriority
++244~252:Velocity(X)
++256~264:Velocity(Y)
++268~276:VelMul(X)
++280~288:VelMul(Y)
++292~300:RemVelocity(X)
++304~312:RemVelocity(Y)
++316~324:Accel(X)
++328~336:Accel(Y)
++340~348:ProjScale(X)
++352~360:ProjScale(Y)
++364~372:SuperMoveTime
++376~384:PauseMoveTime
++388~1680:+388したものをHitDefのパラメータに当てはめればいいので中略
++1684:0?
++1688:AfterImageの参照先
+
+[[State+96]+1688]
++0~8:AfterImage.Time
++12~20:AfterImage.Length
++24~32:AfterImage.TimeGap
++36~44:AfterImage.FrameGap
++48~56:AfterImage.PalColor
++60~68:AfterImage.PalInvertAll
++72~80:AfterImage.PalBright(R)(本家と同じく30固定になっている)
++84~92:AfterImage.PalBright(G)
++96~104:AfterImage.PalBright(B)
++108~116:AfterImage.PalContrast(R)
++120~128:AfterImage.PalContrast(G)
++132~140:AfterImage.PalContrast(B)
++144~152:AfterImage.PalPostBright(R)
++156~164:AfterImage.PalPostBright(G)
++168~176:AfterImage.PalPostBright(B)
++180~188:AfterImage.PalAdd(R)
++192~200:AfterImage.PalAdd(G)
++204~212:AfterImage.PalAdd(B)
++216~224:AfterImage.PalMul(R)
++228~236:AfterImage.PalMul(G)
++240~248:AfterImage.PalMul(B)
++252:AfterImage.Trans
++256~264:AfterImage.Alpha(AS値)
++268~276:AfterImage.Alpha(D値)
+AfterImageのパラメータと同じ
+
+
+おまけ、反映はされないが起動時の読み込みはあるパラメータ
+VelSet,Add,MulのZ軸(何故かOffSetのみはない)
+EnvShakeのDir
+HitDefの(Fall.)EnvShake.Dir
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━┓　┏━━　┏━━
+┃　　　┃　　　┃
+┗━┓　┣━━　┣━━
+　　┃　┃　　　┃
+┗━┛　┸　　　┸
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+・Sffの情報(?)[P+3067+1969]
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
++0:Sff利用先(OwnPal=0かつ+1973のほうは0だった)
++8:Act利用先
++12:キャッシュ領域にあったSff参照先(OwnPal=0かつ+1973のほうは0だった)
++20:0以外にしたらMUGEN落ちした
++24:?(0x01000100)(OwnPal=0かつ+1973のほうは0だった)
++28:
+
+なにかのアドレス[[P+3067+1969]+12]or[[P]+968]
+おそらくキャラ選択時のポトレ用のSff参照先？
++0:Sff利用先([[P+3067+1969]]と同じ)
++12:???(Act関係っぽいが...)
+
+Sffの情報[[P+3067+1969]]
++0:不明
++4:Sffは何Byte区切りか
++8:Sff枚数
++12:Sff枚数
++16:Sff枚数
++20:Sff情報(個別)
++24:SffList
+
+Sff個別情報[[[P+3067+1969]]+20]+52*X
++0:横幅
++4:縦幅
++8:OffSet-X
++12:OffSet-Y
++16:8(8以外にすると何も表示されなくなる模様)
++20:256(256より上にするとMUGEN自体がフリーズする[無限ループに陥ってる？])
++24:1
++32:横幅*縦幅
++36:スプライト情報
++40:1
++44:何かのアドレス
+おそらくスプライト情報を何Byteで改行(?)をするかが4Byteおきに書かれている
+例:横幅が0x10なら0x0, 0x10, 0x20, 0x30と縦幅が終わるまで書き続けられる？
+縦幅が0x20なら0x20回書き続けると思われる。
++48:何番目のActを使用しているか
+以下、終わるまで続く
+
+スプライト情報[[[[P+3067+1969]]+20]+36+52*X]
+左から右にactの順番を割り当てるようだ
+00:□
+01:■
+02:○
+03:●
+だとして
+□■■
+○○●
+■○□
+という感じだと
+00 01 01 02 02 03 01 02 00
+となる。
+どこで改行するかは[[[[P+3067+1969]]+20]+44+52*X]にあると思われる
+
+SffList[[[P+3067+1969]]+20]
++0:有効化フラグ(?)
++4:何番目にあるか
++8:左の値
++12:右の値
+以下、終わるまで続く
+
+Act関係[[P+3067+1973]+8]or[[P+3067+1977]+8],以下、ActDataとする
++0:?
++4:Actは何Byte区切りか
++8:Act総数(未割り当て状態では0だった)
++12:Act総数(未割り当て状態ではPlayerPalMaxと同じだった)
++16:Act総数(未割り当て状態では0だった)
++20:Actデータ
++24:ActList
++28:Act総数-1
++32:Act総数
++40:Act総数-1
+
+Actデータ[ActData+20]+604*X
++0:何番目までActを弄るか？
++8:Act情報参照先
++12:PalColor
++16:PalFX-Add-R
++20:PalFX-Add-G
++24:PalFX-Add-B
++28:PalFX-MulのR
++32:PalFX-MulのG
++36:PalFX-MulのB
++40:不明
++44:PalFX-Invertall
++48:+12と同じ値になった
++52:+16と同じ値になった
++56:+20と同じ値になった
++60:+24と同じ値になった
++64:+28と同じ値になった
++68:+32と同じ値になった
++72:+36と同じ値になった
++76:+40と同じ値になった
++80:+44と同じ値になった
++84:4(なんか下2bitは常に0に上書きされていた)
+自分のPalFXをしている時は3bit目も0になっている模様
+1bit:ここか2bit目を1にするとAllPalFXの影響を無視した(おそらく自分PalFXの更新フラグ？)
+2bit:ここか1bit目を1にするとAllPalFXの影響を無視した(おそらく自分PalFXの更新フラグ？)
+3bit:自分がPalFXを実行していないフラグ？
++88:パレット変更フラグ
+ここの値が[[0x4B5FB0]+4C]と異なればパレット変更フラグが立ってここの値が変更される
+なお、自分が該当Actのスプライトを使用していないと更新されない模様
+ちなみに[[0x4B5FB0]+4C]は特定時に増えていくらしい
++92~600:現在のパレット
++604:次のActData
+
+以下、92~600の領域の考察
++92~93:透過カラー
+nは透過カラーを0番目として何番目のパレットか
+92+n*2:
+1~5bit:B
+6~11bit:G
+12~16bit:R
+これが602まで続く。
+また、パレットリセットフラグ時に上書きされる
+
+Act情報[[ActData+20]+8+604*X]
++0:1番目のパレットのR
++1:1番目のパレットのG
++2:1番目のパレットのB
++3:用途不明(デフォ0xFF)
+
+ActList[ActData+24]
++0:有効フラグ
++4:何番目にあるか
++8:?
++12:何番目にあるか
++16:2番目に続く
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┏━┓　┰　┰　┳　┏┓┏┓
+┃　┃　┣┓┃　┃　┃┃┃┃
+┣━┫　┃┃┃　┃　┃┗┛┃
+┃　┃　┃┗┫　┃　┃　　┃
+┸　┸　┸　┸　┻　┸　　┸
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+・Anim情報
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+アドレスの先の情報([P+3067+1985])or([Explod+128])64Byte分の情報があるらしいが詳細は不明
++0が利用アニメアドレス?、ChangeAnim2を使えば利用者のアドレスになる模様
++4は利用Sffのようだ
++12が現在のAnim(何番目にあるか,範囲外になるとアサートエラー110)
++16が今のアニメ(枚指定)詳細([[[[[[P+3067+1985]]]+20]+20*X]+20]+48*Yと関連している)
++20が現在のAnimElemNo(0)-1
++24でAnimElemTime(1)[ChangeAnim使う毎にセットされ、使ってない間は1Fずつ増えていく模様]
++28でAnimElemTime(1)(0以下だと消える模様,Transはここを参照する様子)
+;+28を+20と比較して次のアニメになると判断したorアニメ終了したら更新する？
+;見た感じアニメ終了しない限りは前のアニメに戻ることはない?
++32:-1
++36:256
++40:256
+※+32~+40の領域はProjではTransに用いているようだ。
++44で何番目のスプライトを使っているか(-1だと空or未使用sff、範囲外だと560エラー)
++48:LayerSpriteに関係している様子、ontop=1のExplodは0だが値を入れるとMUGEN落ちするので注意
++52:Explodの場合はSprPriority
+利用アニメアドレスの情報[[P+3067+1985]]or[[P]+972],以下、AnimAddと表す
++0:利用アニメアドレスの情報
++4にアニメ総数がある模様
+利用アニメアドレスの情報[AnimAdd]
++0:不明
++4:Anim情報は何Byte区切りか
++8:Anim総数
++12:Anim総数
++16:Anim総数
++20:各Anim情報
++24:AnimList
+Anim情報[[AnimAdd]+20]
++0:アニメ情報?
++4:アニメ枚数
++8:総AnimTime
++12:ループ直前の総AnimTime
++16:ループ直前のAnimElemNo(0)
+以下、終わるまで続く
+Anim情報[[[AnimAdd]+20]+20*X]
++0:不明
++4:AnimElem情報(個別)は何Byte区切りか
++8:Anim枚数
++12:Anim枚数
++16:Anim枚数
++20:AnimElem情報(個別)
++24:AnimElem情報枚数別(個別)
+AnimElem情報枚数別[[[[AnimAdd]+20]+20*X]+20]+48*Y
++0:その枚数が始まってからのAnimElemTime(1)
++4:その枚数は何Fあるか?
++8:使用Sff(左)
++12:使用Sff(右)
++16:X軸のOffSet
++20:Y軸のOffSet
++24:反転(bit管理?)
+1bit:左右
+2bit:上下
+4bit:AddAlphaの時に1になった?
++28:Trans(0:None,1:Add,2:Sub,3:AddAlpha)
++32:AddAlphaの左側
++36:AddAlphaの右側
++40:Clsn1情報
++44:Clsn2情報
+以下、終わるまで続く
+Clsn1情報(2も管理法は同じだと思われる?)[[[[[AnimAdd]+20]+20*X]+20]+40+48*Y]
++0:不明(1が入っていた)
++4:Clsn個数だと思われる
++8:Clsnアドレス
+
+Clsnアドレス先(2も管理法は同じだと思われる?)[[[[[AnimAdd]+20]+20*X]+20]+40+48*Y]
++0:不明
++4:Air視点で左から1番目(X軸1)
++8:Air視点で左から2番目(Y軸1)
++12:Air視点で左から3番目(X軸2)
++16:Air視点で左から4番目(Y軸2)
+以下、終わるまで続く
+ElemList[[[[AnimAdd]+20]+20*X]+24]
++0:有効フラグ?
++4:何番目か?
++8:不明
++12:何番目か?
+以下、終わるまで続く
+AnimList情報[[AnimAdd]+24]
++0:有効フラグ?
++4:何番目にあるか
++8:不明
++12:番号
+以下、終わるまで続く
+
+
+
+
+
+
+
+
+
+
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+・AfterImageのアドレス表
+[P+3067+1945]の値を基準とする
+
++0:何かのアドレスが入っていた、ここが正式な値じゃないとフリーズ？
++4:AfterImageを使用したときは変わっていないが60となっていた
++8:実行者のアニメアドレス
++12:0に上書きされていた
++16:0に上書きされていた
++20:0に上書きされていた
++24:なにかが変わっていたがわからない[1が入ってた]
++28:Time(AfterImageTimeでいじる部分)
++32:Length
+備考:	Length = 1のときに1になり、2以上のときは2になっていた
+	また、0以下のときは20になっていた。2以上のときには
+	書き込み中は2のままだが、実行後はここの値にある模様
++36:Timegap
++40:Framegap
++44:PalColor
++48:PalInvertall
++52:PalBright(R)
++56:PalBright(G)
++60:PalBright(B)
++64:PalContrast(R)
++68:PalContrast(G)
++72:PalContrast(B)
++76:PalPostBright(R)
++80:PalPostBright(G)
++84:PalPostBright(B)
++88:PalAdd(R)
++92:PalAdd(G)
++96:PalAdd(B)
++100:PalMul(R)
++104:PalMul(G)
++108:PalMul(B)
++112:Trans	
+備考	-1:Default,0:None,1:Add,2:Sub,3:Add1 or AddAlpha
++116:Alpha(左)
++120:Alpha(右)
++124:以下、次プレイヤー用の領域だと思われる
+
+[[P+3067+1945]]
++0:?
++4:ScreenPos Xに関係している？
++8:ScreenPos Yに関係している？
++12:1.0
++16:1.0
++32:256
++40:なにかのアドレス
++44:256(Color関連?)
++60:256(PalMul-R関連?)
++64:256(PalMul-G関連?)
++68:256(PalMul-B関連?)
++80:256(Color関連?)
++96:256(PalMul-R関連?)
++100:256(PalMul-G関連?)
++104:256(PalMul-B関連?)
++116:4(PalFXのほうと同じ?)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+┏┓┏┓　┰　┰　┏━┓　┏━┥　┰　┰
+┃┃┃┃　┃　┃　┃　　　┃　　　┣┓┃
+┃┗┛┃　┃　┃　┃┝┓　┣━┥　┃┃┃
+┃　　┃　┃　┃　┃　┃　┃　　　┃┗┫
+┸　　┸　┗━┛　┗━┛　┗━┥　┸　┸
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・MUGEN内部アドレス[0x4B5B4C]([4938572])
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+
+[4938572]/[0x4B5B4C]	親捏造１回目の取得場所（Ｘとする）
+
+Ｘ		C:\MUGEN(ＭＵＧＥＮの置いてある場所)
+Ｘ+512		mugenが置いてあるファイルパス(Ｘと同じ)、最後に/(スラッシュ)が追加されている
+Ｘ+1044		ステージパス
+Ｘ+2140		ARCADEの文字
+Ｘ+2172		VS MODEの文字
+Ｘ+2204		TEAM ARCADEの文字
+Ｘ+2236		TEAM VSの文字
+Ｘ+2268		TEAM CO-OPの文字
+Ｘ+2300		SURVIVALの文字
+Ｘ+2332		SURVIVAL CO-OPの文字
+Ｘ+2364		TRAININGの文字
+Ｘ+2396		WATCHの文字
+Ｘ+2428		OPTIONSの文字
+Ｘ+2460		EXITの文字
+Ｘ+2596		P1Start X(Int)[ステージ中心を0とする]
+Ｘ+2600		P2Start X(Int)
+Ｘ+2604		P3Start X(Int)
+Ｘ+2608		P4Start X(Int)
+Ｘ+2612		P1Start Y(Int)
+Ｘ+2616		P2Start Y(Int)
+Ｘ+2620		P3Start Y(Int)
+Ｘ+2624		P4Start Y(Int)
+Ｘ+2628		P1Start Z(?)
+Ｘ+2632		P2Start Z(?)
+Ｘ+2636		P3Start Z(?)
+Ｘ+2640		P4Start Z(?)
+Ｘ+2644		P1Facing
+Ｘ+2648		P2Facing
+Ｘ+2652		P3Facing
+Ｘ+2656		P4Facing
+Ｘ+2660		LeftBound
+Ｘ+2664		RightBound
+Ｘ+2688		TopScale
+Ｘ+2692		BotScale
+Ｘ+2696		ScreenLeft
+Ｘ+2700		ScreenRight
+Ｘ+2704		Intensity
+Ｘ+2752		ステージBGMのBGVolume
+Ｘ+2756		ステージBGMがあると1になる？
+Ｘ+2764		ステージBGMがあると1になる？
+Ｘ+2768		ステージBGMパス
+Ｘ+3280		3632刻みにキャラパスのことが格納されている？[[参照先]+8]にキャッシュ領域があった
+1P,2P,3P,4Pごとに3632*Xが足される模様
++0:有効フラグ?(1が入っていた)
++8:キャッシュ領域
++524:defファイル名
++1036:defファイルへのパス?
++1548:専用ステージパス(defに登録したやつ)
++2060:専用BGMパス(defに登録したやつ)
++2584:Pal.Defaultsの1番目
++2588:Pal.Defaultsの2番目
++2592:Pal.Defaultsの3番目
++2596:Pal.Defaultsの4番目
++2604:アーケードのオープニングのdef名
++3116:アーケードのエンディングのdef名
+VSクイック以外はキャラの登録順の模様
+Ｘ+3296		？
+Ｘ+3316		アーケードのorder=1の数値
+Ｘ+3320		アーケードのorder=2の数値
+...
+Ｘ+3352		アーケードのorder=10の数値
+Ｘ+3356		チームアーケードのorder=1の数値
+Ｘ+3360		チームアーケードのorder=2の数値
+...
+Ｘ+3392		チームアーケードのorder=10の数値
+Ｘ+3436		select.defの文字
+Ｘ+6444		なにかの参照先
+Ｘ+8568		アーケード制覇時の文字
+Ｘ+8696		サバイバル達成数の文字
+Ｘ+9892		ここが3だとRoundTimerの初期値が∞になった
+Ｘ+9916		ここが0だと2P側のライフバーのタッグ用の小ポトレ枠が出た
+Ｘ+9928		ここが4以外だと画面が真っ暗になった
+Ｘ+23748	なにかの参照先
+Ｘ+23756	なにかの参照先
+Ｘ+23760	なにかの参照先
+Ｘ+23764	なにかの参照先
+Ｘ+23768	なにかの参照先
+Ｘ+23772	なにかの参照先
+Ｘ+23776	なにかの参照先
+Ｘ+23780	なにかの参照先
+Ｘ+23784	なにかの参照先
+Ｘ+23788	190
+Ｘ+23792	190
+Ｘ+23796	-1
+Ｘ+23800	?
+Ｘ+23804	EnvColor-Under
+Ｘ+23808	EnvColor-value(仕様が特殊)
+			1-5bit:青
+			6-11bit:緑
+			12-16bit:赤
+			何故か緑の管理範囲が他の色より1bit多い
+
+Ｘ+23812	EnvColor-Time
+Ｘ+23816	fightfx.sffの参照先
+Ｘ+23820	fightfx.airの参照先(データ管理法は本体のやつとほぼ同じ)
+Ｘ+23824	fight.sffの参照先
+Ｘ+23828	ライフバーのAnim(データ管理法は本体のやつとほぼ同じ)
+Ｘ+23832~23868	なにかの参照先
+Ｘ+23872	参照先にfight.sndの参照先があった
+Ｘ+23876	参照先にcommon.sndの参照先があった
+Ｘ+34812	1PのDisplayNameが保存されてた(シングル用)
+Ｘ+34920	2PのDisplayNameが保存されてた(シングル用)
+Ｘ+35708	1PのDisplayNameが保存されてた(タッグ用)
+Ｘ+35816	2PのDisplayNameが保存されてた(タッグ用)
+Ｘ+35924	3PのDisplayNameが保存されてた(タッグ用)
+Ｘ+36032	4PのDisplayNameが保存されてた(タッグ用)
+Ｘ+36600	1PのDisplayNameが保存されてた(チーム用)
+Ｘ+36712	2PのDisplayNameが保存されてた(チーム用)
+Ｘ+37176	タイムの文字(ASCII文字表記)
+Ｘ+37232	FrameSperCount	ここの値*(ConfigのRoundTime+1)-1が制限時間になる模様、当然0にするとMUGEN落ちする
+Ｘ+38672	Fight!の文字
+Ｘ+38796	K.Oの文字
+Ｘ+38904	Double K.O.の文字
+Ｘ+39012	Time Overの文字
+Ｘ+39152	勝利時のメッセージ
+Ｘ+39260	勝利時のメッセージ(タッグ時)
+Ｘ+39368	引き分け時の文字
+Ｘ+39440	Win.Time	勝利メッセージ
+Ｘ+39444	Ctrl.Time	試合開始からコントロールまで
+Ｘ+39448	Slow.Time	ＫＯ後スロー
+Ｘ+39452	Over.WaitTime	試合後コントロール
+Ｘ+39456	Over.HitTime	試合後回復可能
+Ｘ+39460	Over.WinTime	判定
+Ｘ+39464	Over.Time	試合後演出
+Ｘ+41700	Explod参照先へのアドレス
+Ｘ+41704	システムExplod参照先へのアドレス
+[Ｘ+41704]
++0:SysExplodのアドレス
++4:SysExplodMax
++8:SysExplod総数
+Ｘ+42220	dataファイルへのパス
+Ｘ+42736	タイトル画面とキャラ選択画面のスプライトのパス
+Ｘ+43248	system.sndの参照先のアドレス
++20は効果音の中身へのアドレス？
++24がSndListらしい
+0:有効フラグ
+4:何番目か
+8:左番号
+12:右番号
+Ｘ+43252	タイトル画面とキャラ選択画面の効果音のパス
+Ｘ+43284	親捏造１回目記録値
+Ｘ+43824	タイトル画面のBGMのパス
+Ｘ+44856	キャラ選択画面のBGMのパス
+Ｘ+45372	背景データ
+[Ｘ+45372]
++40:Sff情報
+[[Ｘ+45372]+40]:Sff情報
++0:背景Sff情報
++8:背景Act情報(詳しいことは)上の本体Act情報を参照されたし
+
+Ｘ+45376	BGPalFXの実行からの経過時間、BGPalFX-Time以上だと反映されずその後0に戻る？
+Ｘ+45380	BGPalFX-Time
+Ｘ+45384	BGPalFX-Color
+Ｘ+45388	BGPalFX-Add(R)
+Ｘ+45392	BGPalFX-Add(G)
+Ｘ+45396	BGPalFX-Add(B)
+Ｘ+45400	BGPalFX-Mul(R)
+Ｘ+45404	BGPalFX-Mul(G)
+Ｘ+45408	BGPalFX-Mul(B)
+Ｘ+45412	BGPalFX-SinAdd(R)
+Ｘ+45416	BGPalFX-SinAdd(G)
+Ｘ+45420	BGPalFX-SinAdd(B)
+Ｘ+45424	BGPalFX-InvertAll
+Ｘ+45428	BGPalFX-SinAddTime
+Ｘ+45432	BGPalFXリセットフラグ(本体の+6681と同じと思われる)
+Ｘ+45436	AllPalFXの実行からの経過時間、AllPalFX-Time以上だと反映されずその後0に戻る？
+Ｘ+45440	AllPalFX-Time
+Ｘ+45444	AllPalFX-Color
+Ｘ+45448	AllPalFX-Add(R)
+Ｘ+45452	AllPalFX-Add(G)
+Ｘ+45456	AllPalFX-Add(B)
+Ｘ+45460	AllPalFX-Mul(R)
+Ｘ+45464	AllPalFX-Mul(G)
+Ｘ+45468	AllPalFX-Mul(B)
+Ｘ+45472	AllPalFX-SinAdd(R)
+Ｘ+45476	AllPalFX-SinAdd(G)
+Ｘ+45480	AllPalFX-SinAdd(B)
+Ｘ+45484	AllPalFX-InvertAll
+Ｘ+45488	AllPalFX-SinAddTime
+Ｘ+45492	AllPalFXリセットフラグ(本体の+6681と同じと思われる)
+Ｘ+45496	効果音フラグ、0だと全ての効果音が出なくなる
+Ｘ+45500	WavVolume
+Ｘ+45504	MasterWavVolume
+Ｘ+45508	CDAVolume
+Ｘ+45512	MidiVolume
+Ｘ+45516	Mp3Volume
+Ｘ+45520	ModVolume
+Ｘ+46076	GameTime
+Ｘ+46080	よくわからないが0以上にすると-1になる模様
+Ｘ+46096	1に上書きされていた
+Ｘ+46100	不明
+Ｘ+46120	ステージのずれX軸(Float)
+Ｘ+46124	ステージのずれY軸?(Floatだと思われるが未検証)
+Ｘ+46128	ステージのずれX軸(背景)(Int)
+Ｘ+46132	ステージのずれY軸(背景)(Int)
+Ｘ+46136	ステージのずれX軸(Float)
+Ｘ+46140	ステージのずれY軸?(Floatだと思われるが未検証)
+Ｘ+46144	揺れ幅(横)[Int型]※当初はX軸のEnvShakeもあったのだろうか？
+Ｘ+46148	揺れ幅(縦)[Int型]
+Ｘ+46152	EnvShakeのTime計測
+Ｘ+46156	EnvShake-Time
+Ｘ+46160	EnvShake-Dir?(GetHitVarの順番からこれが入る予定だったと思われる)(未検証)
+ちなみにEnvShakeステコンはDirを認識できるが、ここには反映すらされない模様
+Ｘ+46164	EnvShake-Freq
+Ｘ+46168	EnvShake-Ampl[Float型]
+Ｘ+46172	EnvShake-Phase
+Ｘ+46296	1P側の-667のアドレスが示す先(コマンド関連らしい)
+Ｘ+46348	2P側の-667のアドレスが示す先
+Ｘ+46640	なんかのアドレス
+Ｘ+46656	60(最大プレイヤー領域?)
+Ｘ+46660	56(HelperMax?)
+Ｘ+46664	4
+Ｘ+46668	総プレイヤー数(ここが総プレイヤー数と不一致だと特定タイミングでPlayerEnableエラー)
+Ｘ+46676	1Pのキャッシュ参照先
+Ｘ+46680	2Pのキャッシュ参照先
+Ｘ+46684	3Pのキャッシュ参照先
+Ｘ+46688	4Pのキャッシュ参照先
+Ｘ+46692	1番目のヘルパーのキャッシュ領域の予定だった領域？
+...
+Ｘ+46912	56番目のヘルパーのキャッシュ領域の予定だった領域？
+Ｘ+46924	59番目のヘルパーのキャッシュ領域の予定だった領域？
+;ここを見る当たり開発当初はNumHelperの上限が59だったと思われる？(P領域が64-1個あるとおもわれる)
+Ｘ+46932	１Ｐアドレス記録（親捏造２回目中継）
+Ｘ+46936	２Ｐアドレス記録（親捏造２回目中継）
+Ｘ+46940	３Ｐアドレス記録（親捏造２回目中継）
+Ｘ+46944	４Ｐアドレス記録（親捏造２回目中継）
+Ｘ+46948	1番目のヘルパーのアドレス
+Ｘ+46952	2番目のヘルパーのアドレス
+...
+Ｘ+47168	56番目のヘルパーのアドレス
+Ｘ+47188+4*(N-1)N番目のプレイヤーが本体として存在していれば1らしい
+Ｘ+47440	何番目のプレイヤーから存在しているか
+Ｘ+47444	何番目のプレイヤーまで存在しているか
+Ｘ+47448  	1番目のプレイヤー
+Ｘ+47684  	60番目のプレイヤー
+Ｘ+47708	存在プレイヤー数？(RoundState=0時は0だった)
+Ｘ+47712 	次のPlayerID
+Ｘ+47716	常時監視時のPersistentの3番目で引き出せるらしいが...
+Ｘ+47720	1Pは存在している(いるなら1、いないなら0)
+Ｘ+47724	2Pは存在している
+Ｘ+47728	3Pは存在している
+Ｘ+47732	4Pは存在している
+Ｘ+47736	1個目のヘルパーは存在している
+Ｘ+47740	2個目のヘルパーは存在している
+...
+Ｘ+47956	56個目のヘルパーは存在している
+
+内部的には0Pの領域もあると思われるが1Pから始まっていることから欠番になっている様子？
+0P:欠番
+1~4P:プレイヤー
+5P:1個目のヘルパー
+60P:56個目のヘルパー
+61~63P:未使用？
+そう考えるとＸ+46928には0Pのアドレスが入り、Ｘ+47716には0Pの存在フラグが、
+Ｘ+46672に0Pのキャッシュ領域が、Ｘ+47184に本体としての存在フラグが入ると考えれば所々にある空き領域にも説明ができる。
+(Ｘ+47448に関しては存在しているプレイヤーの順番なので別に矛盾はない)
+61~63Pに関しては、Ｘ+47172~Ｘ+47180、Ｘ+46916~Ｘ+46924、Ｘ+47960~Ｘ+47968、Ｘ+47428~Ｘ+47436
+にそれぞれ3つの空き領域があることから説明がつく。
+なぜ0を先頭としなかったのかはおそらく0からだとややこしくなるからだろう(ポ○モンの図鑑Noが001から始まる理由と同じと思われる)
+
+
+ただしこれらに対する疑問がないわけではない。
+プレイヤー数が64まであったとするとＸ+47684~Ｘ+47704に5個の領域があることが気になる。
+60+5で65あることになってしまう。
+バイナリデータにも+47704の値がなかったことを考えると文字のNullと同じような終端符なのだろうか？
+
+Ｘ+47972 	ヘルパー召喚フラグ(ここの値が1だと全プレイヤー読み込んだ後に再度読み込み直す)
+Ｘ+47976	1
+Ｘ+47980	1
+Ｘ+47984	全プレイヤーの総攻撃回数(HitDefかReversalDefを更新するかProjectileを出すかすると増える模様、一度に複数回やれば複数回増える)
+Ｘ+47992	AssertSpecial	Intro
+Ｘ+47993	AssertSpecial	RoundNotOver
+Ｘ+47994	AssertSpecial	NoKO
+Ｘ+47995	AssertSpecial	NoKOSnd
+Ｘ+47996	AssertSpecial	NoKOSlow
+Ｘ+47997	AssertSpecial	NoMusic
+Ｘ+47998	AssertSpecial	GlobalNoShadow
+Ｘ+47999	AssertSpecial	TimerFreeze
+Ｘ+48000	AssertSpecial	NoBarDisplay
+Ｘ+48001	AssertSpecial	NoBG
+Ｘ+48002	AssertSpecial	NoFG
+Ｘ+48016	1
+Ｘ+48020	-1
+Ｘ+48032	1500?
+Ｘ+48056	1
+Ｘ+48084	PauseTime
+Ｘ+48088	PauseTimeのPauseBG
+Ｘ+48092	PauseTimeのEndCmdBufTime
+Ｘ+48100	-2
+Ｘ+48108	-1
+Ｘ+48116	SuperPauseのDarken
+Ｘ+48120	SuperPauseTime
+Ｘ+48124	SuperPauseTimeのPauseBG(1でSuperPause中に背景が止まる)
+Ｘ+48128	SuperPauseTimeのEndCmdBufTime
+Ｘ+48132	RoundNo
+Ｘ+48136	勝利数１Ｐ
+Ｘ+48140	勝利数２Ｐ
+Ｘ+48144	配点完了フラグ
+Ｘ+48148	DrawGameの回数
+Ｘ+48152	ここが0以外だと[Ｘ+48156]のKOフラグが無効になる様子
+Ｘ+48156	KOSlowの残り時間(経ってる間は[Ｘ+48152]の値関わらずTimerFreeze効果が立つ)
+Ｘ+48160	KOSlow関連らしいが不明点が多い
+以下、考察
+Ｘ+48152は残りカウント数
+ここが0になると+48160<0になり次第Slowを中断させる
+
+Ｘ+48160が真フラグ、ここが0以外で終われば全員動けない
+フラグ中は100ずつ減っていく模様
+Ｘ+48156が初期値、Ｘ+48160=0かつＸ+48152>0ならＸ+48160=0になった次のFに補充される
+非常に強力なPauseであり、MUGENの時間経過(RS移行用Time)すら止める
+Introフラグなども解除されずにいる模様
+
+Ｘ+48164	RS=1→RS=2用の経過時間、ここが一定Fに達するとRS=2になる(AssertSpecialのIntroを実行すると0になる)
+Ｘ+48168	RoundState = 3の時間、RoundState = 3中は上書きされている模様
+Ｘ+48172	RoundState = 4の終了時間、固定値のようでラウンド開始時にリセットされる模様
+また、RoundNotOverを使っているとRoundState=4時に経過時間+18に固定される模様
+Ｘ+48176	RoundState
+Ｘ+48180	勝利チーム
+Ｘ+48184	試合の終わり方（１：ＫＯ　２：ＤＫＯ　３：タイムオーバー）
+Ｘ+48188	ラウンド開始からの経過時間(各ラウンドの経過時間)
+Ｘ+48192	残り時間、フレーム
+Ｘ+48196 	RoundState = 2の時間
+Ｘ+48208	１Ｐ勝ち方
+0:V(通常技)、1:S(必殺技)、2:H(超必殺技)、3:C(詳細不明、情報求む)、4:T(判定勝ち)、5:投げ、6:ドクロ、7:味方殺し
+Ｘ+48212	１Ｐ勝ち方(２回目)
+Ｘ+48216	１Ｐ勝ち方(３回目)
+Ｘ+48220	１Ｐ勝ち方(４回目)
+Ｘ+48224	１Ｐ勝ち方(５回目)
+Ｘ+48228	１Ｐ勝ち方(６回目)
+Ｘ+48232	１Ｐ勝ち方(７回目)
+Ｘ+48236	１Ｐ勝ち方(８回目)
+Ｘ+48240	１Ｐ勝ち方(９回目)
+Ｘ+48244	１Ｐ勝ち方(１０回目)
+Ｘ+48248	２Ｐ勝ち方
+Ｘ+48252	２Ｐ勝ち方(２回目)
+Ｘ+48256	２Ｐ勝ち方(３回目)
+Ｘ+48260	２Ｐ勝ち方(４回目)
+Ｘ+48264	２Ｐ勝ち方(５回目)
+Ｘ+48268	２Ｐ勝ち方(６回目)
+Ｘ+48272	２Ｐ勝ち方(７回目)
+Ｘ+48276	２Ｐ勝ち方(８回目)
+Ｘ+48280	２Ｐ勝ち方(９回目)
+Ｘ+48284	２Ｐ勝ち方(１０回目)
+Ｘ+48288	１Ｐ勝ち方補足（８：パーフェクト）
+Ｘ+48292	１Ｐ勝ち方補足(２回目)
+Ｘ+48296	１Ｐ勝ち方補足(３回目)
+Ｘ+48300	１Ｐ勝ち方補足(４回目)
+Ｘ+48304	１Ｐ勝ち方補足(５回目)
+Ｘ+48308	１Ｐ勝ち方補足(６回目)
+Ｘ+48312	１Ｐ勝ち方補足(７回目)
+Ｘ+48316	１Ｐ勝ち方補足(８回目)
+Ｘ+48320	１Ｐ勝ち方補足(９回目)
+Ｘ+48324	１Ｐ勝ち方補足(１０回目)
+Ｘ+48328	２Ｐ勝ち方補足
+Ｘ+48332	２Ｐ勝ち方補足(２回目)
+Ｘ+48336	２Ｐ勝ち方補足(３回目)
+Ｘ+48340	２Ｐ勝ち方補足(４回目)
+Ｘ+48344	２Ｐ勝ち方補足(５回目)
+Ｘ+48348	２Ｐ勝ち方補足(６回目)
+Ｘ+48352	２Ｐ勝ち方補足(７回目)
+Ｘ+48356	２Ｐ勝ち方補足(８回目)
+Ｘ+48360	２Ｐ勝ち方補足(９回目)
+Ｘ+48364	２Ｐ勝ち方補足(１０回目)
+Ｘ+48376	MatchNo
+Ｘ+48388	Esc発動フラグ
+Ｘ+48392	１Ｐ表示ヒット数残り残留時間
+Ｘ+48396	１Ｐ表示内部ヒット数
+Ｘ+48404	１Ｐ表示ヒット数(2-2147483647じゃないと表示されない模様)
+Ｘ+48408	１Ｐ表示ヒット数の座標？(整数)
+Ｘ+48416	２Ｐ表示ヒット数残り残留時間
+Ｘ+48420	２Ｐ表示内部ヒット数
+Ｘ+48428	２Ｐ表示ヒット数(2-2147483647じゃないと表示されない模様)
+Ｘ+48432	２Ｐ表示ヒット数の座標？(整数)
+Ｘ+48464	画面の大きさ（４：通常　５：小さい）
+Ｘ+48552	GameSpeed(TicksPerSecondの値もここになるが、それはまた別の位置にあるらしい)
+Ｘ+48556	DrawShadows
+Ｘ+48560	AfterImageMax
+Ｘ+48564	LayeredSpriteMax
+Ｘ+48568	ExplodMax
+Ｘ+48572	SysExplodMax
+Ｘ+48576	HelperMax
+Ｘ+48580	PlayerProjectileMax
+Ｘ+48584	PlayerPalMax(用途不明、パレット数上限として使う予定だったのだろうか？)
+ちなみにこのPlayerPalMax、新MUGENにも領域がある様子。
+あくまで予想に過ぎないが開発段階では13P以降も選択することが出来る予定ではなかったのだろうか。
+しかし諸事情で没った様子。
+Ｘ+48588	FirstRun
+Ｘ+49356	data/system.defのパス
+Ｘ+49916	クイックモード時のデフォルトのステージのパス
+Ｘ+50456	デバッグが何番目のプレイヤーを表示しているか
+Ｘ+50460	1
+Ｘ+50464	デバッグ表示フラグ
+Ｘ+50468	1
+Ｘ+50472	ここが0だとPause除くデバッグキーが無効化された(ただしＸ+50456が0以外だと有効になる様子)
+Ｘ+50476	デバッグClsn表示フラグ
+0:表示なし
+0,2以外:□(外枠だけ表示する)
+2:■
+Ctrl+Cを押すたびに1ずつ増えて3以上になったら0にする
+Ｘ+50480	警告文参照先
+仕様(推測)
+[[X+50480]+4]	警告文先頭アドレス
+[[[X+50480]]+Y*4]	1+Y行目の警告文アドレス(最大8行分まであるらしい)
+順番的には0→7→6...2→1らしい
+[[X+50480]+8]	77という定数が入っていた(警告文の限界文字数の模様)
+[[X+50480]+12]	警告文の上限数
+[[X+50480]+16]	何個警告文があるか、[[X+50480]+12]以上だとMUGEN落ちする
+[[X+50480]+20]	ここから1ずつ減らしてマイナスになったら[[[X+50480]+12]-1にして[[[X+50480]+16]になるまで警告文を表示するという処理だと思われる
+0で1個、7で2個、1で8個らしい
+Ｘ+50484~?????	エラーメッセージ(起動時エラーやタイプミスマッチエラーのみ、アサートエラー等MUGENがすぐに閉じないエラメは無効)
+Ｘ+51508	ゲームスピード設定
+Ｘ+51512	GameSpeed=1フラグ(ここが0以外になるとＸ+51508が1になる)
+Ｘ+51516	F4フラグ
+Ｘ+51520	Shift+F4フラグ
+Ｘ+51524	GameSpeed=1フラグ(ここが0以外になるとＸ+51508が1になる)
+Ｘ+51532	最後の値
+
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+AllPalFX関係アドレス
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+
+[4B5FB0]:Ｘとする
+Ｘ	:AllPalFX-Color
+Ｘ+4	:AllPalFX-Add(R)
+Ｘ+8	:AllPalFX-Add(G)
+Ｘ+12	:AllPalFX-Add(B)
+Ｘ+16	:AllPalFX-Mul(R)
+Ｘ+20	:AllPalFX-Mul(G)
+Ｘ+24	:AllPalFX-Mul(B)
+Ｘ+28	:AllPalFX-?
+Ｘ+32	:AllPalFX-Invertall
+Ｘ+36	:+0と同じ
+Ｘ+68	:+32と同じ？
+Ｘ+72	:
+Ｘ+76	:Act反映フラグ
+ここが各Actフラグと一致しなければ、Actが変更される模様
+最初の17Fで増えている様子
+それ以外にもAllPalFX実行時にも増えている？
+(ただしAllPalFX実行時は保存値と値が異なっていないと増えない模様)
+AllPalFX領域とX~32(28除く)で異なる部分があればX~32に書き込む(invertallでもOK)
+↓
+X~32(28除く)をX~36~68が異なっていれば書き込むついでにここの値を1増やす
+X~32(28除く)とX~36~68が同じなら増やさない
+
+ここのみデバッグ表示に反映される。
+Act変更フラグでのAct変更はここ基準の模様
+
+
+
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・固定アドレス
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+
+4938056と4938060の値が異なればデバッグキーが実行される
+
+4931696 Ghost-Akane-Inuwakaが1945に設定してる値
+4934688	親捏造１回目Parent書き換え値（Ｌ霊夢）（4B4C20）
+4937016 キー入力管理先
+4937020 前のフレームのキーログ番号（入力）
+4937024 今のフレームのキーログ番号（入力）
+4937028 256
+4937032	キーログ0
+4938048	キーログFE
+4938052 キーログFF
+4938056	前のフレームのキーログ番号（出力）
+4938060	今のフレームのキーログ番号（出力）
+4938080 なんかの命令の参照先らしい
+4938084	キー操作許可？１で許可
+4938560	観音神Parent設定値（4B5B40）
+4938572	親捏造１回目の取得場所（Ｘ）
+4938648 ゲームパッドログ0
+4939664 ゲームパッドログFE
+4939668 ゲームパッドログFF
+4939672 前のフレームのゲームパッドログ番号（出力?）
+4939676	今のフレームのゲームパッドログ番号（出力?）
+4939808 ここらへんにfpsの管理先がある模様？
+4939848 今流しているBGM
+4940112 音楽再生フラグインのパスへの参照先
+4942049 GamePad-A01
+4942050 GamePad-A02
+4942051 GamePad-A03
+4942052 GamePad-A04
+4942053 GamePad-A05
+4942054 GamePad-A06
+4942055 GamePad-A07
+4942056 GamePad-A08
+4942057 GamePad-A09
+4942058 GamePad-A10
+4942059 GamePad-A11
+4942060 GamePad-A12
+4942061 GamePad-A13
+4942062 GamePad-A14
+4942180 なんかのフラグ？0にしても特定タイミングで1になっていた
+4942209	Esc
+ゲームパッドでの入力は2に、キーでの入力は1になる
+4942210 1
+4942211 2
+4942212 3
+4942213 4
+4942214 5
+4942215 6
+4942216 7
+4942217 8
+4942218 9
+4942219 0
+4942220 -(=)
+4942221 +(仕様上キーボード次第で入力不可)
+4942222 Back Space
+4942223 Tab
+4942224 Q
+4942225 W
+4942226 E
+4942227 R
+4942228 T
+4942229 Y
+4942230 U
+4942231 I
+4942232 O
+4942233 P
+4942234 [({)
+4942235 ](})
+4942236 Enter
+4942237	Ctrl(L)
+4942238 A
+4942239 S
+4942240 D
+4942241 F
+4942242 G
+4942243 H
+4942244 J
+4942245 K
+4942246 L
+4942247 ;(+)
+4942248 :(仕様上キーボード次第で入力不可)
+4942249 ~(仕様上キーボード次第で入力不可)
+4942250	Shift(L)
+4942251 \
+4942252 Z
+4942253 X
+4942254 C
+4942255 V
+4942256 B
+4942257 N
+4942258 M
+4942259 <
+4942260 >
+4942261 ?
+4942262 Shift(R)(キーボード次第で入力不可)
+4942263 Pad *
+4942264	Alt(L)
+4942265	Space
+4942266 CapsLock
+4942267 F1
+4942268 F2
+4942269 F3
+4942270 F4
+4942271 F5
+4942272 F6
+4942273 F7
+4942274 F8
+4942275 F9
+4942276 F10
+4942277 NumLock
+4942278 ScrollLock
+4942279 Pad 7
+4942280 Pad 8
+4942281 Pad 9
+4942282 Pad -
+4942283 Pad 4
+4942284 Pad 5
+4942285 Pad 6
+4942286 Pad +
+4942287 Pad 1
+4942288 Pad 2
+4942289 Pad 3
+4942290 Pad 0
+4942291 Pad .
+4942295 F11
+4942296 F12
+4942365 Ctrl(R)
+4942389 Pad /
+4942392 Alt(R)
+4942407 Home
+4942408 ↑
+4942409 PgUp
+4942411 ←
+4942413 →
+4942415 End
+4942416 ↓
+4942417 PgDn
+4942418 Insert
+4942419 Delete
+4942430 Pause?
+4942465 Pause
+
+以下は登録コマンドで変動する？(あまり検証していない)
+4942497 Escキー
+4942498 1
+4942499 2
+4942500 3
+4942501 4
+4942502 5
+4942503 6
+4942504 7
+4942505 8
+4942506 9
+4942507 0
+4942508 -
+4942510 Back Space
+4942511 Tab
+4942512 Q
+4942514 E
+4942519 I
+4942520 O
+4942521 P
+4942522 [
+4942524 U(start)
+4942533 K
+4942534 R(x)
+4942535 T(y)
+4942536 Y(z)
+4942547 F(a)
+4942548 G(b)
+4942549 H(c)
+4942551 ]
+4942553 Space
+4942554 CAPS LOCK
+4942555 F1
+4942556 F2
+4942557 F3
+4942558 F4
+4942559 F5
+4942560 F6
+4942561 F7
+4942562 F8
+4942563 F9
+4942564 F10
+4942565 L
+4942568 J
+4942570 >
+4942571 N
+4942573 <
+4942574 ?
+4942576 M
+4942577 Enter
+4942583 F11
+4942584 F12
+4942652 \(_)
+4942677 ;(+)
+4942696 W(1Pの↑)
+4942699 A(1Pの←)
+4942701 D(1Pの→)
+4942704 S(1Pの↓)
+4942706 Insert
+4942707 Delete
+
+49222E:DTCのCall先代入先
+492256=4792918:RTN
+4B48E8:%fでのCall先(0x496651)
+ちなみに%gでも同じのようだ
+4B48EC:(0x4962FB)
+4B48F0:(0x496361)
+4B48F4:(0x4962A1)
+4B48F8:(0x496349)
+4B48FC:(0x496651)
+
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・デバッグキーアドレス
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+デバッグキー管理について
+004B5874が前のフレームのキーログ番号。004B5878が今のフレームのキーログ番号。違いがあるならば今のフレームのキーログのキーを実行。キーログは004B5548～004B5870で0～FF対応。
+キーログは１バイト目がキーの種類。判定は0が押された判定で、それ以外が押されてない判定。
+キーの種類は
+1:Esc
+2:1
+3:2
+4:3
+5:4
+6:5
+7:6
+8:7
+9:8
+10:9
+11:0
+12 -(=)
+13 +(仕様上キーボード次第で入力不可)
+14 Back Space
+15 Tab
+16 Q
+17 W
+18 E
+19 R
+20 T
+21 Y
+22 U
+23 I
+24 O
+25 P
+26 [({)
+27 ](})
+28 Enter
+29 Ctrl(L)
+30 A
+31 S
+32 D
+33 F
+34 G
+35 H
+36 J
+37 K
+38 L
+39 ;
+40 :(仕様上キーボード次第で入力不可)
+41 ~(仕様上キーボード次第で入力不可)
+42 Shift(L)
+43 \
+44 Z
+45 X
+46 C
+47 V
+48 B
+49 N
+50 M
+51 <
+52 >
+53 ?
+54 Shift(R)(キーボード次第で入力不可)
+55 Pad *
+56 Alt(L)
+57 Space
+58 CapsLock
+59 F1
+60 F2
+61 F3
+62 F4
+63 F5
+64 F6
+65 F7
+66 F8
+67 F9
+68 F10
+69 NumLock
+70 ScrollLock
+71 Pad 7
+72 Pad 8
+73 Pad 9
+74 Pad -
+75 Pad 4
+76 Pad 5
+77 Pad 6
+78 Pad +
+79 Pad 1
+80 Pad 2
+81 Pad 3
+82 Pad 0
+83 Pad .
+84 なし
+85 なし
+86 なし
+87 F11
+88 F12
+157 Ctrl(R)
+181 Pad /
+184 Alt(R)
+199 Home
+200 ↑
+201 PgUp
+203 ←
+205 →
+207 End
+208 ↓
+209 PgDn
+210 Insert
+211 Delete
+237 画面クリック?(アクティブ化がフラグ？)
+ボタンを離す時は256+Xになる(アクティブ化はアクティブ化回数が奇数か偶数かで決まる？)
+
+GamePadはA-XXのXXの部分に該当するボタンが割り当てられる
+例:1 A-01
+   2 A-02
+
+
+
+
+
+
+
+┏━┥　┰　┰　┏━┓┰　　　┏┓　　┏━┓
+┃　　　┗┳┛　┃　┃┃　　┏┛┗┓　┃　┗┓
+┣━┥　　┃　　┣━┛┃　　┃　　┃　┃　　┃
+┃　　　┏┻┓　┃　　┃　　┗┓┏┛　┃　┏┛
+┗━┥　┸　┸　┸　　┗━┥　┗┛　　┗━┛
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・Explodアドレス
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+[内部アドレス+0xA2E4]
++0:Explodデータ
++4:ExplodMax
++8:Explod総計
+
+[[内部アドレス+0xA2E4]]、もしくは[[[[内部アドレス-0x30]+9C]]]で行ける
+前者は0x20足されている。
+一つのExplodにつき228Byteで管理されている
+Explod管理について
+0	存在フラグ？NumExplodに影響あり（１だった）
+4	表示フラグ？NumExplodに影響無し（１だった）
+8	非表示フラグ？（０だった）
+12	所有者ID
+16	ExplodID
+20	X軸位置（ステージ絶対位置）
+24	Y軸位置（ステージ絶対位置）（ScreenPos Y？）
+28	速度X
+32	速度Y
+36	加速度X
+40	加速度Y
+44	Pos X(Int)
+48	Pos Y(Int)
+52	PauseMoveTime
+56	SuperMoveTime(SuperMove=1の時は-1になる模様)
+60	存在時間
+64	RemoveTime
+68	ScaleX
+72	ScaleY
+76	親リダイレクト（3067+1881）(PosTypeがP1かP2のとき、対象の[P+3067+1881]になると思われる、それ以外の初期値は0、ModifyExplodでPosTypeをP1,P2以外に変えた場合は変動しない)
+80	親リダイレクト（3067+1885）(PosTypeがP1かP2のとき、対象の[P+3067+1885]になると思われる、それ以外の初期値は0、ModifyExplodでPosTypeをP1,P2以外に変えた場合は変動しない)
+84	[内部アド]+46128
+88	[内部アド]+46132
+92	PosType
+	P1	0
+	Front	1
+	Back	2
+	Left	3
+	Right	4
+	P2	5
+96	BindTime
+100	OnTopフラグ(2でontop=1,0で通常,1でsprpriority=2147483647の上かつontop=1の下になるらしい,それ以外は何も表示されない
+また、ontop=0のExplodを1や2にしても何も表示されなかった,[Anim+48]にアドレスが存在していると表示されなくなるらしい)
+逆に[Anim+48]を0にしてここを1か2にすればしっかり表示されるようになる
+ちなみに[Anim+48]が0かつここが0でも普通に表示できるがsprpriorityは使えなくなる。
+104	Facing・VFacing
+ &1がFacing、&2がVFacing
+108	不明（１だった）
+112	0以外でEnvShakeの影響を受けるようだ
+116	Shadow
+120	RemoveOnGetHit
+124	ignorehitpause(ちなみに省略時は1)
+128	Anim管理場所(管理方法は本体の[P+3067+1985]と同じようだ)
+132	Trans
+136	AddAlphaの左側(右側含め、本体の方と違い257以上は256になる模様)
+140	AddAlphaの右側
+144	利用Sff
+148	不明(-1だった)
+212	不明(-1だった)
+216	不明(-1だった)
+220	不明(-1だった)
+224	ここが-1じゃないとontop=1のExplodは表示されなかった、捏造で無理やりontop=0にしても同様
+228	次のExplod
+
+ちなみにfightfx.air内のアニメを召喚するときは自動でownpal=1になる模様(というかownpalのパラメータ自体読まれない)
+(anim=F0とかの場合)
+また、ModifyExplodでownpalやAnimは設定できない模様(パラメータすら読まれない)
+SffやActの仕様を考えると妥当な処理である。
+Pos,Vel,Accel,(V)FacingはPosTypeがないと読み込みすらされない模様
+上記で読み込みすらされないと書いたパラメータでも起動時の読み込みはされるようで
+ownpal=hogehoge
+とか入力すると起動時に落ちる。一応注意されたし。
+
+┏━┓　┏━┓　　┏┓　　┝┳┥
+┃　┃　┃　┃　┏┛┗┓　　┃
+┣━┛　┣┳┛　┃　　┃　　┃
+┃　　　┃┗┓　┗┓┏┛　　┃
+┸　　　┸　┸　　┗┛　　━┛
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+・Projectileアドレス
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+Projectile管理について
+[[[基準アドレス-0x30]+A0]+0x4]でP1のProj参照先になる模様
+[[基準アドレス-0x30]+A0]でP2のProj参照先になるようだ
+Explodと同じく[このアドレス+0x10]に容量(サイズ)も格納されているようだ
+
+タッグだと[[基準アドレス-0x30]+A0]でP4、
+[[[基準アドレス-0x30]+A0]+0x4]でP2、
+[[[[基準アドレス-0x30]+A0]+0x4]+0x4]でP3、
+[[[[[基準アドレス-0x30]+A0]+0x4]+0x4]+0x4]でP1とずれていく模様
+
+確実な参照法は
+[[P+3067-2527]]
++0:不明
++4:Projは何Byte区切りか
++8:NumProj
++12:PlayerProjectileMax
++16:今まで何回Projが出たか
++20:ここ
++24:ProjList
+
+[[[P+3067-2527]]+20]
+0:ProjID
+4:2で消えたフラグ？
+8:1
+12:ProjPriority
+16:ProjHitAnim
+20:ProjRemAnim
+24:ProjCancelAnim
+28:ProjHits(残りHit回数)
+32:存在時間？(消去後もカウントされていた)
+36:存在時間？(消去後即座に0になっていた)
+40:???
+44:ProjMissTime管理用
+48:ProjMissTime
+56:ProjRemove
+60:ProjRemoveTime
+64:ProjShadow
+68:Proj現在位置X(弄った1F後に反映された)
+72:Proj現在位置Y
+76:影の位置に関係しているらしい
+80:ProjScale (こっちは弄ってもすぐに戻った)
+84:ProjScale X
+88:ProjScale Y
+92:OffSet X
+96:OffSet Y
+100:Velocity X
+104:Velocity Y
+108:RemVelocity X
+112:RemVelocity Y
+116:VelMul X
+120:VelMul Y
+124:Accel X
+128:Accel Y
+132:ProjEdgeBound
+136:ProjStageBound(負数)
+140:ProjHeightBound(左側)
+144:ProjStageBound
+148:ProjHeightBound(右側)
+152:
+156:
+160:AffectTeam
+164:Attr
+168:放出するたびに[内部アド+47984]の値を取ると思われる
+172:ID(ProjIDとは別)
+180:NoChainID
+(中略)
+204:Air.Juggle
+208:Damage
+212:Guard.Damage
+(中略)
+640:EnvShake.Phase
+644:利用Anim(Explodと違って利用Animそのものらしい)
+648:利用Sff
+656:現在のAnim(何番目にあるか,範囲外になるとアサートエラー110)
+660:今のアニメ(枚指定)詳細([[[[[[P+3067+1985]]]+20]+20*X]+20]+48*Yと関連している)
+664:AnimElemNo(0)関係なのは確か(本体の[[P+3067+1985]+20]と同じ仕様?)
+668:AnimElemTime(1)?(本体の[[P+3067+1985]+24]と同じ仕様?)
+672:AnimElemTime(1)?(本体の[[P+3067+1985]+28]と同じ仕様?)
+;672を+664と比較して次のアニメになると判断したorアニメ終了したら更新する？
+;見た感じアニメ終了しない限りは前のアニメに戻ることはない?
+676:Trans(-1:Default,0:None,1:Add,2:Sub,3:AddAlphaかAdd1)
+680:AddAlphaの場合のAS値
+684:AddAlphaの場合のD値
+688:利用スプライト(n番目のスプライト)
+692:LayeredSprite関連?
+696:ProjSprPriority
+700:〃
+720:SuperMoveTime
+724:PauseMoveTime
+728:AfterImage参照先?
+
+全然調べてないや...
+164~640に関してはHitDefの順番と同じと予想
+
+まだ調べてないやつ
+postype
+
+LayeredSpriteの領域[[[P+3067+1985]+48]]
++4:56
++8:今のスプライト数
++12:LayeredSpriteMax
++16:Listに次に割り当てられる番号
++20:
++24:SpriteList
+
+SpriteList
++0:有効フラグ?
++4:
++8:
++12:本体は0で
+
+配列系アドレスの法則
++0:不明
++4:何Byteおきに管理されているか
++8:今は何データあるか
++12:何データ分領域が用意されているか
++16:何回割当が入ったか
++20:各情報
++24:リスト
++28:最後の位置のデータ(1番目を0とする、ProjとAct以外では0だった)
++32:現在のデータ数(0になったら計算しなくなる、ProjとAct以外では0だった)
++36:最初の位置のデータ(1番目を0とする、Proj以外は未確認、おそらくActでも同じ)
++28~36はごく一部のパラメータのみに保存されている。
+なぜActとProjでこのデータを保存しているかは不明、頻繁に変わる可能性があるからか？
++40:何番目まで読み込むか(不変値は総数-1)
+DefListなどの不変値は+8,+12,+16が共通の値
+
+リストアドレスの法則
++0:有効フラグ
++4:何番目に割り当てられたか(0が基準)
++8,+12:リストごとに異なる
+
+4b4be0~以降
+
++46296あたりの情報(まだ未検証)
++46296:0
++46300:上キーのアドレス(200=0xC8)
++46304:右キーのアドレス(205=0xCD)
++46308:下キーのアドレス(208=0xD0)
++46312:左キーのアドレス(203=0xCB)
++46316:0x33(51)
++46320:0x34(52)
++46324:0x35(53)
++46328:0x26(38)
++46332:0x27(39)
++46336:0x28(40)
++46340:0x1C(28)
++46344:00
++46348:00
++46352:0x48(72)
++46356:0x4D(77)
++46360:0x50(80)
++46364:0x4B(75)
++46368:0x4A(74)
++46372:0x4E(78)
++46376:0x9C(156)
++46380:0x45(69)
++46384:0xB5(181)
++46388:0x37(55)
++46392:0x51(81)
++46396:00
+
+
+
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+・コマンドの話の軽い考察
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+
+上記に書いた仕様なのだが実は不具合が混じっているのではという考察をしてみる。
+recoveryコマンドは0番地のコマンドとして扱われるので他のコマンドにダミー枠を作る必要はない。
+Name="aaaa"
+Name="recovery"
+Name="cccc"
+とした場合、2番目が空き番地(ダミー枠)となる。
+しかし開けるくらいならここを次のコマンドとして使うべきではという意見が出る。
+特にrecoveryが複数ある場合。
+Name="aaaa"
+Name="recovery"
+Name="recovery"
+Name="recovery"
+Name="cccc"
+とすると"cccc"は5番目となり、2~4番目が空き領域となり無駄な領域が増えてしまう。
+recovery以外はこのような空き領域が出ることはない。
+Name="aaaa"
+Name="hogehoge"
+Name="hogehoge"
+Name="hogehoge"
+Name="cccc"
+の場合"cccc"は3番目になる。
+なぜrecoveryだけこんな仕様になってしまうのか原因を推測してみる。
+
+1.recoveryで間違えてコマンドラベル数を増やしてしまった説
+recoveryは0番地に割り当てられるためラベル数を増やす必要は本来はない。
+しかし実際は増えてしまっているので無駄な領域が出てしまっている。
+さらに他のコマンドと異なり重複チェックが出来ない以上、
+無駄な増加をしてしまっているのではと考える。
+本来なら
+Name="aaaa"(1番目)
+Name="recovery"(0番目)
+Name="cccc"(2番目)
+Name="recovery"(0番目)
+Name="recovery"(0番目)
+Name="dddd"(3番目)
+Name="dddd"(3番目)
+でrecovery除いた3つ分の領域を使う予定だったのではと推測できる。
+
+2.仕様説
+本来投げられてるときのcommandはステート所有者のものを参照するが、
+例外的にrecoveryコマンドは自分のものを参照する。
+このあたりの仕様が影響してしまい、このような処理になったのではと推測する。
+(コマンド総数に含めないと不具合が出る？)
+
+実際に命令を確認しているわけではないため真偽はわからない。
+しかし、recoveryを複数使いたいときに少し不便なのは確かである。
+これが明かされるときは来るのだろうか...
+
+おまけ:
+・コマンド上限は126?
+MUGENの便覧というサイトでは隠しコマンドが2つあると書かれているが(引用元:http://mugenbinran.web.fc2.com/error.html)、
+私の推測を述べる。
+本来は0~127まであるのだが、通常コマンドは1~126でrecoveryのみ0みたい。
+しかし上記の仕様により総計で126でないといけない。
+127に関しては単純に指定ミスではと推測している。(本来は127とrecoveryの1で128だと思われる、内部では127で切るつもりが126で切ってしまっている？)
+(内部的には割当数<=127で読み続けるはずが割当数<127になっている？Var(60):=やFVar(40):=と同じか？)
+先程の隠しコマンドというものが126or0番目と127番目ではないかと思われる。
+
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+・アドレス以外の話
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+拡張変数での自アド参照、代入法
+1個目のPersistentを1とする場合(当オバフロ表ではこちらを採用している。)
+Var((アドレス-581)/4)
+Var((アドレス-581)/4) := 代入値
+例:Aliveに1~1000までの値をランダムで入れる
+Var((553-581)/4) := 1 + Random
+1個目のPersistentを3068とする場合
+Var((アドレス-3648)/4)
+Var((アドレス-3648)/4) := 代入値
+例:Aliveに1~1000までの値をランダムで入れる
+Var((3620-3648)/4) := 1 + Random
+
+誰かのアドレスに代入
+Var(Var(Var(4938572)+46928+4*リダイレクト,Var((-3059-581)/4))+アドレス) := 任意値
+
+FVar(絶対アドレス)は不具合が多いので控えたほうがいい？
+
+[State ]
+type=DisplayToClipboard
+trigger1=1
+text="%.*d%n%d"
+params=値（0~512）,0,アドレス
+ignorehitpause=1
+
+一般的な%n書きこみ方法。
+%hnにすると2Byteまでの書き込みに出来る
+%.*dを%*dにすれば1023まで代入出来るが、0が代入できなくなる。
+
+[State ]
+type=DisplayToClipboard
+trigger1=1
+text="%n"
+params=アドレス
+ignorehitpause=1
+0を代入する場合
+この場合引数を上記のものより多く指定できて少し便利
+
+[State 初期Persistent弄り]
+type = DisplayToClipboard
+trigger1 = 1
+text = "%.*d%%p%%p%%p%%n"
+params = (入れたい値) - 24
+persistent = 0	;書き込みしないように
+ignorehitpause = 1
+23以下の値を入れたいときはNull代入すること
+
+[State 最新型Persistent弄り]
+type = DisplayToClipboard
+trigger1 = 1
+text = "%.*d%.0s%%.0s%%.0s%%.0s%%n"
+params = (入れたい値), 0
+persistent = 0
+ignorehitpause = 1
+
+旧版はPersistentを引き出すために%%pを使用していたため%%p*3つ分の24文字分
+必要であったが、最新版は%.0s(0文字)で引き出しているため0~255まで使える
+どちらも513以上の値を入れることは出来ない。
+
+内容を見れば分かるがPersistent弄りは%n代入の一種である。
+
+[State DTCコード実行]
+type = DisplayToClipboard
+trigger1 = 1
+text = "[コードのバイナリデータ]%%(1024-コード内の総文字数)d4CA"
+ignorehitpause = 1
+
+[State DTCコード実行];例
+type = DisplayToClipboard
+trigger1 = 1
+text = "abcdefg%%1017d4CA"
+ignorehitpause = 1
+
+paramsを入れることにより[EDI-X]で任意の値をコード内で引き出せる。
+%.0sで入れることをすすめる。
+
+paramsが5個の時
+[EDI-0x10]:1個目のParam
+[EDI-0xC] :2個目のParam
+[EDI-0x8] :3個目のParam
+[EDI-0x4] :4個目のParam
+[EDI]     :5個目のParam
+
+paramsが4個の時
+[EDI-0x10]:1個目のParam
+[EDI-0xC] :2個目のParam
+[EDI-0x8] :3個目のParam
+[EDI-0x4] :4個目のParam
+
+paramsが3個の時
+[EDI-0xC] :1個目のParam
+[EDI-0x8] :2個目のParam
+[EDI-0x4] :3個目のParam
+
+paramsが2個の時
+[EDI-0x8] :1個目のParam
+[EDI-0x4] :2個目のParam
+
+paramsが1個の時
+[EDI-0x4] :1個目のParam
+
+ParamsにFloat型が混じっていると正常に引き出せないので注意。
+
+mugen-hiとNo_limit_winmugenの違い
+
+mugen-hiはexeファイル内のアドレス番地に+0x400000をしたものが起動時に反映される値(全部同じわけではない)だが、
+No_limitはそうではないようだ(一定より先からはなにも見えない)
+VPとかでそこら編の値弄りたいときはmugen-hiの方を
+見ることを推奨する。
+
+NumExplodはExplodMax=3000で5000ほどあるとかなり重くなる。
+一方でNumProjはPlayerPrpjectileMax=12000で5000ほどあってもさほど重くならない。
+...がProjが大量に出ているとかなり重くなる
+どうも最初に存在している位置のProjと最後に存在している位置のProjが
+遠ければ遠いほど重くなるようだ。
+0番地から10000番地まで埋まっていても、0番地と10000番地だけに置いてあっても
+同じくらい重くなる。同じ2つでも0番地と1番地、0番地と10000番地では重さにかなり差が出る。
+同じ総当りで検証していると思われるNumHelperが重くならないのは
+単純に調べる量が少ないからだと思われる。[Helperは最高でも56(厳密には64)、対してExplodやProjectileはMax次第でかなり多くなる]
+
+ExplodやAnimが千単位で総当りする可能性があるのに対し、
+Helperは精々56が限度のため調査数が少ない。
+おそらくExplodはどこが最初に出ていてどこが最後に出てるかを直接保存していないので
+0からExplodMaxまで総当りする必要性があるゆえに重くなるのだろう。
+
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+・新MUGEN(1.0。1.1は不明)
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
+
+%nによる書き込みは使えないようだ。
+03570248
+
+4891300	参照先記録場所（4AA2A4）
+
+Ｘ-324	gametime
+Ｘ	参照先基準点
+Ｘ+584	１Ｐアドレス記録（親捏造２回目中継）
+Ｘ+1092	何番目のプレイヤーから存在しているか
+Ｘ+1096	何番目のプレイヤーから存在しているか
+Ｘ+1788	勝利数１Ｐ
+Ｘ+1828	roundstate
+Ｘ+1832	勝利チーム
+Ｘ+1836	試合の終わり方（１：ＫＯ　２：ＤＫＯ　３：タイムオーバー）
+Ｘ+1844	残り時間、フレーム
+Ｘ+1860	１Ｐ勝ち方
+
+基準点の先は基準点が違うだけで基本位置関係は同じ。ただ基準点前は微妙に違う。例えばgametimeは前は１Ｐアドレス記録の位置から-856だった（今は-908）
+
+
+プレイヤーアドレス
+
+-3155	リダイレクトで指定されてる場所
+-2723	プレイヤーフラグ
+-2719	pauseで止まっているかどうか
+-2715	ライフ
+-2603	pausemovetime
+-2599	supermovetime
+513	time
+549	新要素？凍結中に反応してた
+553	PosFreeze
+557	Alive
+585	Var(0)
+821	Var(59)
+825	FVar(0)
+1997	PalNo
+2001	PalFXの影響力
+2005	なにかが入っていた
+2021	PalFXの実行からの経過時間、PalFX-Time以上だと反映されずその後0に戻る？
+2025	PalFX-Time
+2029	PalFX-Color[これ含めてPalFXの値はPalFX-Timeが一定以上でないと反映されない模様]
+2033	PalFX-Add(R)
+2037	PalFX-Add(G)
+2041	PalFX-Add(B)
+2045	PalFX-Mul(R)
+2049	PalFX-Mul(G)
+2053	PalFX-Mul(B)
+2057	PalFX-SinAdd(R)
+2061	PalFX-SinAdd(G)
+2065	PalFX-SinAdd(B)
+2069	PalFX-InvertAll
+2073	PalFX-SinAddTime
+2077	不明(0が常に代入されている?かつPalFXに関係しているっぽい)
+2081	HelperID
+2085	親のＩＤ
+2089	Parentリダイレクト
+
+549が増えてずれたものと思われる。
+553~1997は-4したこと以外はWinと同じ?
+1997の先にあった空白がごっそり消えている。
+基本それ以外はプラス方向に変化なし。同じ並びだと思われる。
+マイナス方向が増えてるのは新しいステータスでConstが増えたからと予想。
+Pos ZとVel Z関連が消えていた
